@@ -1,1 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+
+
+.form-group > label {
+
+  font-weight: bolder;
+  color: #4e4e4e;
+  margin-bottom: 0.5em;
+}

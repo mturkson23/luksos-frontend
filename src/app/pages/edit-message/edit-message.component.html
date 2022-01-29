@@ -1,0 +1,112 @@
+<app-panel [title]="'Meldung 1'">
+  <form>
+
+    <div class="row">
+      <div class="col-md-5 p-4">
+
+        <div class="form-group">
+          <label for="title">Titel</label>
+          <input type="text" class="form-control" id="title" />
+        </div>
+        <div class="form-group mt-4">
+          <label for="title">erstellt am/un</label>
+          <input type="text" class="form-control" id="title" />
+        </div>
+
+        <div class="form-group mt-4">
+          <label for="title">Textbaustein</label>
+          <textarea class="form-control" rows="10"></textarea>
+        </div>
+      </div>
+      <div class="col-md-4 p-4">
+        <div class="form-group">
+          <label for="title">Voraussichtliche Dauer</label>
+          <input type="text" class="form-control" id="title" />
+        </div>
+        <div class="form-group mt-4">
+          <label for="title">Benutzergruppen</label>
+          <ng-multiselect-dropdown
+            [placeholder]="'Select Kanale'"
+            [settings]="dropdownSettings"
+            [data]="dropdownList"
+            (onSelect)="onItemSelect($event)"
+            (onSelectAll)="onSelectAll($event)"
+          >
+        </ng-multiselect-dropdown>
+        </div>
+        <div class="form-group mt-4">
+          <label for="title">Kanale</label>
+          <ng-multiselect-dropdown
+            [placeholder]="'custom placeholder'"
+            [settings]="dropdownSettings"
+            [data]="dropdownList"
+
+            (onSelect)="onItemSelect($event)"
+            (onSelectAll)="onSelectAll($event)"
+          >
+        </ng-multiselect-dropdown>
+        </div>
+      </div>
+      <div class="col-md-3  d-flex justify-content-center align-items-center">
+
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="d-flex">
+
+        <div>
+          <button class="btn btn-dark" (click)="openModal(content)">
+            Zwischenmeldung erstellen
+          </button>
+        </div>
+
+        <div class="ml-auto" style="margin-left: auto">
+          <button class="btn btn-success" style="margin-right: 10px;">
+            Gutmeldung schicken
+          </button>
+          <button class="btn btn-dark">
+            Mitteilung aktivieren
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </form>
+
+
+  <ng-template #content let-modal>
+    <div class="modal-header justify-content-center">
+      <h4 class="modal-title text-center" id="modal-title">Zwischenmeldung erstellen</h4>
+
+    </div>
+    <div class="modal-body" style="background-color: #f4f4f4;">
+      <div class="form">
+        <div class="row">
+          <div class="col-md-12 p-4">
+
+            <div class="form-group">
+              <label for="title">Titel der Notfallmeldung</label>
+              <input type="text" class="form-control" id="title" />
+            </div>
+
+            <div class="form-group mt-4">
+              <label for="title">Zwischenmeldung Text</label>
+              <textarea class="form-control" rows="10"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex justify-content-between p-4">
+        <button class="btn btn-light" style="margin-right: 10px;">
+          Verwerfen
+        </button>
+        <button class="btn btn-dark">
+          Zwischenmeldung senden
+        </button>
+      </div>
+    </div>
+
+  </ng-template>
+
+</app-panel>

@@ -14,6 +14,10 @@ import { AnnouncementsComponent } from './pages/announcements/announcements.comp
 import { TextTemplatesComponent } from './pages/text-templates/text-templates.component';
 import { HistoryComponent } from './pages/history/history.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { ReportComponent } from './pages/report/report.component';
+import { EditMessageComponent } from './pages/edit-message/edit-message.component';
+import { ModalComponent } from './components/modal/modal.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -26,14 +30,18 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     PanelComponent,
     AnnouncementsComponent,
     TextTemplatesComponent,
-    HistoryComponent
+    HistoryComponent,
+    ReportComponent,
+    EditMessageComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
     NgMultiSelectDropDownModule.forRoot(),
     FormsModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

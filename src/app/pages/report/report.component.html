@@ -1,0 +1,163 @@
+<app-panel [title]="'Meldung 1'">
+  <form>
+
+    <div class="row">
+      <div class="col-md-6 p-4">
+
+        <div class="form-group">
+          <label for="title">Titel</label>
+          <input type="text" class="form-control" id="title" />
+        </div>
+        <div class="row">
+
+          <div class="col-6">
+            <div class="form-group mt-4">
+              <label for="title">erstellt am/un</label>
+              <input type="text" class="form-control" id="title" />
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-group mt-4">
+              <label for="title">behoben am/um</label>
+              <input type="text" class="form-control" id="title" />
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+
+          <div class="col-6">
+            <div class="form-group mt-4">
+              <label for="title">Ticketnummer</label>
+              <input type="text" class="form-control" id="title" />
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group mt-4">
+          <label for="title">Textbaustein</label>
+          <textarea class="form-control" rows="10"></textarea>
+        </div>
+      </div>
+      <div class="col-md-6 p-4">
+        <div class="form-group">
+          <label for="title">Losungsweg</label>
+          <textarea class="form-control" rows="10"></textarea>
+        </div>
+        <div class="row">
+
+          <div class="col-6">
+            <div class="form-group mt-4">
+              <label for="title">Benutzergruppen</label>
+              <ng-multiselect-dropdown
+                [placeholder]="'Select Kanale'"
+                [settings]="dropdownSettings"
+                [data]="dropdownList"
+                (onSelect)="onItemSelect($event)"
+                (onSelectAll)="onSelectAll($event)"
+              >
+            </ng-multiselect-dropdown>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-group mt-4">
+              <label for="title">Kanale</label>
+              <ng-multiselect-dropdown
+                [placeholder]="'custom placeholder'"
+                [settings]="dropdownSettings"
+                [data]="dropdownList"
+
+                (onSelect)="onItemSelect($event)"
+                (onSelectAll)="onSelectAll($event)"
+              >
+            </ng-multiselect-dropdown>
+            </div>
+          </div>
+
+          <div class="col-6">
+            <div class="form-group mt-4">
+              <label for="title">voraussichtliche Dauer</label>
+              <input type="text" class="form-control" id="title" />
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-group mt-4">
+              <label for="title">tatsachliche Dauer</label>
+              <input type="text" class="form-control" id="title" />
+            </div>
+          </div>
+        </div>
+
+        <div class="col-6">
+          <div class="form-group mt-4">
+            <label for="title">Anzahl Zwischenmeldung</label>
+            <input type="text" class="form-control" id="title" (click)="openModal(content)" />
+          </div>
+        </div>
+
+
+      </div>
+      <div class="col-md-3  d-flex justify-content-center align-items-center">
+
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="d-flex justify-content-end">
+
+        <div>
+          <button class="btn btn-dark" (click)="gotoDashboard()">
+            Mitteilung Speichern
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+
+
+  <ng-template #content let-modal>
+    <div class="modal-header justify-content-center">
+      <h4 class="modal-title text-center" id="modal-title">Zwischenmeldung einsehen</h4>
+
+    </div>
+    <div class="modal-body" style="background-color: #f4f4f4;">
+      <div class="form">
+        <div class="row">
+          <div class="col-md-12 p-4">
+
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <td>ID</td>
+                  <td>ERSTELLDATUM</td>
+                  <td>STATUS</td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>01.01.2020</td>
+                  <td>akvin</td>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>01.01.2020</td>
+                  <td>akvin</td>
+
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex justify-content-center p-4">
+        <button class="btn btn-dark">
+          Zwischenmeldung senden
+        </button>
+      </div>
+    </div>
+
+  </ng-template>
+
+</app-panel>

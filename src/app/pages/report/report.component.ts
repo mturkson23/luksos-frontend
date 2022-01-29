@@ -1,20 +1,20 @@
-import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-  selector: 'app-text-templates',
-  templateUrl: './text-templates.component.html',
-  styleUrls: ['./text-templates.component.css']
+  selector: 'app-report',
+  templateUrl: './report.component.html',
+  styleUrls: ['./report.component.css']
 })
-export class TextTemplatesComponent implements OnInit {
+export class ReportComponent implements OnInit {
 
   dropdownList: any = [];
   selectedItems: any = [];
   dropdownSettings: any = {};
 
-  constructor(private modalService: NgbModal, private router: Router) { }
+  constructor(private modalService: NgbModal, private router: Router) {}
 
   public form: FormGroup = new FormGroup({});
 
@@ -49,11 +49,14 @@ export class TextTemplatesComponent implements OnInit {
     console.log(items);
   }
 
-  gotoDashboard(content: any) {
+  openModal(content: any) {
+    this.modalService.open(content, {size: 'lg'});
+  }
+
+  gotoDashboard() {
 
 
     this.router.navigate(['/dashboard']);
-    this.modalService.open(content);
   }
 
 }

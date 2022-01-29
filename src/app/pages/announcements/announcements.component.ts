@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 
 @Component({
@@ -13,7 +14,7 @@ export class AnnouncementsComponent implements OnInit {
   selectedItems: any = [];
   dropdownSettings: any = {};
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   public form: FormGroup = new FormGroup({});
 
@@ -46,6 +47,12 @@ export class AnnouncementsComponent implements OnInit {
   }
   onSelectAll(items: any) {
     console.log(items);
+  }
+
+  gotoDashboard() {
+
+
+    this.router.navigate(['/dashboard']);
   }
 
 }
