@@ -9,6 +9,8 @@ import { LoginComponent } from './pages/login/login.component';
 import { AnnouncementsComponent } from './pages/announcements/announcements.component';
 import { TextTemplatesComponent } from './pages/text-templates/text-templates.component';
 import { EditMessageComponent } from './pages/edit-message/edit-message.component';
+import { ChannelsComponent } from './pages/channels/channels.component';
+import { UsersComponent } from './pages/users/users.component';
 
 const routes: Routes = [
   { path: '', component: ShellComponent, children: [
@@ -17,7 +19,9 @@ const routes: Routes = [
     { path: 'text-templates', component: TextTemplatesComponent },
     { path: 'history', component: HistoryComponent},
     { path: 'edit-message', component: EditMessageComponent },
-    { path: 'edit-history', component: ReportComponent }
+    { path: 'edit-history', component: ReportComponent },
+    { path: 'channels', component: ChannelsComponent },
+    { path: 'users', component: UsersComponent },
   ]},
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },

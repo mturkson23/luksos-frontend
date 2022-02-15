@@ -21,6 +21,8 @@ import { EditMessageComponent } from './pages/edit-message/edit-message.componen
 import { ModalComponent } from './components/modal/modal.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CommonModule } from '@angular/common';
+import { UsersComponent } from './pages/users/users.component';
+import { ChannelsComponent } from './pages/channels/channels.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import { CommonModule } from '@angular/common';
     HistoryComponent,
     ReportComponent,
     EditMessageComponent,
-    ModalComponent
+    ModalComponent,
+    UsersComponent,
+    ChannelsComponent
   ],
   imports: [
     BrowserModule,
