@@ -15,14 +15,14 @@ export class SignupComponent implements OnInit {
 
   onSubmit() {
 
-    this.authService.signUp(this.signupForm.value.username, this.signupForm.value.password).subscribe(
-      data => {
-        console.log(data);
-      },
-      err => {
-        console.log(err);
-      }
-    );
+    // this.authService.signUp(this.signupForm.value.username, this.signupForm.value.password).subscribe(
+    //   data => {
+    //     console.log(data);
+    //   },
+    //   err => {
+    //     console.log(err);
+    //   }
+    // );
 
   }
 
