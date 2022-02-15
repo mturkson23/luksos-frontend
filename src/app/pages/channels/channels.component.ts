@@ -10,11 +10,12 @@ export class ChannelsComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+
+
   }
 
 
   goToChannel() {
 
   }
-
 }
