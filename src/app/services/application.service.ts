@@ -12,8 +12,6 @@ import { Appsettings } from '../models/Appsettings.model';
 export class ApplicationService {
 
   protected connectionString;
-  private username: string = 'pop';
-  private password: string = 'teksol@1234';
 
   public reloadTablesAndOverview: EventEmitter<any> = new EventEmitter<any>();
 

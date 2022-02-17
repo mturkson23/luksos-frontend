@@ -2,6 +2,7 @@ import { AuthService } from './services/auth.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -23,6 +24,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CommonModule } from '@angular/common';
 import { UsersComponent } from './pages/users/users.component';
 import { ChannelsComponent } from './pages/channels/channels.component';
+import { NgBootstrapFormValidationModule } from 'ng-bootstrap-form-validation';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -46,11 +49,20 @@ import { ChannelsComponent } from './pages/channels/channels.component';
     BrowserModule,
     CommonModule,
     HttpClientModule,
+    BrowserAnimationsModule,
     NgMultiSelectDropDownModule.forRoot(),
     FormsModule,
+    NgBootstrapFormValidationModule.forRoot(),
+    NgBootstrapFormValidationModule,
+    ToastrModule.forRoot({
+      timeOut: 4000,
+      positionClass: 'toast-bottom-left',
+      preventDuplicates: true,
+      closeButton: true,
+    }),
     AppRoutingModule,
     ReactiveFormsModule,
-    NgbModule
+    NgbModule,
   ],
   providers: [
     AuthService

@@ -7,29 +7,14 @@ import { ApplicationService } from './application.service';
 @Injectable({
   providedIn: 'root'
 })
-export class ChannelService extends ApplicationService {
+export class UserService extends ApplicationService {
 
   constructor(public override http: HttpClient, protected override router: Router, protected override alertService: AlertService) {
     super(http, alertService, router)
   }
 
-  createChannel(payload: any) {
+  getUsers() {
 
-    return this.makePost('/customers/mobile/approve', payload)
-  }
-
-  editChannel(payload: any) {
-
-    return this.makePost('/customers/mobile/approve', payload)
-  }
-
-  deleteChannel(payload: any) {
-
-    return this.makePost('/customers/mobile/approve', payload)
-  }
-
-  getChannels() {
-
-    return this.makeGet('/channelgroup/getall')
+    return this.makeGet('/user/getusers')
   }
 }

@@ -20,8 +20,8 @@ export class AuthService extends ApplicationService {
 
     return new Promise((res, rej) => {
 
-      return this.http.get<Appsettings>('assets/appsettings.json').toPromise().then(settings => {
-        console.log(settings)
+      return this.http.get<Appsettings>('assets/appsettings.json').toPromise().then((settings: any) => {
+        this.saveServerUrl(settings.serverUrl)
         ApplicationService.Appsettings = settings as Appsettings;
         res(settings)
       })
@@ -30,12 +30,14 @@ export class AuthService extends ApplicationService {
 
   public authenticate(Username: string, Password: string, settings: Appsettings) {
 
-    return this.http.post<User>(`${settings.serverUrl}/users/authenticate`, {
-      Username, Password
+    return this.http.post<User>(`${settings.serverUrl}/user/login`, {
+      email_address: Username,
+      password: Password
     })
   }
 
   public saveTokens(Token: string, RefreshToken: string, User: User) {
+
     localStorage.setItem('AUTH_TOKEN', Token);
     localStorage.setItem('AUTH_REFRESH_TOKEN', RefreshToken);
     localStorage.setItem('AUTH_USER_ID', User.username);

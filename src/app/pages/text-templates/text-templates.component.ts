@@ -2,6 +2,7 @@ import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-text-templates',
@@ -14,7 +15,9 @@ export class TextTemplatesComponent implements OnInit {
   selectedItems: any = [];
   dropdownSettings: any = {};
 
-  constructor(private modalService: NgbModal, private router: Router) { }
+  users: any = []
+
+  constructor(private modalService: NgbModal, private router: Router, private userService: UserService) { }
 
   public form: FormGroup = new FormGroup({});
 
@@ -54,6 +57,13 @@ export class TextTemplatesComponent implements OnInit {
 
     this.router.navigate(['/dashboard']);
     this.modalService.open(content);
+  }
+
+  getUsers() {
+
+    this.userService.getUsers().subscribe(data => {
+      this.users = data.extra
+    })
   }
 
 }
