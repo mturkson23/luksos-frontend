@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { MessageService } from 'src/app/services/message.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,9 +9,18 @@ import { Router } from '@angular/router';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  messages: any = []
+
+  constructor(private router: Router, private messageService: MessageService) { }
 
   ngOnInit(): void {
+
+    this.messageService.getMessages().subscribe((data: any) => {
+
+      console.log(data)
+
+      this.messages = data.extra;
+    })
   }
 
   goToEdit() {

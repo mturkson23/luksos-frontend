@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Appsettings } from 'src/app/models/Appsettings.model';
+import { User } from 'src/app/models/User.model';
 import { AlertService } from 'src/app/services/alert-service.service';
 import { ApplicationService } from 'src/app/services/application.service';
 import { AuthService } from 'src/app/services/auth.service';
@@ -39,7 +40,7 @@ export class LoginComponent implements OnInit {
 
         if(data.status) {
 
-          this.authService.saveTokens(data.message, '', data.username).then(() => {
+          this.authService.saveTokens(data.message, '', { username: this.loginForm.value.username} as User).then(() => {
             this.alertService.showSuccess('Authenticated', 'You are now Logged In!')
             this.router.navigateByUrl('/').then(() => {
               ApplicationService.Appsettings = settings as Appsettings;

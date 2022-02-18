@@ -30,6 +30,8 @@ export class AuthService extends ApplicationService {
 
   public authenticate(Username: string, Password: string, settings: Appsettings) {
 
+    console.log(Username, Password)
+
     return this.http.post<User>(`${settings.serverUrl}/user/login`, {
       email_address: Username,
       password: Password

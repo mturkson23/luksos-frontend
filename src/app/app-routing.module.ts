@@ -11,9 +11,11 @@ import { TextTemplatesComponent } from './pages/text-templates/text-templates.co
 import { EditMessageComponent } from './pages/edit-message/edit-message.component';
 import { ChannelsComponent } from './pages/channels/channels.component';
 import { UsersComponent } from './pages/users/users.component';
+import { AuthGuard } from './guards/auth.guard';
+import { DashboardGuard } from './guards/dashboard.guard';
 
 const routes: Routes = [
-  { path: '', component: ShellComponent, children: [
+  { path: '', component: ShellComponent,canActivateChild: [ DashboardGuard ], children: [
     { path: '', component: DashboardComponent },
     { path: 'announcements', component: AnnouncementsComponent },
     { path: 'text-templates', component: TextTemplatesComponent },
@@ -23,7 +25,7 @@ const routes: Routes = [
     { path: 'channels', component: ChannelsComponent },
     { path: 'users', component: UsersComponent },
   ]},
-  { path: 'login', component: LoginComponent },
+  { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
   { path: 'signup', component: SignupComponent },
   { path: '**', redirectTo: '' }
 ]

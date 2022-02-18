@@ -17,4 +17,14 @@ export class UserService extends ApplicationService {
 
     return this.makeGet('/user/getusers')
   }
+
+  getUserGroups() {
+
+    return this.makeGet('/usergroup/getall')
+  }
+
+  getUserGroupTypes() {
+
+    return this.makeGet('/usergroup/getall')
+  }
 }

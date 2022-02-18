@@ -28,8 +28,8 @@ export class MessageService extends ApplicationService {
     return this.makePost('/customers/mobile/approve', payload)
   }
 
-  getMessage(payload: any) {
+  getMessages() {
 
-    return this.makePost('/customers/mobile/approve', payload)
+    return this.makeGet('/messagetemplate/getall')
   }
 }

@@ -38,11 +38,11 @@
           <label for="title">Kanale</label>
           <ng-multiselect-dropdown
             [placeholder]="'custom placeholder'"
-            [settings]="dropdownSettings"
-            [data]="dropdownList"
+            [settings]="channelDropdownSettings"
+            [data]="channelDropdownList"
 
-            (onSelect)="onItemSelect($event)"
-            (onSelectAll)="onSelectAll($event)"
+            (onSelect)="onChannelItemSelect($event)"
+            (onSelectAll)="onChannelSelectAll($event)"
           >
         </ng-multiselect-dropdown>
         </div>
@@ -50,11 +50,11 @@
           <label for="title">Benutzergruppen</label>
           <ng-multiselect-dropdown
             [placeholder]="'Select Kanale'"
-            [settings]="dropdownSettings"
-            [data]="dropdownList"
+            [settings]="userDropdownSettings"
+            [data]="userDropdownList"
 
-            (onSelect)="onItemSelect($event)"
-            (onSelectAll)="onSelectAll($event)"
+            (onSelect)="onUserItemSelect($event)"
+            (onSelectAll)="onUserSelectAll($event)"
           >
         </ng-multiselect-dropdown>
         </div>
