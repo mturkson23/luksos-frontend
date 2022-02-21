@@ -3,6 +3,8 @@ import { Appsettings } from './models/Appsettings.model';
 import { ApplicationService } from './services/application.service';
 import { AuthService } from './services/auth.service';
 
+import { Spinkit } from 'ng-http-loader';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -11,6 +13,8 @@ import { AuthService } from './services/auth.service';
 export class AppComponent implements OnInit {
 
   title = 'ticking';
+
+  public spinkit = Spinkit;
 
   constructor(private authService: AuthService) {
 

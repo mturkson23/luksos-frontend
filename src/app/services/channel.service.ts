@@ -33,6 +33,11 @@ export class ChannelService extends ApplicationService {
     return this.makePost('/channelgroup/getall', {})
   }
 
+  getTemplateTypes() {
+
+    return this.makePost('/messagetemplatetype/getall', {})
+  }
+
   createChannel(payload: any) {
 
     return this.makePost('/messagetemplate/add', payload)

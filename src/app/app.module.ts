@@ -27,6 +27,7 @@ import { ChannelsComponent } from './pages/channels/channels.component';
 import { NgBootstrapFormValidationModule } from 'ng-bootstrap-form-validation';
 import { ToastrModule } from 'ngx-toastr';
 import { AmazingTimePickerModule } from 'amazing-time-picker';
+import { NgHttpLoaderModule } from 'ng-http-loader';
 
 @NgModule({
   declarations: [
@@ -63,8 +64,9 @@ import { AmazingTimePickerModule } from 'amazing-time-picker';
     }),
     AppRoutingModule,
     ReactiveFormsModule,
-    AmazingTimePickerModule, 
+    AmazingTimePickerModule,
     NgbModule,
+    NgHttpLoaderModule.forRoot(),
   ],
   providers: [
     AuthService

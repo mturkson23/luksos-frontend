@@ -23,12 +23,12 @@ export class TextTemplatesComponent implements OnInit {
 
   users: any = []
   channels: any = []
+  templates: any = []
 
   constructor(private modalService: NgbModal, private router: Router, private userService: UserService, private channelService: ChannelService, private alertService: AlertService) { }
 
   public form: FormGroup = new FormGroup({
-    name: new FormControl('', [
-      Validators.minLength(2),
+    type_id: new FormControl('', [
       Validators.required,
     ]),
     title: new FormControl('', [
@@ -82,6 +82,7 @@ export class TextTemplatesComponent implements OnInit {
     this.getUserGroups()
 
     this.getChannels()
+    this.getTemplageTypes()
 
   }
 
@@ -133,6 +134,14 @@ export class TextTemplatesComponent implements OnInit {
     })
   }
 
+  getTemplageTypes() {
+
+    this.channelService.getTemplateTypes().subscribe(data => {
+
+      this.templates = data.extra
+    })
+  }
+
   onSubmit() {
 
       if(this.channelSelectedItems.length == 0){
@@ -149,10 +158,17 @@ export class TextTemplatesComponent implements OnInit {
       this.channelService.createChannel({
         ...this.form.value,
         timer: 60,
+        type_id: Number.parseInt(this.form.value.type_id),
         channel_id: this.channelSelectedItems[0].id,
         user_group_id: this.userSelectedItems[0].id
       }).subscribe(data => {
         this.router.navigate(['/dashboard']);
+
+        if(data.status) {
+          this.alertService.showSuccess('Message Added', data.message)
+        } else {
+          this.alertService.showError('Error', data.message)
+        }
       })
   }
 }
