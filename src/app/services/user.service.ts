@@ -20,7 +20,7 @@ export class UserService extends ApplicationService {
 
   getUserGroups() {
 
-    return this.makeGet('/usergroup/getall')
+    return this.makePost('/usergroup/getall', {})
   }
 
   getUserGroupTypes() {

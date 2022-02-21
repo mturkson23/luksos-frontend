@@ -1,7 +1,8 @@
+import { AlertService } from 'src/app/services/alert-service.service';
 import { ChannelService } from './../../services/channel.service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { UserService } from 'src/app/services/user.service';
 
@@ -23,73 +24,79 @@ export class TextTemplatesComponent implements OnInit {
   users: any = []
   channels: any = []
 
-  constructor(private modalService: NgbModal, private router: Router, private userService: UserService, private channelService: ChannelService) { }
+  constructor(private modalService: NgbModal, private router: Router, private userService: UserService, private channelService: ChannelService, private alertService: AlertService) { }
 
-  public form: FormGroup = new FormGroup({});
+  public form: FormGroup = new FormGroup({
+    name: new FormControl('', [
+      Validators.minLength(2),
+      Validators.required,
+    ]),
+    title: new FormControl('', [
+      Validators.minLength(2),
+      Validators.required
+    ]),
+    messages: new FormControl('', [
+      Validators.minLength(2),
+      Validators.required
+    ]),
+    timer: new FormControl('', [
+      Validators.required
+    ])
+  });
 
   ngOnInit(): void {
 
-    this.channelDropdownList = [
-      { item_id: 1, item_text: 'Mumbai' },
-      { item_id: 2, item_text: 'Bangaluru' },
-      { item_id: 3, item_text: 'Pune' },
-      { item_id: 4, item_text: 'Navsari' },
-      { item_id: 5, item_text: 'New Delhi' }
-    ];
+    this.channelDropdownList = []
 
     this.channelSelectedItems = [
-      { item_id: 3, item_text: 'Pune' },
-      { item_id: 4, item_text: 'Navsari' }
+
+    ];
+
+    this.userDropdownList = [
+    ];
+
+    this.userSelectedItems = [
+
     ];
 
     this.channelDropdownSettings = {
       singleSelection: false,
-      idField: 'item_id',
-      textField: 'item_text',
+      idField: 'id',
+      textField: 'identifier',
       selectAllText: 'Select All',
       unSelectAllText: 'UnSelect All',
       itemsShowLimit: 3,
       allowSearchFilter: true
     };
 
-    this.userDropdownList = [
-      { item_id: 1, item_text: 'Mumbai' },
-      { item_id: 2, item_text: 'Bangaluru' },
-      { item_id: 3, item_text: 'Pune' },
-      { item_id: 4, item_text: 'Navsari' },
-      { item_id: 5, item_text: 'New Delhi' }
-    ];
-
-    this.userSelectedItems = [
-      { item_id: 3, item_text: 'Pune' },
-      { item_id: 4, item_text: 'Navsari' }
-    ];
-
-    this.userDropdownList = {
+    this.userDropdownSettings = {
       singleSelection: false,
-      idField: 'item_id',
-      textField: 'item_text',
+      idField: 'id',
+      textField: 'name',
       selectAllText: 'Select All',
       unSelectAllText: 'UnSelect All',
       itemsShowLimit: 3,
       allowSearchFilter: true
     };
 
-    this.getUsers()
+    this.getUserGroups()
+
+    this.getChannels()
+
   }
 
   onChannelItemSelect(item: any) {
-    console.log(item);
+    this.channelSelectedItems.push(item)
   }
   onChannelSelectAll(items: any) {
-    console.log(items);
+    this.channelSelectedItems = items
   }
 
   onUserItemSelect(item: any) {
-    console.log(item);
+    this.userSelectedItems.push(item)
   }
   onUserSelectAll(items: any) {
-    console.log(items);
+    this.userSelectedItems = items
   }
 
   gotoDashboard(content: any) {
@@ -113,10 +120,39 @@ export class TextTemplatesComponent implements OnInit {
     this.channelService.getChannels().subscribe(data => {
 
       console.log(data)
-      this.channels = data.extra
+      this.channelDropdownList = data.extra
     })
   }
 
+  getUserGroups() {
 
+    this.userService.getUserGroups().subscribe(data => {
 
+      console.log(data)
+      this.userDropdownList = data.extra
+    })
+  }
+
+  onSubmit() {
+
+      if(this.channelSelectedItems.length == 0){
+        this.alertService.showError('Select a Channel', 'Please select at least one channel')
+        return
+      }
+
+      if(this.userSelectedItems.length == 0) {
+
+        this.alertService.showError('Select a User Group', 'Please select at least one user group')
+        return
+      }
+
+      this.channelService.createChannel({
+        ...this.form.value,
+        timer: 60,
+        channel_id: this.channelSelectedItems[0].id,
+        user_group_id: this.userSelectedItems[0].id
+      }).subscribe(data => {
+        this.router.navigate(['/dashboard']);
+      })
+  }
 }

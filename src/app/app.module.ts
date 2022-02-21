@@ -26,6 +26,7 @@ import { UsersComponent } from './pages/users/users.component';
 import { ChannelsComponent } from './pages/channels/channels.component';
 import { NgBootstrapFormValidationModule } from 'ng-bootstrap-form-validation';
 import { ToastrModule } from 'ngx-toastr';
+import { AmazingTimePickerModule } from 'amazing-time-picker';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { ToastrModule } from 'ngx-toastr';
     }),
     AppRoutingModule,
     ReactiveFormsModule,
+    AmazingTimePickerModule, 
     NgbModule,
   ],
   providers: [

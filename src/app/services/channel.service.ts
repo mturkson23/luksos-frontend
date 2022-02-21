@@ -13,11 +13,6 @@ export class ChannelService extends ApplicationService {
     super(http, alertService, router)
   }
 
-  createChannel(payload: any) {
-
-    return this.makePost('/customers/mobile/approve', payload)
-  }
-
   editChannel(payload: any) {
 
     return this.makePost('/customers/mobile/approve', payload)
@@ -30,6 +25,16 @@ export class ChannelService extends ApplicationService {
 
   getChannels() {
 
-    return this.makeGet('/channelgroup/getall')
+    return this.makePost('/channel/getall', {})
+  }
+
+  getChannelsGroup() {
+
+    return this.makePost('/channelgroup/getall', {})
+  }
+
+  createChannel(payload: any) {
+
+    return this.makePost('/messagetemplate/add', payload)
   }
 }

@@ -1,46 +1,35 @@
 <app-panel [title]="'neue Textvorlage ersetellen order vorhandene Vorlage bearbeiten'">
-  <form>
+
+  <form [formGroup]='form' (validSubmit)='onSubmit()'>
 
     <div class="row">
       <div class="col-md-5 p-4">
 
         <div class="form-group">
-          <label for="title">nueu Vorlage ersetellen oder vorhandene Vorlage bearbeiten</label>
-          <select class="form-control">
-            <option value="">SELECT</option>
-            <option [value]="user.id" *ngFor="let user of users">{{user.first_name}}</option>
-          </select>
-        </div>
-        <div class="form-group mt-4">
-          <label for="title">Name der Vorlage</label>
-          <input type="text" class="form-control" id="title" />
+          <label for="name">Name der Vorlage</label>
+          <input type="text" class="form-control" id="name" formControlName='name'/>
         </div>
         <div class="form-group mt-4">
           <label for="title">Titel</label>
-          <input type="text" class="form-control" id="title" />
+          <input type="text" class="form-control" id="title" formControlName='title' />
         </div>
 
         <div class="form-group mt-4">
-          <label for="title">Textbaustein</label>
-          <textarea class="form-control" rows="10"></textarea>
+          <label for="message">Textbaustein</label>
+          <textarea class="form-control" rows="10" formControlName='messages'></textarea>
         </div>
       </div>
       <div class="col-md-4 p-4">
         <div class="form-group">
-          <label for="title">erstellt am</label>
-          <input type="text" class="form-control" id="title" />
-        </div>
-        <div class="form-group mt-4">
           <label for="title">Timer</label>
-          <input type="text" class="form-control" id="title" />
+          <input type="text" class="form-control" id="title" atp-time-picker value="19:00" formControlName='timer'/>
         </div>
         <div class="form-group mt-4">
           <label for="title">Kanale</label>
           <ng-multiselect-dropdown
-            [placeholder]="'custom placeholder'"
+            [placeholder]="'custom Kanale'"
             [settings]="channelDropdownSettings"
             [data]="channelDropdownList"
-
             (onSelect)="onChannelItemSelect($event)"
             (onSelectAll)="onChannelSelectAll($event)"
           >
@@ -49,10 +38,9 @@
         <div class="form-group mt-4">
           <label for="title">Benutzergruppen</label>
           <ng-multiselect-dropdown
-            [placeholder]="'Select Kanale'"
+            [placeholder]="'Select Benutzergruppen'"
             [settings]="userDropdownSettings"
             [data]="userDropdownList"
-
             (onSelect)="onUserItemSelect($event)"
             (onSelectAll)="onUserSelectAll($event)"
           >
@@ -64,11 +52,13 @@
       </div>
     </div>
 
+    <div class="w-100 d-flex justify-content-end">
+      <button class="btn btn-secondary" type="submit">Vorlage Speichern</button>
+    </div>
+
   </form>
 
-  <div class="w-100 d-flex justify-content-end">
-    <button class="btn btn-secondary" (click)="gotoDashboard(content)">Vorlage Speichern</button>
-  </div>
+
 
   <ng-template #content let-modal>
 
