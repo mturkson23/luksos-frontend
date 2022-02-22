@@ -8,17 +8,17 @@
         <td>STATUS</td>
         <td>TITEL</td>
         <td>BEKANNT SEIT</td>
-        <td>TIMER</td>
+        <td>ZEITUHR</td>
         <td></td>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let message of messages">
         <td>{{ message.id }}</td>
-        <td>{{ message.date_created }}</td>
+        <td>{{ message.date_created | customDate }}</td>
         <td>{{ message.status }}</td>
-        <td>{{ message.name }}</td>
-        <td>{{ message.date_created }}</td>
+        <td>{{ message.title }}</td>
+        <td>{{ message.date_created | customDate }}</td>
         <td>{{ message.timer }}</td>
         <td><button (click)="goToEdit()" class="btn btn-warning btn-block">EDIT</button></td>
       </tr>
