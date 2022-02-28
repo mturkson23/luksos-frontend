@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { FaultService } from 'src/app/services/fault.service';
 
 @Component({
   selector: 'app-history',
@@ -8,14 +9,23 @@ import { Router } from '@angular/router';
 })
 export class HistoryComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  faults: any = []
+
+  constructor(private router: Router, private faultService: FaultService) { }
 
   ngOnInit(): void {
+
+    this.faultService.getFaults().subscribe((data: any) => {
+
+      console.log(data)
+
+      this.faults = data.extra;
+    })
   }
 
   goToEdit() {
 
-    this.router.navigate(['/edit-history']);
+    this.router.navigate(['/edit-message']);
   }
 
 }
