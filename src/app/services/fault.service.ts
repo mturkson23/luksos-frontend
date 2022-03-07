@@ -15,7 +15,7 @@ export class FaultService extends ApplicationService {
 
   createFault(payload: any) {
 
-    return this.makePost('/customers/mobile/approve', payload)
+    return this.makePost('/fault/add', payload)
   }
 
   getFaults() {

@@ -8,18 +8,18 @@
         <td>STATUS</td>
         <td>TITEL</td>
         <td>BEKANNT SEIT</td>
-        <td>ZEITUHR</td>
+        <td>TIMER</td>
         <td></td>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let message of messages">
-        <td>{{ message.id }}</td>
-        <td>{{ message.date_created | customDate }}</td>
-        <td>{{ message.status }}</td>
-        <td>{{ message.title }}</td>
-        <td>{{ message.date_created | customDate }}</td>
-        <td>{{ message.timer }}</td>
+      <tr *ngFor="let fault of faults;">
+        <td>{{ fault.id }}</td>
+        <td>{{ fault.reported_date }}</td>
+        <td>{{ fault.state }}</td>
+        <td>{{ fault.title }}</td>
+        <td>{{ fault.resolved_date }}</td>
+        <td>{{ fault.duration }}</td>
         <td><button (click)="goToEdit()" class="btn btn-warning btn-block">EDIT</button></td>
       </tr>
     </tbody>

@@ -15,7 +15,7 @@ export class ReportComponent implements OnInit {
   dropdownSettings: any = {};
 
   constructor(private modalService: NgbModal, private router: Router) {}
-
+  
   public form: FormGroup = new FormGroup({});
 
   ngOnInit(): void {

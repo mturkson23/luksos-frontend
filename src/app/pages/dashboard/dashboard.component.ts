@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { FaultService } from 'src/app/services/fault.service';
 import { MessageService } from 'src/app/services/message.service';
 
 @Component({
@@ -9,17 +10,17 @@ import { MessageService } from 'src/app/services/message.service';
 })
 export class DashboardComponent implements OnInit {
 
-  messages: any = []
+  faults: any = []
 
-  constructor(private router: Router, private messageService: MessageService) { }
+  constructor(private router: Router, private faultService: FaultService) { }
 
   ngOnInit(): void {
 
-    this.messageService.getMessages().subscribe((data: any) => {
+    this.faultService.getFaults().subscribe((data: any) => {
 
       console.log(data)
 
-      this.messages = data.extra;
+      this.faults = data.extra;
     })
   }
 
@@ -27,5 +28,4 @@ export class DashboardComponent implements OnInit {
 
     this.router.navigate(['/edit-message']);
   }
-
 }
