@@ -4,14 +4,16 @@
 
     <div class="row">
       <div class="col-md-5 p-4">
-
         <div class="form-group">
-          <label for="name">Name der Vorlage</label>
-
+          <label for="name">neue Vorlage ersetellen oder bestehende bearbeiten</label>
           <select formControlName='type_id' class="form-control">
-            <option value="">Wähle eins</option>
+            <option value="">Neue Vorlage</option>
             <option *ngFor="let template of templates" [value]="template.id">{{ template.name }}</option>
           </select>
+        </div>
+        <div class="form-group mt-4">
+          <label for="name">Name der Vorlage</label>
+          <input type="text" class="form-control" id="name" formControlName='name' />
         </div>
         <div class="form-group mt-4">
           <label for="title">Titel</label>
@@ -23,23 +25,25 @@
           <textarea class="form-control" rows="10" formControlName='messages'></textarea>
         </div>
       </div>
-      <div class="col-md-4 p-4">
-        <div class="form-group">
+      <div class="col-md-3 p-4">
+        <!-- <div class="form-group">
           <label for="title">Timer</label>
           <input type="text" class="form-control" id="title" atp-time-picker value="19:00" formControlName='timer'/>
-        </div>
-        <div class="form-group mt-4">
+        </div> -->
+        <div class="form-group">
           <label for="title">Kanale</label>
           <ng-multiselect-dropdown
             [placeholder]="'Auswählen Kanale'"
-            [settings]="channelDropdownSettings"
+            [settings]="channelTypeDropdownSettings"
             [data]="channelDropdownList"
             (onSelect)="onChannelItemSelect($event)"
             (onSelectAll)="onChannelSelectAll($event)"
           >
         </ng-multiselect-dropdown>
         </div>
-        <div class="form-group mt-4">
+      </div>
+      <div class="col-md-3 p-4">
+        <div class="form-group">
           <label for="title">Benutzergruppen</label>
           <ng-multiselect-dropdown
             [placeholder]="'Auswählen Benutzergruppen'"
@@ -50,9 +54,6 @@
           >
         </ng-multiselect-dropdown>
         </div>
-      </div>
-      <div class="col-md-3  d-flex justify-content-center align-items-center">
-
       </div>
     </div>
 
