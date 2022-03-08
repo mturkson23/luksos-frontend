@@ -25,14 +25,14 @@
       </div>
       <div class="col-md-4 p-4">
         <div class="form-group">
-          <label for="title">Timer</label>
+          <label for="title">Zeituhr</label>
           <input type="number" class="form-control" id="title" formControlName='timer' />
         </div>
         <div class="form-group mt-4">
           <label for="title">Kanale</label>
           <ng-multiselect-dropdown
             [placeholder]="'Auswählen Kanale'"
-            [settings]="channelDropdownSettings"
+            [settings]="channelTypeDropdownSettings"
             [data]="channelDropdownList"
             (onSelect)="onChannelItemSelect($event)"
             (onSelectAll)="onChannelSelectAll($event)"

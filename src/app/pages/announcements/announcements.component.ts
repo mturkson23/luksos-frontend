@@ -18,6 +18,7 @@ export class AnnouncementsComponent implements OnInit {
   channelDropdownList: any = [];
   channelSelectedItems: any = [];
   channelDropdownSettings: any = {};
+  channelTypeDropdownSettings: any = {};
 
   groupDropdownList: any = [];
   groupSelectedItems: any = [];
@@ -73,6 +74,16 @@ export class AnnouncementsComponent implements OnInit {
       allowSearchFilter: true
     };
 
+    this.channelTypeDropdownSettings = {
+      singleSelection: false,
+      idField: 'id',
+      textField: 'name',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 3,
+      allowSearchFilter: true
+    };    
+
     this.groupDropdownSettings = {
       singleSelection: false,
       idField: 'id',
@@ -85,7 +96,8 @@ export class AnnouncementsComponent implements OnInit {
 
     this.getUserGroups()
 
-    this.getChannels()
+    // this.getChannels()
+    this.getChannelTypes()
     this.getTemplageTypes()
     this.getChannelGroup()
 
@@ -131,6 +143,13 @@ export class AnnouncementsComponent implements OnInit {
       this.channelDropdownList = data.extra
     })
   }
+
+  getChannelTypes() {
+    this.channelService.getChannelTypes().subscribe(data => {
+      console.log(data)
+      this.channelDropdownList = data.extra
+    })
+  }  
 
   getChannelGroup() {
 
