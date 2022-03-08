@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FaultService } from 'src/app/services/fault.service';
-import { MessageService } from 'src/app/services/message.service';
+// import { MessageService } from 'src/app/services/message.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,7 +16,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.faultService.getFaults().subscribe((data: any) => {
+    this.faultService.getFaultsByState('activ').subscribe((data: any) => {
 
       console.log(data)
 
