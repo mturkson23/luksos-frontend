@@ -82,7 +82,7 @@ export class AnnouncementsComponent implements OnInit {
       unSelectAllText: 'UnSelect All',
       itemsShowLimit: 3,
       allowSearchFilter: true
-    };    
+    };
 
     this.groupDropdownSettings = {
       singleSelection: false,
@@ -149,7 +149,7 @@ export class AnnouncementsComponent implements OnInit {
       console.log(data)
       this.channelDropdownList = data.extra
     })
-  }  
+  }
 
   getChannelGroup() {
 
@@ -225,6 +225,7 @@ export class AnnouncementsComponent implements OnInit {
         "duration": Number.parseInt(this.form.value.timer),
         "internal_code":"2",
         "external_code":"4",
+        message: this.form.value.messages,
         //"state":"PENDING",
         "type_id":1,
         "channel_type_id":2,

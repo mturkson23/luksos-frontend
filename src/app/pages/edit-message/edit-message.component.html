@@ -1,48 +1,47 @@
 <app-panel [title]="'Meldung 1'">
-  <form>
+  <form [formGroup]='form' (validSubmit)='onSubmit()'>
 
     <div class="row">
       <div class="col-md-5 p-4">
 
         <div class="form-group">
           <label for="title">Titel</label>
-          <input type="text" class="form-control" id="title" />
+          <input type="text" class="form-control" id="title" formControlName='title'/>
         </div>
         <div class="form-group mt-4">
           <label for="title">erstellt am/un</label>
-          <input type="text" class="form-control" id="title" />
+          <input type="text" class="form-control" id="title" formControlName='reported'/>
         </div>
 
         <div class="form-group mt-4">
           <label for="title">Textbaustein</label>
-          <textarea class="form-control" rows="10"></textarea>
+          <textarea class="form-control" rows="10" formControlName='message'></textarea>
         </div>
       </div>
       <div class="col-md-4 p-4">
         <div class="form-group">
           <label for="title">Voraussichtliche Dauer</label>
-          <input type="text" class="form-control" id="title" />
-        </div>
-        <div class="form-group mt-4">
-          <label for="title">Benutzergruppen</label>
-          <ng-multiselect-dropdown
-            [placeholder]="'Select Kanale'"
-            [settings]="dropdownSettings"
-            [data]="dropdownList"
-            (onSelect)="onItemSelect($event)"
-            (onSelectAll)="onSelectAll($event)"
-          >
-        </ng-multiselect-dropdown>
+          <input type="text" class="form-control" id="title" formControlName='timer'/>
         </div>
         <div class="form-group mt-4">
           <label for="title">Kanale</label>
           <ng-multiselect-dropdown
-            [placeholder]="'custom placeholder'"
-            [settings]="dropdownSettings"
-            [data]="dropdownList"
-
-            (onSelect)="onItemSelect($event)"
-            (onSelectAll)="onSelectAll($event)"
+            [placeholder]="'Auswählen Kanale'"
+            [settings]="channelTypeDropdownSettings"
+            [data]="channelDropdownList"
+            (onSelect)="onChannelItemSelect($event)"
+            (onSelectAll)="onChannelSelectAll($event)"
+          >
+        </ng-multiselect-dropdown>
+        </div>
+        <div class="form-group mt-4">
+          <label for="title">Kanalegruppen</label>
+          <ng-multiselect-dropdown
+            [placeholder]="'Auswählen Kanalgruppe'"
+            [settings]="groupDropdownSettings"
+            [data]="groupDropdownList"
+            (onSelect)="onUserItemSelect($event)"
+            (onSelectAll)="onUserSelectAll($event)"
           >
         </ng-multiselect-dropdown>
         </div>

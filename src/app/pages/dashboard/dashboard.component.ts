@@ -24,8 +24,10 @@ export class DashboardComponent implements OnInit {
     })
   }
 
-  goToEdit() {
+  goToEdit(id: any) {
 
-    this.router.navigate(['/edit-message']);
+    console.log(id)
+
+    this.router.navigate(['/edit-message', id]);
   }
 }

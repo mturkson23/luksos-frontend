@@ -20,7 +20,7 @@
         <td>{{ fault.title }}</td>
         <td>{{ fault.resolved_date }}</td>
         <td>{{ fault.duration }}h</td>
-        <td><button (click)="goToEdit()" class="btn btn-warning btn-block">EDIT</button></td>
+        <td><button (click)="goToEdit(fault.id)" class="btn btn-warning btn-block">EDIT</button></td>
       </tr>
     </tbody>
   </table>

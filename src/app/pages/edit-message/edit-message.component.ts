@@ -1,8 +1,9 @@
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalComponent } from 'src/app/components/modal/modal.component';
+import { FaultService } from 'src/app/services/fault.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-edit-message',
@@ -11,31 +12,100 @@ import { ModalComponent } from 'src/app/components/modal/modal.component';
 })
 export class EditMessageComponent implements OnInit {
 
-  dropdownList: any = [];
-  selectedItems: any = [];
-  dropdownSettings: any = {};
+  channelDropdownList: any = [];
+  channelSelectedItems: any = [];
+  channelDropdownSettings: any = {};
+  channelTypeDropdownSettings: any = {};
 
-  constructor(private modalService: NgbModal, private router: Router) {}
+  groupDropdownList: any = [];
+  groupSelectedItems: any = [];
+  groupDropdownSettings: any = {};
+
+  faultData: any = {};
+
+  id: any;
+
+  constructor(private modalService: NgbModal, private router: Router, private faultService: FaultService, private activatedRoute: ActivatedRoute) {
+
+
+  }
 
   public form: FormGroup = new FormGroup({});
 
   ngOnInit(): void {
 
-    this.dropdownList = [
-      { item_id: 1, item_text: 'Mumbai' },
-      { item_id: 2, item_text: 'Bangaluru' },
-      { item_id: 3, item_text: 'Pune' },
-      { item_id: 4, item_text: 'Navsari' },
-      { item_id: 5, item_text: 'New Delhi' }
+    this.form = new FormGroup({
+      title: new FormControl('', [
+        Validators.minLength(2),
+        Validators.required
+      ]),
+      message: new FormControl('', [
+        Validators.minLength(2),
+        Validators.required
+      ]),
+      timer: new FormControl('', [
+        Validators.required
+      ]),
+      reported: new FormControl('', [
+
+      ])
+    })
+
+    this.id = this.activatedRoute.snapshot.paramMap.get('id')
+
+    console.log(this.id)
+
+    this.faultService.getFault(parseInt(this.id)).subscribe((data: any) => {
+
+      console.log(data)
+
+      this.faultData = data.extra;
+
+      this.form.patchValue({
+        title: this.faultData.title,
+        message: this.faultData.message,
+        timer: this.faultData.duration,
+        reported: this.faultData.reported_date
+      })
+    })
+
+    this.channelDropdownList = []
+
+    this.channelSelectedItems = [
+
     ];
-    this.selectedItems = [
-      { item_id: 3, item_text: 'Pune' },
-      { item_id: 4, item_text: 'Navsari' }
+
+    this.groupDropdownList = [
     ];
-    this.dropdownSettings = {
+
+    this.groupSelectedItems = [
+
+    ];
+
+    this.channelDropdownSettings = {
       singleSelection: false,
-      idField: 'item_id',
-      textField: 'item_text',
+      idField: 'id',
+      textField: 'identifier',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 3,
+      allowSearchFilter: true
+    };
+
+    this.channelTypeDropdownSettings = {
+      singleSelection: false,
+      idField: 'id',
+      textField: 'name',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 3,
+      allowSearchFilter: true
+    };
+
+    this.groupDropdownSettings = {
+      singleSelection: false,
+      idField: 'id',
+      textField: 'name',
       selectAllText: 'Select All',
       unSelectAllText: 'UnSelect All',
       itemsShowLimit: 3,
@@ -43,14 +113,27 @@ export class EditMessageComponent implements OnInit {
     };
   }
 
-  onItemSelect(item: any) {
-    console.log(item);
+  onChannelItemSelect(item: any) {
+    this.channelSelectedItems.push(item)
   }
-  onSelectAll(items: any) {
-    console.log(items);
+  onChannelSelectAll(items: any) {
+    this.channelSelectedItems = items
+  }
+
+  onUserItemSelect(item: any) {
+    this.groupSelectedItems.push(item)
+  }
+  onUserSelectAll(items: any) {
+    this.groupSelectedItems = items
   }
 
   openModal(content: any) {
     this.modalService.open(content);
   }
+
+  onSubmit() {
+
+  }
+
+  //getFault()
 }

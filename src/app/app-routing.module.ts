@@ -20,7 +20,7 @@ const routes: Routes = [
     { path: 'announcements', component: AnnouncementsComponent },
     { path: 'text-templates', component: TextTemplatesComponent },
     { path: 'history', component: HistoryComponent},
-    { path: 'edit-message', component: EditMessageComponent },
+    { path: 'edit-message/:id', component: EditMessageComponent },
     { path: 'edit-history', component: ReportComponent },
     { path: 'channels', component: ChannelsComponent },
     { path: 'users', component: UsersComponent },

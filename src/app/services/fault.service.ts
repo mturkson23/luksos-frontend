@@ -22,4 +22,9 @@ export class FaultService extends ApplicationService {
 
     return this.makePost('/fault/getall', {})
   }
+
+  getFault(id: any) {
+
+    return this.makePost('/fault/getbyId', { id })
+  }
 }
