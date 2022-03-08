@@ -21,6 +21,8 @@ export class EditMessageComponent implements OnInit {
   groupSelectedItems: any = [];
   groupDropdownSettings: any = {};
 
+  pageTitle: string = '';
+
   faultData: any = {};
 
   id: any;
@@ -60,6 +62,8 @@ export class EditMessageComponent implements OnInit {
       console.log(data)
 
       this.faultData = data.extra;
+
+      this.pageTitle = `Meldung ${this.id} "${this.faultData.title}" ${this.faultData.reported_date}`;
 
       this.form.patchValue({
         title: this.faultData.title,
