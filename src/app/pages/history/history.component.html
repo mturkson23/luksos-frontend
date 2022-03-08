@@ -8,7 +8,7 @@
         <td>STATUS</td>
         <td>TITEL</td>
         <td>BEKANNT SEIT</td>
-        <td>TIMER</td>
+        <td>BEHOBEN AM/UM</td>
         <td></td>
       </tr>
     </thead>
@@ -19,8 +19,8 @@
         <td>{{ fault.state }}</td>
         <td>{{ fault.title }}</td>
         <td>{{ fault.date_created }}</td>
-        <td>{{ fault.duration }}h</td>
-        <td><button (click)="goToEdit()" class="btn"><img height="30px" src="assets/img/edit_pencil.svg"/></button></td>
+        <td>{{ fault.resolved_date }}</td>
+        <td><button (click)="goToEdit(fault.id)" class="btn"><img height="30px" src="assets/img/edit_pencil.svg"/></button></td>
       </tr>
     </tbody>
   </table>
