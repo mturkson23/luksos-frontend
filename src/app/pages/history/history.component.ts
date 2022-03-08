@@ -15,10 +15,8 @@ export class HistoryComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.faultService.getFaults().subscribe((data: any) => {
-
-      console.log(data)
-
+    this.faultService.getFaultsByState('behoben').subscribe((data: any) => {
+      // console.log(data)
       this.faults = data.extra;
     })
   }
