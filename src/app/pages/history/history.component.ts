@@ -21,9 +21,8 @@ export class HistoryComponent implements OnInit {
     })
   }
 
-  goToEdit() {
-
-    this.router.navigate(['/edit-message']);
+  goToEdit(id: number) {
+    this.router.navigate(['/edit-message', id]);
   }
 
 }
