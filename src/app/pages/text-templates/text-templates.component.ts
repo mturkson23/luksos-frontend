@@ -184,7 +184,7 @@ export class TextTemplatesComponent implements OnInit {
 
       this.channelService.createChannel({
         ...this.form.value,
-        timer: 60,
+        timer: 6,
         // type_id: Number.parseInt(this.form.value.type_id),
         type_id: 1,
         channel_id: this.channelSelectedItems[0].id,
