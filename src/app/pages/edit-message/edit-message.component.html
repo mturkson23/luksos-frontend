@@ -1,4 +1,4 @@
-<app-panel [title]="'Meldung 1'">
+<app-panel [title]=pageTitle>
   <form [formGroup]='form' (validSubmit)='onSubmit()'>
 
     <div class="row">
@@ -20,7 +20,7 @@
       </div>
       <div class="col-md-4 p-4">
         <div class="form-group">
-          <label for="title">Voraussichtliche Dauer</label>
+          <label for="title">voraussichtliche Dauer</label>
           <input type="text" class="form-control" id="title" formControlName='timer'/>
         </div>
         <div class="form-group mt-4">
