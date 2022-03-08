@@ -16,6 +16,7 @@ export class TextTemplatesComponent implements OnInit {
   channelDropdownList: any = [];
   channelSelectedItems: any = [];
   channelDropdownSettings: any = {};
+  channelTypeDropdownSettings: any = {};
 
   userDropdownList: any = [];
   userSelectedItems: any = [];
@@ -28,7 +29,8 @@ export class TextTemplatesComponent implements OnInit {
   constructor(private modalService: NgbModal, private router: Router, private userService: UserService, private channelService: ChannelService, private alertService: AlertService) { }
 
   public form: FormGroup = new FormGroup({
-    type_id: new FormControl('', [
+    type_id: new FormControl('', []),
+    name: new FormControl('', [
       Validators.required,
     ]),
     title: new FormControl('', [
@@ -39,9 +41,9 @@ export class TextTemplatesComponent implements OnInit {
       Validators.minLength(2),
       Validators.required
     ]),
-    timer: new FormControl('', [
-      Validators.required
-    ])
+    // timer: new FormControl('', [
+    //   Validators.required
+    // ])
   });
 
   ngOnInit(): void {
@@ -69,6 +71,16 @@ export class TextTemplatesComponent implements OnInit {
       allowSearchFilter: true
     };
 
+    this.channelTypeDropdownSettings = {
+      singleSelection: false,
+      idField: 'id',
+      textField: 'name',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 3,
+      allowSearchFilter: true
+    };
+
     this.userDropdownSettings = {
       singleSelection: false,
       idField: 'id',
@@ -81,8 +93,10 @@ export class TextTemplatesComponent implements OnInit {
 
     this.getUserGroups()
 
-    this.getChannels()
-    this.getTemplageTypes()
+    // this.getChannels()
+    this.getChannelTypes()
+    this.getTemplates()
+    // this.getTemplageTypes()
 
   }
 
@@ -125,6 +139,13 @@ export class TextTemplatesComponent implements OnInit {
     })
   }
 
+  getChannelTypes() {
+    this.channelService.getChannelTypes().subscribe(data => {
+      console.log('::Log:: fetched channel types',data)
+      this.channelDropdownList = data.extra
+    });    
+  }
+
   getUserGroups() {
 
     this.userService.getUserGroups().subscribe(data => {
@@ -138,6 +159,12 @@ export class TextTemplatesComponent implements OnInit {
 
     this.channelService.getTemplateTypes().subscribe(data => {
 
+      this.templates = data.extra
+    })
+  }
+
+  getTemplates() {
+    this.channelService.getTemplates().subscribe(data => {
       this.templates = data.extra
     })
   }
@@ -158,7 +185,8 @@ export class TextTemplatesComponent implements OnInit {
       this.channelService.createChannel({
         ...this.form.value,
         timer: 60,
-        type_id: Number.parseInt(this.form.value.type_id),
+        // type_id: Number.parseInt(this.form.value.type_id),
+        type_id: 1,
         channel_id: this.channelSelectedItems[0].id,
         user_group_id: this.userSelectedItems[0].id
       }).subscribe(data => {
