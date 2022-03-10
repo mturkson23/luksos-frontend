@@ -1,7 +1,7 @@
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { ModalComponent } from 'src/app/components/modal/modal.component';
+// import { ModalComponent } from 'src/app/components/modal/modal.component';
 import { FaultService } from 'src/app/services/fault.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
