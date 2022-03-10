@@ -22,6 +22,7 @@ export class EditMessageComponent implements OnInit {
   groupDropdownSettings: any = {};
 
   pageTitle: string = '';
+  reportedBy: string = '';
 
   faultData: any = {};
 
@@ -64,6 +65,7 @@ export class EditMessageComponent implements OnInit {
       this.faultData = data.extra;
 
       this.pageTitle = `Meldung ${this.id} "${this.faultData.title}" ${this.faultData.reported_date}`;
+      this.reportedBy = this.faultData.reported_by;
 
       this.form.patchValue({
         title: this.faultData.title,
