@@ -21,7 +21,7 @@ const routes: Routes = [
     { path: 'text-templates', component: TextTemplatesComponent },
     { path: 'history', component: HistoryComponent},
     { path: 'edit-message/:id', component: EditMessageComponent },
-    { path: 'edit-history', component: ReportComponent },
+    { path: 'edit-history/:id', component: ReportComponent },
     { path: 'channels', component: ChannelsComponent },
     { path: 'users', component: UsersComponent },
   ]},

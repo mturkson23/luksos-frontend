@@ -1,25 +1,24 @@
-<app-panel [title]="'Meldung 1'">
-  <form>
-
+<app-panel [title]=pageTitle>
+  <form [formGroup]='form'>
     <div class="row">
       <div class="col-md-6 p-4">
 
         <div class="form-group">
           <label for="title">Titel</label>
-          <input type="text" class="form-control" id="title" />
+          <input type="text" class="form-control" id="title" formControlName='title'/>
         </div>
         <div class="row">
 
           <div class="col-6">
             <div class="form-group mt-4">
               <label for="title">erstellt am/un</label>
-              <input type="text" class="form-control" id="title" />
+              <input type="text" class="form-control" id="title" formControlName='reported_date'/>
             </div>
           </div>
           <div class="col-6">
             <div class="form-group mt-4">
               <label for="title">behoben am/um</label>
-              <input type="text" class="form-control" id="title" />
+              <input type="text" class="form-control" id="title" formControlName='closed_date'/>
             </div>
           </div>
         </div>
@@ -29,20 +28,20 @@
           <div class="col-6">
             <div class="form-group mt-4">
               <label for="title">Ticketnummer</label>
-              <input type="text" class="form-control" id="title" />
+              <input type="text" class="form-control" id="title" formControlName='ticket_number'/>
             </div>
           </div>
         </div>
 
         <div class="form-group mt-4">
           <label for="title">Textbaustein</label>
-          <textarea class="form-control" rows="10"></textarea>
+          <textarea class="form-control" rows="10" formControlName='message'></textarea>
         </div>
       </div>
       <div class="col-md-6 p-4">
         <div class="form-group">
           <label for="title">Losungsweg</label>
-          <textarea class="form-control" rows="10"></textarea>
+          <textarea class="form-control" rows="10" formControlName='resolution_remark'></textarea>
         </div>
         <div class="row">
 
@@ -77,13 +76,13 @@
           <div class="col-6">
             <div class="form-group mt-4">
               <label for="title">voraussichtliche Dauer</label>
-              <input type="text" class="form-control" id="title" />
+              <input type="text" class="form-control" id="title" formControlName='expected_duration'/>
             </div>
           </div>
           <div class="col-6">
             <div class="form-group mt-4">
               <label for="title">tatsachliche Dauer</label>
-              <input type="text" class="form-control" id="title" />
+              <input type="text" class="form-control" id="title" formControlName='actual_duration'/>
             </div>
           </div>
         </div>
@@ -112,6 +111,11 @@
         </div>
       </div>
     </div>
+    <div class="row">
+      <div class="col-md-3"><b>Ersteller/in: {{reportedBy}}</b></div>
+      <div class="col-md-3"><b>Bearbeiter/in: {{resolvedBy}}</b></div>
+      <div class="col-md-6"></div>
+    </div>    
   </form>
 
 
