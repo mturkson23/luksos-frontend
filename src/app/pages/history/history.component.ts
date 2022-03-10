@@ -22,7 +22,7 @@ export class HistoryComponent implements OnInit {
   }
 
   goToEdit(id: number) {
-    this.router.navigate(['/edit-message', id]);
+    this.router.navigate(['/edit-history', id]);
   }
 
 }
