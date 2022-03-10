@@ -14,22 +14,22 @@ export class FaultService extends ApplicationService {
   }
 
   createFault(payload: any) {
-
     return this.makePost('/fault/add', payload)
   }
 
   getFaults() {
-
     return this.makePost('/fault/getall', {})
   }
 
   getFaultsByState(state: string) {
-
     return this.makePost('/fault/getallbystate', { state })
   }
 
   getFault(id: any) {
-
     return this.makePost('/fault/getbyId', { id })
+  }
+
+  getResolutionByFaultId(id: any) {
+    return this.makePost('/faultresolution/getById', { id })
   }
 }
