@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
 
           this.authService.saveTokens(data.message, '', { username: this.loginForm.value.username, fullName: data.extra.fullName } as User).then(() => {
             this.alertService.showSuccess('Authenticated', 'You are now Logged In!')
-            this.router.navigateByUrl('/').then(() => {
+            this.router.navigateByUrl('/dashboard').then(() => {
               ApplicationService.Appsettings = settings as Appsettings;
               this.authService.saveServerUrl(settings.serverUrl)
               location.reload();
