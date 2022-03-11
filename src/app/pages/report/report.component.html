@@ -88,9 +88,15 @@
         </div>
 
         <div class="col-6">
-          <div class="form-group mt-4">
+          <div class="form-group  mt-4">
             <label for="title">Anzahl Zwischenmeldung</label>
-            <input type="text" class="form-control" id="title" (click)="openModal(content)" />
+            <div class="input-group">
+
+              <input type="text" class="form-control" id="title" />
+              <div class="input-group-prepend">
+                <div class="input-group-text input-report" style="height: 2.5rem" (click)="openModal(content)"><i class="fa fa-search" style="justify-content: center; align-items: center;"></i></div>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -105,7 +111,8 @@
       <div class="d-flex justify-content-end">
 
         <div>
-          <button class="btn btn-dark" (click)="gotoDashboard()">
+          <button class="btn btn-secondary" (click)="gotoDashboard()">
+            <i class="fa fa-save"></i>
             Mitteilung Speichern
           </button>
         </div>
@@ -115,7 +122,7 @@
       <div class="col-md-3"><b>Ersteller/in: {{reportedBy}}</b></div>
       <div class="col-md-3"><b>Bearbeiter/in: {{resolvedBy}}</b></div>
       <div class="col-md-6"></div>
-    </div>    
+    </div>
   </form>
 
 

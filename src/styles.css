@@ -7,3 +7,20 @@
   color: #4e4e4e;
   margin-bottom: 0.5em;
 }
+
+thead > tr {
+  background-color: #e4e4e4;
+  color: #4e4e4e;
+  font-weight: bold;
+  text-align: center;
+  border-bottom: none;
+  padding: 20px;
+}
+
+tbody > tr {
+  text-align: center;
+}
+
+table * {
+  border: none !important;
+}

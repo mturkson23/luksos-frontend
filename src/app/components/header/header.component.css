@@ -17,11 +17,12 @@ nav li a {
   color: #777;
   font-size: 16px;
   padding: 25px 20px;
+  padding-bottom: 5px;
   text-decoration: none;
 }
 
 nav li a:hover {
-  color: #ff4f6c;
+  color: #ff2448;
 }
 
 .menu-dropdown {
@@ -43,4 +44,10 @@ nav li a:hover {
   display: block;
   visibility: visible;
   cursor: pointer;
+}
+
+.active-link {
+  color: #ff2448 !important;
+  font-weight: bold;
+  border-bottom: 3px solid #ff2448;
 }

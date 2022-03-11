@@ -16,7 +16,7 @@ import { DashboardGuard } from './guards/dashboard.guard';
 
 const routes: Routes = [
   { path: '', component: ShellComponent,canActivateChild: [ DashboardGuard ], children: [
-    { path: '', component: DashboardComponent },
+    { path: 'dashboard', component: DashboardComponent },
     { path: 'announcements', component: AnnouncementsComponent },
     { path: 'text-templates', component: TextTemplatesComponent },
     { path: 'history', component: HistoryComponent},
@@ -27,7 +27,7 @@ const routes: Routes = [
   ]},
   { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
   { path: 'signup', component: SignupComponent },
-  { path: '**', redirectTo: '' }
+  { path: '**', redirectTo: 'dashboard' }
 ]
 
 @NgModule({
