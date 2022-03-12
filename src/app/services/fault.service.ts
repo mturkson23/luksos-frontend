@@ -17,6 +17,11 @@ export class FaultService extends ApplicationService {
     return this.makePost('/fault/add', payload)
   }
 
+  closeFault(faultId: any) {
+    console.log('here too', faultId)
+    return this.makePost('/fault/close', { faultId })
+  }
+
   getFaults() {
     return this.makePost('/fault/getall', {})
   }
