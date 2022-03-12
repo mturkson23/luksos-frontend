@@ -134,8 +134,16 @@ export class EditMessageComponent implements OnInit {
   }
 
   openModal(content: any) {
+    console.log(content)
     this.modalService.open(content);
   }
+
+  closeFault(faultId: number) {
+    console.log('here', faultId)
+    this.faultService.closeFault(faultId).subscribe(data => {
+      console.log('submitted. response::', data)
+    });
+  }  
 
   onSubmit() {
 
