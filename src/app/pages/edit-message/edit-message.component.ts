@@ -5,6 +5,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FaultService } from 'src/app/services/fault.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ChannelService } from 'src/app/services/channel.service';
+import { AlertService } from 'src/app/services/alert-service.service';
 
 @Component({
   selector: 'app-edit-message',
@@ -29,7 +30,7 @@ export class EditMessageComponent implements OnInit {
 
   id: any;
 
-  constructor(private modalService: NgbModal, private router: Router, private faultService: FaultService, private activatedRoute: ActivatedRoute, private channelService: ChannelService) {
+  constructor(private modalService: NgbModal, private router: Router, private faultService: FaultService, private activatedRoute: ActivatedRoute, private channelService: ChannelService, private alertService: AlertService) {
 
 
   }
@@ -68,10 +69,11 @@ export class EditMessageComponent implements OnInit {
     ];
 
     this.groupDropdownList = [
+
     ];
 
     this.groupSelectedItems = [
-
+      {  }
     ];
 
     this.channelDropdownSettings = {
@@ -169,11 +171,52 @@ export class EditMessageComponent implements OnInit {
     console.log('here', faultId)
     this.faultService.closeFault(faultId).subscribe(data => {
       console.log('submitted. response::', data)
+
+      this.router.navigate(['/dashboard']);
+
+      if(data.status) {
+        this.alertService.showSuccess('Fault Closed', data.message)
+      } else {
+        this.alertService.showError('Error', data.message)
+      }
+
     });
-  }  
+  }
 
   onSubmit() {
 
+    if(this.channelSelectedItems.length == 0){
+      this.alertService.showError('Select a Channel', 'Please select at least one channel')
+      return
+    }
+
+    if(this.groupSelectedItems.length == 0) {
+
+      this.alertService.showError('Select a User Group', 'Please select at least one user group')
+      return
+    }
+
+    this.faultService.updateFault({
+      ...this.form.value,
+      //type_id: Number.parseInt(this.form.value.type_id),
+      channel_id: this.channelSelectedItems[0].id,
+      channel_group_id: this.groupSelectedItems[0].id,
+      "duration": Number.parseInt(this.form.value.timer),
+      "internal_code":"2",
+      "external_code":"4",
+      message: this.form.value.messages,
+      //"state":"PENDING",
+      "type_id":1,
+      "channel_type_id":2,
+    }).subscribe(data => {
+      this.router.navigate(['/dashboard']);
+
+      if(data.status) {
+        this.alertService.showSuccess('Message Added', data.message)
+      } else {
+        this.alertService.showError('Error', data.message)
+      }
+    })
   }
 
   //getFault()

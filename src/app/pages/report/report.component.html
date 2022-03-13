@@ -91,8 +91,7 @@
           <div class="form-group  mt-4">
             <label for="title">Anzahl Zwischenmeldung</label>
             <div class="input-group">
-
-              <input type="text" class="form-control" id="title" />
+              <input type="text" class="form-control" id="title" formControlName='logs' />
               <div class="input-group-prepend">
                 <div class="input-group-text input-report" style="height: 2.5rem" (click)="openModal(content)"><i class="fa fa-search" style="justify-content: center; align-items: center;"></i></div>
               </div>
@@ -139,24 +138,17 @@
             <table class="table table-striped">
               <thead>
                 <tr>
-                  <td>ID</td>
-                  <td>ERSTELLDATUM</td>
-                  <td>STATUS</td>
+                  <td>ERSTELLER</td>
+                  <td>ERSTELLT</td>
+                  <td>TEXT</td>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>01.01.2020</td>
-                  <td>akvin</td>
+                <tr *ngFor="let log of logs">
+                  <td>{{log.updated_by}}</td>
+                  <td>{{log.date_created}}</td>
+                  <td>{{log.updated_text}}</td>
                 </tr>
-                <tr>
-                  <td>1</td>
-                  <td>01.01.2020</td>
-                  <td>akvin</td>
-
-                </tr>
-
               </tbody>
             </table>
           </div>

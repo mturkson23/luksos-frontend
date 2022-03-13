@@ -17,9 +17,9 @@ export class FaultService extends ApplicationService {
     return this.makePost('/fault/add', payload)
   }
 
-  closeFault(faultId: any) {
-    console.log('here too', faultId)
-    return this.makePost('/fault/close', { faultId })
+  closeFault(id: any) {
+    console.log('here too', id)
+    return this.makePost('/fault/close', { id: parseInt(id) })
   }
 
   getFaults() {
@@ -36,5 +36,13 @@ export class FaultService extends ApplicationService {
 
   getResolutionByFaultId(id: any) {
     return this.makePost('/faultresolution/getById', { id })
+  }
+
+  getLogsByFaultId(id: any) {
+    return this.makePost('/fault/getfaultlogs', { id })
+  }
+
+  updateFault(payload: any) {
+    return this.makePost('/fault/update', payload)
   }
 }

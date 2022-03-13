@@ -24,5 +24,4 @@ export class HistoryComponent implements OnInit {
   goToEdit(id: number) {
     this.router.navigate(['/edit-history', id]);
   }
-
 }
