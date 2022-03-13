@@ -27,7 +27,7 @@ export class ReportComponent implements OnInit {
     private faultService: FaultService,
     private activatedRoute: ActivatedRoute
   ) {}
-  
+
   public form: FormGroup = new FormGroup({});
 
   ngOnInit(): void {
@@ -46,12 +46,12 @@ export class ReportComponent implements OnInit {
     });
 
     this.dropdownList = [
-      { item_id: 1, item_text: 'Mumbai' },
-      { item_id: 2, item_text: 'Bangaluru' },
+      // { item_id: 1, item_text: 'Mumbai' },
+      // { item_id: 2, item_text: 'Bangaluru' },
     ];
     this.selectedItems = [
-      { item_id: 3, item_text: 'Pune' },
-      { item_id: 4, item_text: 'Navsari' }
+      // { item_id: 3, item_text: 'Pune' },
+      // { item_id: 4, item_text: 'Navsari' }
     ];
     this.dropdownSettings = {
       singleSelection: false,
@@ -62,7 +62,7 @@ export class ReportComponent implements OnInit {
       itemsShowLimit: 3,
       allowSearchFilter: true
     };
-    
+
     this.id = this.activatedRoute.snapshot.paramMap.get('id')
     this.faultService.getResolutionByFaultId(parseInt(this.id)).subscribe((data: any) => {
       console.log(data);
@@ -82,7 +82,7 @@ export class ReportComponent implements OnInit {
         expected_duration: this.faultData.duration,
         actual_duration: this.faultData.actual_duration, // replace with the difference in minutes between when it was reported and when the resolution was created
       })
-    })    
+    })
   }
 
   onItemSelect(item: any) {

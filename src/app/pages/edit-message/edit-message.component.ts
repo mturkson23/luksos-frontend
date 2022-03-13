@@ -4,6 +4,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 // import { ModalComponent } from 'src/app/components/modal/modal.component';
 import { FaultService } from 'src/app/services/fault.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ChannelService } from 'src/app/services/channel.service';
 
 @Component({
   selector: 'app-edit-message',
@@ -28,7 +29,7 @@ export class EditMessageComponent implements OnInit {
 
   id: any;
 
-  constructor(private modalService: NgbModal, private router: Router, private faultService: FaultService, private activatedRoute: ActivatedRoute) {
+  constructor(private modalService: NgbModal, private router: Router, private faultService: FaultService, private activatedRoute: ActivatedRoute, private channelService: ChannelService) {
 
 
   }
@@ -58,22 +59,7 @@ export class EditMessageComponent implements OnInit {
 
     console.log(this.id)
 
-    this.faultService.getFault(parseInt(this.id)).subscribe((data: any) => {
 
-      console.log(data)
-
-      this.faultData = data.extra;
-
-      this.pageTitle = `Meldung ${this.id} "${this.faultData.title}" ${this.faultData.reported_date}`;
-      this.reportedBy = this.faultData.reported_by;
-
-      this.form.patchValue({
-        title: this.faultData.title,
-        message: this.faultData.message,
-        timer: this.faultData.duration,
-        reported: this.faultData.reported_date
-      })
-    })
 
     this.channelDropdownList = []
 
@@ -117,6 +103,31 @@ export class EditMessageComponent implements OnInit {
       itemsShowLimit: 3,
       allowSearchFilter: true
     };
+
+    this.faultService.getFault(parseInt(this.id)).subscribe((data: any) => {
+
+      console.log(data)
+
+      this.faultData = data.extra;
+
+      this.pageTitle = `Meldung ${this.id} "${this.faultData.title}" ${this.faultData.reported_date}`;
+      this.reportedBy = this.faultData.reported_by;
+
+      this.form.patchValue({
+        title: this.faultData.title,
+        message: this.faultData.message,
+        timer: this.faultData.duration,
+        reported: this.faultData.reported_date
+      })
+
+      this.channelSelectedItems = this.faultData.list_of_channel_type_id
+      this.groupSelectedItems = this.faultData.list_of_user_group_id
+
+      console.log(this.channelSelectedItems, 'gjhgj')
+    })
+
+    this.getChannelTypes()
+    this.getChannelGroup()
   }
 
   onChannelItemSelect(item: any) {
@@ -131,6 +142,22 @@ export class EditMessageComponent implements OnInit {
   }
   onUserSelectAll(items: any) {
     this.groupSelectedItems = items
+  }
+
+  getChannelTypes() {
+    this.channelService.getChannelTypes().subscribe(data => {
+      console.log(data)
+      this.channelDropdownList = data.extra
+    })
+  }
+
+  getChannelGroup() {
+
+    this.channelService.getChannelsGroup().subscribe(data => {
+
+      this.groupDropdownList = data.extra
+      console.log('sfasdf', this.groupDropdownList)
+    })
   }
 
   openModal(content: any) {
