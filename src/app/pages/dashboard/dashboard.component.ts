@@ -16,7 +16,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.faultService.getFaultsByState('activ').subscribe((data: any) => {
+    this.faultService.getFaultsByState('aktiv').subscribe((data: any) => {
 
       console.log(data)
 
