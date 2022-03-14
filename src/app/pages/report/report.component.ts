@@ -32,6 +32,25 @@ export class ReportComponent implements OnInit {
 
   public form: FormGroup = new FormGroup({});
 
+  msToTime(ms: number) {
+    let seconds = (ms / 1000).toFixed(1);
+    let minutes = (ms / (1000 * 60)).toFixed(1);
+    let hours = (ms / (1000 * 60 * 60)).toFixed(1);
+    let days = (ms / (1000 * 60 * 60 * 24)).toFixed(1);
+    if (parseInt(seconds) < 60) return seconds + " s";
+    else if (parseInt(minutes) < 60) return minutes + " min";
+    else if (parseInt(hours) < 24) return hours + " h";
+    else return days + " Days";
+  }
+
+  minToTime(mins: number) {
+    let hours = (mins / (60)).toFixed(1);
+    let days = (mins / (60 * 24)).toFixed(1);
+    if (mins < 60) return mins + " min";
+    else if (parseInt(hours) < 24) return hours + " h";
+    else return days + " Days";
+  }
+
   ngOnInit(): void {
     this.form = new FormGroup({
       title: new FormControl('', [
@@ -83,6 +102,8 @@ export class ReportComponent implements OnInit {
       this.reportedBy = this.faultData.reported_by;
       this.resolvedBy = this.faultData.resolved_by;
 
+      const actualDuration = this.msToTime(new Date(this.faultData.resolved_date).valueOf() - new Date(this.faultData.reported_date).valueOf())
+
       this.form.patchValue({
         title: this.faultData.title,
         reported_date: this.faultData.reported_date,
@@ -90,8 +111,8 @@ export class ReportComponent implements OnInit {
         ticket_number: this.faultData.external_code,
         message: this.faultData.message,
         resolution_remark: this.faultData.remark,
-        expected_duration: this.faultData.duration,
-        actual_duration: this.faultData.actual_duration, // replace with the difference in minutes between when it was reported and when the resolution was created
+        expected_duration: this.minToTime(this.faultData.duration),
+        actual_duration: actualDuration,
       })
 
       this.faultService.getLogsByFaultId(parseInt(this.id)).subscribe((data: any) => {
@@ -118,7 +139,7 @@ export class ReportComponent implements OnInit {
   }
 
   gotoDashboard() {
-    this.router.navigate(['/dashboard']);
+    this.router.navigate(['/history']);
   }
 
 }

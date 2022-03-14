@@ -45,4 +45,8 @@ export class FaultService extends ApplicationService {
   updateFault(payload: any) {
     return this.makePost('/fault/update', payload)
   }
+
+  getHistoryByState(state: string) {
+    return this.makePost('/fault/gethistorybystate', { state })
+  }
 }
