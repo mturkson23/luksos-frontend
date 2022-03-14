@@ -29,8 +29,8 @@
             [placeholder]="'Auswählen Kanäle'"
             [settings]="channelTypeDropdownSettings"
             [data]="channelDropdownList"
+            [(ngModel)]="channelSelectedItems"
             (onSelect)="onChannelItemSelect($event)"
-            (onSelectAll)="onChannelSelectAll($event)"
           >
         </ng-multiselect-dropdown>
         </div>
@@ -40,8 +40,7 @@
             [placeholder]="'Auswählen Kanalgruppe'"
             [settings]="groupDropdownSettings"
             [data]="groupDropdownList"
-            (onSelect)="onUserItemSelect($event)"
-            (onSelectAll)="onUserSelectAll($event)"
+            [(ngModel)]="groupSelectedItems"
           >
         </ng-multiselect-dropdown>
         </div>

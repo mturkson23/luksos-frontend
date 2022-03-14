@@ -122,8 +122,16 @@ export class EditMessageComponent implements OnInit {
         reported: this.faultData.reported_date
       })
 
-      this.channelSelectedItems = this.faultData.list_of_channel_type_id
-      this.groupSelectedItems = this.faultData.list_of_user_group_id
+      this.faultData.list_of_channel_type_id.forEach((item: any) => {
+
+        this.channelSelectedItems.push(item)
+      })
+
+      this.faultData.list_of_user_group_id.forEach((item: any) => {
+
+        this.groupSelectedItems.push(item)
+
+      })
 
       console.log(this.channelSelectedItems, 'gjhgj')
     })
@@ -133,7 +141,8 @@ export class EditMessageComponent implements OnInit {
   }
 
   onChannelItemSelect(item: any) {
-    this.channelSelectedItems.push(item)
+    // this.channelSelectedItems.push(item)
+    console.log(this.channelSelectedItems)
   }
   onChannelSelectAll(items: any) {
     this.channelSelectedItems = items
@@ -196,18 +205,20 @@ export class EditMessageComponent implements OnInit {
       return
     }
 
+    this.channelSelectedItems = this.channelSelectedItems.map((item: any) => item.id).join(',')
+    this.groupSelectedItems = this.groupSelectedItems.map((item: any) => item.id).join(',')
+
     this.faultService.updateFault({
       ...this.form.value,
       //type_id: Number.parseInt(this.form.value.type_id),
-      channel_id: this.channelSelectedItems[0].id,
-      channel_group_id: this.groupSelectedItems[0].id,
+      channel_type_id: this.channelSelectedItems,
+      channel_group_id: this.groupSelectedItems,
       "duration": Number.parseInt(this.form.value.timer),
       "internal_code":"2",
       "external_code":"4",
       message: this.form.value.messages,
       //"state":"PENDING",
       "type_id":1,
-      "channel_type_id":2,
     }).subscribe(data => {
       this.router.navigate(['/dashboard']);
 

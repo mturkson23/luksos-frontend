@@ -48,6 +48,13 @@ export class ReportComponent implements OnInit {
       logs: new FormControl(0, [])
     });
 
+    this.form.disable()
+
+    const remark = this.form.get('resolution_remark')
+    if(remark) {
+      remark.enable()
+    }
+
     this.dropdownList = [
       // { item_id: 1, item_text: 'Mumbai' },
       // { item_id: 2, item_text: 'Bangaluru' },

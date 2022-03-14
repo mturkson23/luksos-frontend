@@ -217,18 +217,22 @@ export class AnnouncementsComponent implements OnInit {
         return
       }
 
+      this.channelSelectedItems = this.channelSelectedItems.map((item: any) => item.id).join(',')
+      this.groupSelectedItems = this.groupSelectedItems.map((item: any) => item.id).join(',')
+
+      console.log(this.channelSelectedItems, this.groupSelectedItems)
+
       this.faultService.createFault({
         ...this.form.value,
         //type_id: Number.parseInt(this.form.value.type_id),
-        channel_id: this.channelSelectedItems[0].id,
-        channel_group_id: this.groupSelectedItems[0].id,
+        channel_type_id: this.channelSelectedItems,
+        channel_group_id: this.groupSelectedItems,
         "duration": Number.parseInt(this.form.value.timer),
         "internal_code":"2",
         "external_code":"4",
         message: this.form.value.messages,
         //"state":"PENDING",
-        "type_id":1,
-        "channel_type_id":2,
+        "type_id":1
       }).subscribe(data => {
         this.router.navigate(['/dashboard']);
 
