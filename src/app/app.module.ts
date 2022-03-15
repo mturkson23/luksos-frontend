@@ -29,6 +29,12 @@ import { NgBootstrapFormValidationModule } from 'ng-bootstrap-form-validation';
 import { ToastrModule } from 'ngx-toastr';
 import { AmazingTimePickerModule } from 'amazing-time-picker';
 import { NgHttpLoaderModule } from 'ng-http-loader';
+import { AddUserComponent } from './pages/users/add-user/add-user.component';
+import { EditUserComponent } from './pages/users/edit-user/edit-user.component';
+import { AddChannelComponent } from './pages/channels/add-channel/add-channel.component';
+import { EditChannelComponent } from './pages/channels/edit-channel/edit-channel.component';
+import { AddChannelGroupComponent } from './pages/channels/add-channel-group/add-channel-group.component';
+import { EditChannelGroupComponent } from './pages/channels/edit-channel-group/edit-channel-group.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +53,13 @@ import { NgHttpLoaderModule } from 'ng-http-loader';
     ModalComponent,
     UsersComponent,
     ChannelsComponent,
-    CustomDatePipe
+    CustomDatePipe,
+    AddUserComponent,
+    EditUserComponent,
+    AddChannelComponent,
+    EditChannelComponent,
+    AddChannelGroupComponent,
+    EditChannelGroupComponent
   ],
   imports: [
     BrowserModule,
