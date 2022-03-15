@@ -13,6 +13,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { ShellComponent } from './pages/shell/shell.component';
 import { PanelComponent } from './components/panel/panel.component';
 import { CustomDatePipe } from './components/utils/custom.datepipe';
+import { CustomTimePipe } from './components/utils/custom.timepipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AnnouncementsComponent } from './pages/announcements/announcements.component';
 import { TextTemplatesComponent } from './pages/text-templates/text-templates.component';
@@ -47,7 +48,8 @@ import { NgHttpLoaderModule } from 'ng-http-loader';
     ModalComponent,
     UsersComponent,
     ChannelsComponent,
-    CustomDatePipe
+    CustomDatePipe,
+    CustomTimePipe
   ],
   imports: [
     BrowserModule,
