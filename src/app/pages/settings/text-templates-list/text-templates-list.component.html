@@ -1,0 +1,27 @@
+<app-panel [title]="'Liste der Textvorlagen'">
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <td>ID</td>
+        <td>TITEL</td>
+        <td>ERSTELLT</td>
+        <td></td>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- <tr *ngFor="let template of templates;">
+        <td>{{ template.id }}</td>
+        <td>{{ template.title }}</td>
+        <td>{{ template.created_at | customDate }}</td>
+        <td><button (click)="goToEdit(template.id)" class="btn"><img height="30px" src="assets/img/edit_pencil.svg"/></button></td>
+      </tr> -->
+      <tr>
+        <td>1</td>
+        <td>Textvorlage 1</td>
+        <td>01.01.2020</td>
+        <td><button (click)="goToEdit(1)" class="btn"><img height="30px" src="assets/img/edit_pencil.svg"/></button></td>
+      </tr>
+    </tbody>
+  </table>
+</app-panel>

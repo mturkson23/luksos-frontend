@@ -1,3 +1,5 @@
+import { TextTemplatesListComponent } from './pages/settings/text-templates-list/text-templates-list.component';
+import { SettingsComponent } from './pages/settings/settings.component';
 import { ReportComponent } from './pages/report/report.component';
 import { HistoryComponent } from './pages/history/history.component';
 import { SignupComponent } from './pages/signup/signup.component';
@@ -13,9 +15,11 @@ import { ChannelsComponent } from './pages/channels/channels.component';
 import { UsersComponent } from './pages/users/users.component';
 import { AuthGuard } from './guards/auth.guard';
 import { DashboardGuard } from './guards/dashboard.guard';
+import { SettingsGuard } from './guards/settings.guard';
+import { TextTemplatesGroupsComponent } from './pages/settings/text-templates-groups/text-templates-groups.component';
 
 const routes: Routes = [
-  { path: '', component: ShellComponent,canActivateChild: [ DashboardGuard ], children: [
+  { path: '', component: ShellComponent, canActivateChild: [ DashboardGuard ], children: [
     { path: 'dashboard', component: DashboardComponent },
     { path: 'announcements', component: AnnouncementsComponent },
     { path: 'text-templates', component: TextTemplatesComponent },
@@ -23,9 +27,14 @@ const routes: Routes = [
     { path: 'edit-message/:id', component: EditMessageComponent },
     { path: 'edit-history/:id', component: ReportComponent },
     { path: 'channels', component: ChannelsComponent },
-    { path: 'users', component: UsersComponent },
+    { path: 'users', component: UsersComponent }
   ]},
   { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
+  { path: 'settings', component: SettingsComponent, canActivateChild: [ SettingsGuard ], children: [
+    { path: 'text-templates', component: TextTemplatesListComponent },
+    { path: 'text-templates-groups', component: TextTemplatesGroupsComponent },
+    { path: '**', redirectTo: 'text-templates' }
+  ] },
   { path: 'signup', component: SignupComponent },
   { path: '**', redirectTo: '' }
 ]

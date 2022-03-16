@@ -24,3 +24,9 @@ tbody > tr {
 table * {
   border: none !important;
 }
+
+.active-link {
+  color: #ff2448 !important;
+  font-weight: bold;
+  border-bottom: 3px solid #ff2448;
+}

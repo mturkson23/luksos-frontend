@@ -36,6 +36,10 @@ import { AddChannelComponent } from './pages/channels/add-channel/add-channel.co
 import { EditChannelComponent } from './pages/channels/edit-channel/edit-channel.component';
 import { AddChannelGroupComponent } from './pages/channels/add-channel-group/add-channel-group.component';
 import { EditChannelGroupComponent } from './pages/channels/edit-channel-group/edit-channel-group.component';
+import { SettingsComponent } from './pages/settings/settings.component';
+import { SettingsSidebarComponent } from './components/settings-sidebar/settings-sidebar.component';
+import { TextTemplatesListComponent } from './pages/settings/text-templates-list/text-templates-list.component';
+import { TextTemplatesGroupsComponent } from './pages/settings/text-templates-groups/text-templates-groups.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +65,11 @@ import { EditChannelGroupComponent } from './pages/channels/edit-channel-group/e
     EditChannelComponent,
     AddChannelGroupComponent,
     EditChannelGroupComponent,
-    CustomTimePipe
+    CustomTimePipe,
+    SettingsComponent,
+    SettingsSidebarComponent,
+    TextTemplatesListComponent,
+    TextTemplatesGroupsComponent
   ],
   imports: [
     BrowserModule,

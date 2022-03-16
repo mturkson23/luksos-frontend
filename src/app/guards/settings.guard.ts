@@ -7,7 +7,7 @@ import { AlertService } from '../services/alert-service.service';
 @Injectable({
   providedIn: 'root'
 })
-export class DashboardGuard implements  CanActivateChild {
+export class SettingsGuard implements  CanActivateChild {
 
   constructor(private authService: AuthService, private router: Router, private alertService: AlertService) {
 
