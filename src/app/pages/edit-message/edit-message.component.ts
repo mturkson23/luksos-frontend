@@ -121,7 +121,7 @@ export class EditMessageComponent implements OnInit {
 
       // updates will need to be made for the backend so this returns data not on user group but on channel groups
       // this.faultData.list_of_channel_group_ids.forEach((item: any) => {
-      this.faultData.list_of_user_group_id.forEach((item: any) => {
+      this.faultData.list_of_channel_group_id.forEach((item: any) => {
         this.groupSelectedItems.push(item)
       })
 
