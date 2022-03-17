@@ -53,16 +53,11 @@ export class AnnouncementsComponent implements OnInit {
 
     this.channelDropdownList = []
 
-    this.channelSelectedItems = [
+    this.channelSelectedItems = [];
 
-    ];
+    this.groupDropdownList = [];
 
-    this.groupDropdownList = [
-    ];
-
-    this.groupSelectedItems = [
-
-    ];
+    this.groupSelectedItems = [];
 
     this.channelDropdownSettings = {
       singleSelection: false,
@@ -120,25 +115,19 @@ export class AnnouncementsComponent implements OnInit {
   }
 
   gotoDashboard(content: any) {
-
-
     this.router.navigate(['/dashboard']);
     this.modalService.open(content);
   }
 
   getUsers() {
-
     this.userService.getUsers().subscribe(data => {
-
       console.log(data)
       this.users = data.extra
     })
   }
 
   getChannels() {
-
     this.channelService.getChannels().subscribe(data => {
-
       console.log(data)
       this.channelDropdownList = data.extra
     })
@@ -152,50 +141,36 @@ export class AnnouncementsComponent implements OnInit {
   }
 
   getChannelGroup() {
-
     this.channelService.getChannelsGroup().subscribe(data => {
-
       this.groupDropdownList = data.extra
       console.log('sfasdf', this.channelsGroup)
     })
   }
 
   getUserGroups() {
-
     this.userService.getUserGroups().subscribe(data => {
-
       console.log(data)
       this.groupDropdownList = data.extra
     })
   }
 
   getMessages() {
-
     this.messageService.getMessages().subscribe(data => {
-
       this.messages = data.extra
-
       console.log(data)
     })
   }
 
   getTemplageTypes() {
-
     this.channelService.getTemplateTypes().subscribe(data => {
-
       this.templates = data.extra
     })
   }
 
   updateForm(e: any) {
-
-
     const id = e.target.value
-
     const message = this.messages.find((x: any) => x.id == id)
-
     if(message) {
-
       this.form.patchValue({
         title: message.title,
         messages: message.messages,
@@ -205,14 +180,12 @@ export class AnnouncementsComponent implements OnInit {
   }
 
   onSubmit() {
-
       if(this.channelSelectedItems.length == 0){
         this.alertService.showError('Select a Channel', 'Please select at least one channel')
         return
       }
 
       if(this.groupSelectedItems.length == 0) {
-
         this.alertService.showError('Select a User Group', 'Please select at least one user group')
         return
       }
@@ -235,7 +208,6 @@ export class AnnouncementsComponent implements OnInit {
         "type_id":1
       }).subscribe(data => {
         this.router.navigate(['/dashboard']);
-
         if(data.status) {
           this.alertService.showSuccess('Message Added', data.message)
         } else {
