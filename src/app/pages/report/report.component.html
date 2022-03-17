@@ -49,12 +49,13 @@
             <div class="form-group mt-4">
               <label for="title">Kanäle</label>
               <ng-multiselect-dropdown
-                [placeholder]="''"
-                [settings]="dropdownSettings"
-                [data]="dropdownList"
-                (onSelect)="onItemSelect($event)"
-                (onSelectAll)="onSelectAll($event)"
-              >
+                  formControlName="channelType"
+                  [placeholder]="'Auswählen Kanäle'"
+                  [settings]="channelTypeDropdownSettings"
+                  [data]="channelDropdownList"
+                  [(ngModel)]="channelSelectedItems"
+                  (onSelect)="onChannelItemSelect($event)"
+                >
               </ng-multiselect-dropdown>
             </div>
           </div>
@@ -62,12 +63,12 @@
             <div class="form-group mt-4">
               <label for="title">Benutzergruppen</label>
               <ng-multiselect-dropdown
-                [placeholder]="''"
-                [settings]="dropdownSettings"
-                [data]="dropdownList"
-                (onSelect)="onItemSelect($event)"
-                (onSelectAll)="onSelectAll($event)"
-              >
+                  formControlName="channelGroup"
+                  [placeholder]="'Auswählen Kanalgruppe'"
+                  [settings]="groupDropdownSettings"
+                  [data]="groupDropdownList"
+                  [(ngModel)]="groupSelectedItems"
+                >
               </ng-multiselect-dropdown>
             </div>
           </div>

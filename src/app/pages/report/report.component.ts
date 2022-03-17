@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FaultService } from 'src/app/services/fault.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { CHANNEL_TYPE } from '../edit-message/type';
+import { ChannelService } from 'src/app/services/channel.service';
 
 @Component({
   selector: 'app-report',
@@ -11,10 +13,14 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class ReportComponent implements OnInit {
 
-  dropdownList: any = []
-  selectedItems: any = []
-  channelSelectedItems: any = [];
-  dropdownSettings: any = {}
+  channelDropdownList: any = [];
+  channelSelectedItems: Array<CHANNEL_TYPE> = [];
+  channelDropdownSettings: any = {};
+  channelTypeDropdownSettings: any = {};
+
+  groupDropdownList: any = [];
+  groupSelectedItems: any = [];
+  groupDropdownSettings: any = {};
 
   id: any
   faultData: any = {}
@@ -28,7 +34,8 @@ export class ReportComponent implements OnInit {
     private modalService: NgbModal,
     private router: Router,
     private faultService: FaultService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private channelService: ChannelService
   ) {}
 
   public form: FormGroup = new FormGroup({});
@@ -68,7 +75,8 @@ export class ReportComponent implements OnInit {
       expected_duration: new FormControl('', []),
       actual_duration: new FormControl('', []),
       logs: new FormControl(0, []),
-      channelType: new FormControl('', [])
+      channelType: new FormControl('', []),
+      channelGroup: new FormControl('', []),
     });
 
     this.form.disable()
@@ -79,27 +87,45 @@ export class ReportComponent implements OnInit {
       remark.enable()
     }
 
-    this.dropdownList = [
-      // { item_id: 1, item_text: 'Mumbai' },
-      // { item_id: 2, item_text: 'Bangaluru' },
-    ];
-    this.selectedItems = [
-      // { item_id: 3, item_text: 'Pune' },
-      // { item_id: 4, item_text: 'Navsari' }
-    ];
+    this.id = this.activatedRoute.snapshot.paramMap.get('id')
 
-    this.dropdownSettings = {
+    this.channelDropdownList = []
+
+    this.channelSelectedItems = [];
+
+    this.groupDropdownList = [];
+
+    this.groupSelectedItems = [];
+
+    this.channelDropdownSettings = {
       singleSelection: false,
-      idField: 'item_id',
-      textField: 'item_text',
+      idField: 'id',
+      textField: 'identifier',
       selectAllText: 'Select All',
       unSelectAllText: 'UnSelect All',
       itemsShowLimit: 3,
-
       allowSearchFilter: true
     };
 
-    this.id = this.activatedRoute.snapshot.paramMap.get('id')
+    this.channelTypeDropdownSettings = {
+      singleSelection: false,
+      idField: 'id',
+      textField: 'name',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 3,
+      allowSearchFilter: true
+    };
+
+    this.groupDropdownSettings = {
+      singleSelection: false,
+      idField: 'id',
+      textField: 'name',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 3,
+      allowSearchFilter: true
+    };
 
     this.faultService.getResolutionByFaultId(parseInt(this.id)).subscribe((data: any) => {
       console.log('Log::fault data::',data);
@@ -131,14 +157,54 @@ export class ReportComponent implements OnInit {
           logs: this.logs.length
         })
       })
+
+      this.faultData.list_of_channel_type_id.forEach((item: any) => {
+
+        this.channelSelectedItems.push(item)
+      })
+
+      this.form.patchValue({channelType: this.channelSelectedItems})
+
+      this.faultData.list_of_channel_group_id.forEach((item: any) => {
+        this.groupSelectedItems.push(item)
+      })
+
+      this.form.patchValue({channelGroup: this.groupSelectedItems})
+    })
+
+    this.getChannelTypes()
+    this.getChannelGroup()
+  }
+
+  onChannelItemSelect(item: any) {
+    this.channelSelectedItems.push(item)
+
+  }
+  onChannelSelectAll(items: any) {
+    this.channelSelectedItems = items
+  }
+
+  onUserItemSelect(item: any) {
+    this.groupSelectedItems.push(item)
+  }
+  onUserSelectAll(items: any) {
+    this.groupSelectedItems = items
+  }
+
+  getChannelTypes() {
+    this.channelService.getChannelTypes().subscribe(data => {
+      // console.log('channel types',data)
+      this.channelDropdownList = data.extra
     })
   }
 
-  onItemSelect(item: any) {
-    console.log(item);
-  }
-  onSelectAll(items: any) {
-    console.log(items);
+  getChannelGroup() {
+
+    this.channelService.getChannelsGroup().subscribe(data => {
+
+      this.groupDropdownList = data.extra
+      console.log('sfasdf', this.groupDropdownList)
+    })
   }
 
   openModal(content: any) {
