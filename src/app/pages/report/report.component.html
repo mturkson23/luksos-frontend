@@ -47,29 +47,28 @@
 
           <div class="col-6">
             <div class="form-group mt-4">
-              <label for="title">Benutzergruppen</label>
+              <label for="title">Kanäle</label>
               <ng-multiselect-dropdown
-                [placeholder]="'Select Kanäle'"
+                [placeholder]="''"
                 [settings]="dropdownSettings"
                 [data]="dropdownList"
                 (onSelect)="onItemSelect($event)"
                 (onSelectAll)="onSelectAll($event)"
               >
-            </ng-multiselect-dropdown>
+              </ng-multiselect-dropdown>              
             </div>
           </div>
           <div class="col-6">
             <div class="form-group mt-4">
-              <label for="title">Kanäle</label>
+              <label for="title">Benutzergruppen</label>
               <ng-multiselect-dropdown
-                [placeholder]="'custom placeholder'"
+                [placeholder]="''"
                 [settings]="dropdownSettings"
                 [data]="dropdownList"
-
                 (onSelect)="onItemSelect($event)"
                 (onSelectAll)="onSelectAll($event)"
               >
-            </ng-multiselect-dropdown>
+              </ng-multiselect-dropdown>
             </div>
           </div>
 

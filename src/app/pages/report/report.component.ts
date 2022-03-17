@@ -13,6 +13,7 @@ export class ReportComponent implements OnInit {
 
   dropdownList: any = []
   selectedItems: any = []
+  channelSelectedItems: any = [];
   dropdownSettings: any = {}
 
   id: any
@@ -52,6 +53,8 @@ export class ReportComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.channelSelectedItems = [];
+
     this.form = new FormGroup({
       title: new FormControl('', [
         Validators.minLength(2),
@@ -64,7 +67,8 @@ export class ReportComponent implements OnInit {
       resolution_remark: new FormControl('', []),
       expected_duration: new FormControl('', []),
       actual_duration: new FormControl('', []),
-      logs: new FormControl(0, [])
+      logs: new FormControl(0, []),
+      channelType: new FormControl('', [])
     });
 
     this.form.disable()
@@ -95,7 +99,7 @@ export class ReportComponent implements OnInit {
     this.id = this.activatedRoute.snapshot.paramMap.get('id')
 
     this.faultService.getResolutionByFaultId(parseInt(this.id)).subscribe((data: any) => {
-      console.log(data);
+      console.log('Log::fault data::',data);
       this.faultData = data.extra;
 
       this.pageTitle = `Meldung ${this.id} "${this.faultData.title}" ${this.faultData.reported_date}`;
