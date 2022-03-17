@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,7 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ShellComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) {
+
+    if(router.url === '/') {
+      this.router.navigate(['/dashboard']);
+    }
+  }
 
   ngOnInit(): void {
   }

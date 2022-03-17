@@ -13,6 +13,7 @@ export class ReportComponent implements OnInit {
 
   dropdownList: any = []
   selectedItems: any = []
+  channelSelectedItems: any = [];
   dropdownSettings: any = {}
 
   id: any
@@ -52,6 +53,8 @@ export class ReportComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.channelSelectedItems = [];
+
     this.form = new FormGroup({
       title: new FormControl('', [
         Validators.minLength(2),
@@ -64,12 +67,14 @@ export class ReportComponent implements OnInit {
       resolution_remark: new FormControl('', []),
       expected_duration: new FormControl('', []),
       actual_duration: new FormControl('', []),
-      logs: new FormControl(0, [])
+      logs: new FormControl(0, []),
+      channelType: new FormControl('', [])
     });
 
     this.form.disable()
 
     const remark = this.form.get('resolution_remark')
+
     if(remark) {
       remark.enable()
     }
@@ -82,6 +87,7 @@ export class ReportComponent implements OnInit {
       // { item_id: 3, item_text: 'Pune' },
       // { item_id: 4, item_text: 'Navsari' }
     ];
+
     this.dropdownSettings = {
       singleSelection: false,
       idField: 'item_id',
@@ -89,13 +95,14 @@ export class ReportComponent implements OnInit {
       selectAllText: 'Select All',
       unSelectAllText: 'UnSelect All',
       itemsShowLimit: 3,
+
       allowSearchFilter: true
     };
 
     this.id = this.activatedRoute.snapshot.paramMap.get('id')
 
     this.faultService.getResolutionByFaultId(parseInt(this.id)).subscribe((data: any) => {
-      console.log(data);
+      console.log('Log::fault data::',data);
       this.faultData = data.extra;
 
       this.pageTitle = `Meldung ${this.id} "${this.faultData.title}" ${this.faultData.reported_date}`;
