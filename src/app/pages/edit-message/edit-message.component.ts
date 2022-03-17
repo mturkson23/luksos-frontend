@@ -127,7 +127,7 @@ export class EditMessageComponent implements OnInit {
         this.channelSelectedItems.push(item)
       })
 
-      this.faultData.list_of_user_group_id.forEach((item: any) => {
+      this.faultData.list_of_channel_group_id.forEach((item: any) => {
 
         this.groupSelectedItems.push(item)
 
