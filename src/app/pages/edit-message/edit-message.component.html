@@ -26,6 +26,7 @@
         <div class="form-group mt-4">
           <label for="title">Kanäle</label>
           <ng-multiselect-dropdown
+            formControlName="channelType"
             [placeholder]="'Auswählen Kanäle'"
             [settings]="channelTypeDropdownSettings"
             [data]="channelDropdownList"
@@ -37,6 +38,7 @@
         <div class="form-group mt-4">
           <label for="title">Kanalegruppen</label>
           <ng-multiselect-dropdown
+            formControlName="channelGroup"
             [placeholder]="'Auswählen Kanalgruppe'"
             [settings]="groupDropdownSettings"
             [data]="groupDropdownList"

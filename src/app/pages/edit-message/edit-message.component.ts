@@ -3,10 +3,10 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 // import { ModalComponent } from 'src/app/components/modal/modal.component';
 import { FaultService } from 'src/app/services/fault.service';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ChannelService } from 'src/app/services/channel.service';
 import { AlertService } from 'src/app/services/alert-service.service';
-
+import { CHANNEL_TYPE } from "./type";
 @Component({
   selector: 'app-edit-message',
   templateUrl: './edit-message.component.html',
@@ -15,7 +15,7 @@ import { AlertService } from 'src/app/services/alert-service.service';
 export class EditMessageComponent implements OnInit {
 
   channelDropdownList: any = [];
-  channelSelectedItems: any = [];
+  channelSelectedItems: Array<CHANNEL_TYPE> = [];
   channelDropdownSettings: any = {};
   channelTypeDropdownSettings: any = {};
 
@@ -30,10 +30,7 @@ export class EditMessageComponent implements OnInit {
 
   id: any;
 
-  constructor(private modalService: NgbModal, private router: Router, private faultService: FaultService, private activatedRoute: ActivatedRoute, private channelService: ChannelService, private alertService: AlertService) {
-
-
-  }
+  constructor(private modalService: NgbModal, private router: Router, private faultService: FaultService, private activatedRoute: ActivatedRoute, private channelService: ChannelService, private alertService: AlertService) {}
 
   public form: FormGroup = new FormGroup({});
 
@@ -53,28 +50,22 @@ export class EditMessageComponent implements OnInit {
       ]),
       reported: new FormControl('', [
 
-      ])
+      ]),
+      channelType: new FormControl('', []),
+      channelGroup: new FormControl('', []),
     })
 
     this.id = this.activatedRoute.snapshot.paramMap.get('id')
 
-    console.log(this.id)
-
-
+    // console.log(this.id)
 
     this.channelDropdownList = []
 
-    this.channelSelectedItems = [
+    this.channelSelectedItems = [];
 
-    ];
+    this.groupDropdownList = [];
 
-    this.groupDropdownList = [
-
-    ];
-
-    this.groupSelectedItems = [
-      {  }
-    ];
+    this.groupSelectedItems = [];
 
     this.channelDropdownSettings = {
       singleSelection: false,
@@ -107,9 +98,7 @@ export class EditMessageComponent implements OnInit {
     };
 
     this.faultService.getFault(parseInt(this.id)).subscribe((data: any) => {
-
-      console.log(data)
-
+      // console.log(data)
       this.faultData = data.extra;
 
       this.pageTitle = `Meldung ${this.id} "${this.faultData.title}" ${this.faultData.reported_date}`;
@@ -122,18 +111,21 @@ export class EditMessageComponent implements OnInit {
         reported: this.faultData.reported_date
       })
 
+      // this.faultData.list_of_channel_type_ids.forEach((item: any) => {
       this.faultData.list_of_channel_type_id.forEach((item: any) => {
-
+        // console.log('selected item',item)
         this.channelSelectedItems.push(item)
       })
 
+      this.form.patchValue({channelType: this.channelSelectedItems})
+
+      // updates will need to be made for the backend so this returns data not on user group but on channel groups
+      // this.faultData.list_of_channel_group_ids.forEach((item: any) => {
       this.faultData.list_of_user_group_id.forEach((item: any) => {
-
         this.groupSelectedItems.push(item)
-
       })
 
-      console.log(this.channelSelectedItems, 'gjhgj')
+      this.form.patchValue({channelGroup: this.groupSelectedItems})
     })
 
     this.getChannelTypes()
@@ -141,8 +133,8 @@ export class EditMessageComponent implements OnInit {
   }
 
   onChannelItemSelect(item: any) {
-    // this.channelSelectedItems.push(item)
-    console.log(this.channelSelectedItems)
+    this.channelSelectedItems.push(item)
+    // console.log(this.channelSelectedItems)
   }
   onChannelSelectAll(items: any) {
     this.channelSelectedItems = items
@@ -157,7 +149,7 @@ export class EditMessageComponent implements OnInit {
 
   getChannelTypes() {
     this.channelService.getChannelTypes().subscribe(data => {
-      console.log(data)
+      // console.log('channel types',data)
       this.channelDropdownList = data.extra
     })
   }
@@ -201,11 +193,13 @@ export class EditMessageComponent implements OnInit {
 
     if(this.groupSelectedItems.length == 0) {
 
-      this.alertService.showError('Select a User Group', 'Please select at least one user group')
+      this.alertService.showError('Select a Channel Group', 'Please select at least one channel group')
       return
     }
 
-    this.channelSelectedItems = this.channelSelectedItems.map((item: any) => item.id).join(',')
+    // const ebo = this.channelSelectedItems.map((item: any) => item.id).join(',')
+    // console.log('something else',ebo)
+    // this.channelSelectedItems = this.channelSelectedItems.map((item: any) => item.id).join(',')
     this.groupSelectedItems = this.groupSelectedItems.map((item: any) => item.id).join(',')
 
     this.faultService.updateFault({
