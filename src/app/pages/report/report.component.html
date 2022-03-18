@@ -55,6 +55,7 @@
                   [data]="channelDropdownList"
                   [(ngModel)]="channelSelectedItems"
                   (onSelect)="onChannelItemSelect($event)"
+                  [disabled]='true'
                 >
               </ng-multiselect-dropdown>
             </div>
@@ -68,6 +69,7 @@
                   [settings]="groupDropdownSettings"
                   [data]="groupDropdownList"
                   [(ngModel)]="groupSelectedItems"
+                  [disabled]='true'
                 >
               </ng-multiselect-dropdown>
             </div>

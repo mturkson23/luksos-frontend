@@ -69,8 +69,6 @@ export class EditMessageComponent implements OnInit {
 
     this.id = this.activatedRoute.snapshot.paramMap.get('id')
 
-    // console.log(this.id)
-
     this.channelDropdownList = []
 
     this.channelSelectedItems = [];
@@ -119,8 +117,8 @@ export class EditMessageComponent implements OnInit {
       this.form.patchValue({
         title: this.faultData.title,
         message: this.faultData.message,
-        timer: this.faultData.duration,
-        reported_date : this.faultData.reported_date
+        timer: `${this.faultData.duration} mins`,
+        reported_date: this.faultData.reported_date
       })
 
       this.modalForm.patchValue({
