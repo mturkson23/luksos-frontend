@@ -86,9 +86,11 @@ export class ReportComponent implements OnInit {
     this.form.disable()
 
     const remark = this.form.get('resolution_remark')
+    const ticket_number = this.form.get('ticket_number')
 
-    if(remark) {
-      remark.enable()
+    if(remark || ticket_number) {
+      remark?.enable()
+      ticket_number?.enable()
     }
 
     this.id = this.activatedRoute.snapshot.paramMap.get('id')
@@ -163,7 +165,6 @@ export class ReportComponent implements OnInit {
       })
 
       this.faultData.list_of_channel_type_id.forEach((item: any) => {
-
         this.channelSelectedItems.push(item)
       })
 
@@ -206,7 +207,7 @@ export class ReportComponent implements OnInit {
 
     this.faultService.updateLog({ id: this.faultData.id, fault_id: this.faultData.fault_id, remarks: this.form.value.resolution_remark }).subscribe(data => {
       console.log(data);
-      this.router.navigate(['/faults'])
+      this.router.navigate(['/history'])
     })
   }
 
