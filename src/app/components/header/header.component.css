@@ -31,6 +31,12 @@ nav li a:hover {
   top: 0;
 }
 
+.menu-dropdown ul {
+  width: 200px;
+  left: -65px;
+  top: 60px;
+}
+
 .menu-dropdown li {
 
   border-bottom: 1px solid #e5e5e5;
