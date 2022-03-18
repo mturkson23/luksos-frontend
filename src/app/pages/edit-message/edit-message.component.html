@@ -6,22 +6,22 @@
 
         <div class="form-group">
           <label for="title">Titel</label>
-          <input type="text" class="form-control" id="title" formControlName='title'/>
+          <input type="text" class="form-control" id="title" formControlName='title' readonly='true'/>
         </div>
         <div class="form-group mt-4">
           <label for="title">erstellt am/um</label>
-          <input type="text" class="form-control" id="title" formControlName='reported'/>
+          <input type="text" class="form-control" id="title" formControlName='reported' readonly='true'/>
         </div>
 
         <div class="form-group mt-4">
           <label for="title">Textbaustein</label>
-          <textarea class="form-control" rows="10" formControlName='message'></textarea>
+          <textarea class="form-control" rows="10" formControlName='message' readonly='true'></textarea>
         </div>
       </div>
       <div class="col-md-4 p-4">
         <div class="form-group">
           <label for="title">voraussichtliche Dauer</label>
-          <input type="text" class="form-control" id="title" formControlName='timer'/>
+          <input type="text" class="form-control" id="title" formControlName='timer' readonly='true'/>
         </div>
         <div class="form-group mt-4">
           <label for="title">Kanäle</label>
@@ -32,6 +32,7 @@
             [data]="channelDropdownList"
             [(ngModel)]="channelSelectedItems"
             (onSelect)="onChannelItemSelect($event)"
+            [disabled]='true'
           >
         </ng-multiselect-dropdown>
         </div>
@@ -43,6 +44,7 @@
             [settings]="groupDropdownSettings"
             [data]="groupDropdownList"
             [(ngModel)]="groupSelectedItems"
+            [disabled]='true'
           >
         </ng-multiselect-dropdown>
         </div>

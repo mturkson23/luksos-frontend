@@ -107,7 +107,7 @@ export class EditMessageComponent implements OnInit {
       this.form.patchValue({
         title: this.faultData.title,
         message: this.faultData.message,
-        timer: this.faultData.duration,
+        timer: `${this.faultData.duration} mins`,
         reported: this.faultData.reported_date
       })
 
