@@ -1,5 +1,5 @@
 <app-panel [title]=pageTitle>
-  <form [formGroup]='form'>
+  <form [formGroup]='form' (validSubmit)="submit()">
     <div class="row">
       <div class="col-md-6 p-4">
 
@@ -110,7 +110,7 @@
       <div class="d-flex justify-content-end">
 
         <div>
-          <button class="btn btn-secondary" (click)="gotoDashboard()">
+          <button class="btn btn-secondary" type="submit">
             <i class="fa fa-save"></i>
             Mitteilung Speichern
           </button>

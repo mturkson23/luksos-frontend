@@ -49,4 +49,8 @@ export class ChannelService extends ApplicationService {
 
     return this.makePost('/messagetemplate/add', payload)
   }
+
+  getChannel(id: any) {
+    return this.makePost('/messagetemplate/getbyid', { id })
+  }
 }

@@ -10,7 +10,7 @@
         </div>
         <div class="form-group mt-4">
           <label for="title">erstellt am/um</label>
-          <input type="text" class="form-control" id="title" formControlName='reported'/>
+          <input type="text" class="form-control" id="title" formControlName='reported_date'/>
         </div>
 
         <div class="form-group mt-4">
@@ -56,17 +56,17 @@
       <div class="d-flex">
 
         <div>
-          <button class="btn btn-secondary" (click)="openModal(content)">
+          <button class="btn btn-secondary" (click)="openModal(content)" type="button">
             Zwischenmeldung erstellen
           </button>
         </div>
 
         <div class="ml-auto" style="margin-left: auto">
-          <button class="btn btn-success" style="margin-right: 10px;" (click)="closeFault(id)">
+          <button class="btn btn-success" style="margin-right: 10px;" (click)="closeFault(id)" type="button">
             <i class="fa-solid fa-circle-check"></i>
             Gutmeldung schicken
           </button>
-          <button class="btn btn-secondary">
+          <button class="btn btn-secondary" type="submit">
             <i class="fa fa-save"></i>
             Mitteilung aktivieren
           </button>
@@ -88,19 +88,19 @@
       <h4 class="modal-title text-center" id="modal-title">Zwischenmeldung erstellen</h4>
 
     </div>
-    <div class="modal-body" style="background-color: #f4f4f4;">
+    <form class="modal-body" style="background-color: #f4f4f4;" [formGroup]="modalForm">
       <div class="form">
         <div class="row">
           <div class="col-md-12 p-4">
 
             <div class="form-group">
               <label for="title">Titel der Notfallmeldung</label>
-              <input type="text" class="form-control" id="title"/>
+              <input type="text" class="form-control" id="title" formControlName="title"/>
             </div>
 
             <div class="form-group mt-4">
               <label for="title">Zwischenmeldung Text</label>
-              <textarea class="form-control" rows="10"></textarea>
+              <textarea class="form-control" rows="10" formControlName="message"></textarea>
             </div>
           </div>
         </div>
@@ -109,11 +109,11 @@
         <button class="btn btn-light" style="margin-right: 10px;" (click)="modal.close()">
           Verwerfen
         </button>
-        <button class="btn btn-dark">
+        <button class="btn btn-secondary" (click)="submitMessages($event)">
           Zwischenmeldung senden
         </button>
       </div>
-    </div>
+    </form>
 
   </ng-template>
 

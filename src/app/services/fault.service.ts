@@ -43,7 +43,16 @@ export class FaultService extends ApplicationService {
   }
 
   updateFault(payload: any) {
+    console.log(payload)
     return this.makePost('/fault/update', payload)
+  }
+
+  sendMessages(id: string) {
+    return this.makePost('/fault/sendemailsms', { id })
+  }
+
+  updateLog(payload: any) {
+    return this.makePost('/faultresolution/updateremarkbyid', payload)
   }
 
   getHistoryByState(state: string) {

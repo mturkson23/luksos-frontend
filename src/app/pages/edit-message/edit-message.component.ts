@@ -15,7 +15,7 @@ import { CHANNEL_TYPE } from "./type";
 export class EditMessageComponent implements OnInit {
 
   channelDropdownList: any = [];
-  channelSelectedItems: Array<CHANNEL_TYPE> = [];
+  channelSelectedItems: any = [];
   channelDropdownSettings: any = {};
   channelTypeDropdownSettings: any = {};
 
@@ -32,7 +32,8 @@ export class EditMessageComponent implements OnInit {
 
   constructor(private modalService: NgbModal, private router: Router, private faultService: FaultService, private activatedRoute: ActivatedRoute, private channelService: ChannelService, private alertService: AlertService) {}
 
-  public form: FormGroup = new FormGroup({});
+  public form: FormGroup = new FormGroup({})
+  public modalForm: FormGroup = new FormGroup({})
 
   ngOnInit(): void {
 
@@ -48,11 +49,22 @@ export class EditMessageComponent implements OnInit {
       timer: new FormControl('', [
         Validators.required
       ]),
-      reported: new FormControl('', [
+      reported_date: new FormControl('', [
 
       ]),
       channelType: new FormControl('', []),
       channelGroup: new FormControl('', []),
+    })
+
+    this.modalForm = new FormGroup({
+      title: new FormControl('', [
+        Validators.minLength(2),
+        Validators.required
+      ]),
+      message: new FormControl('', [
+        Validators.minLength(2),
+        Validators.required
+      ]),
     })
 
     this.id = this.activatedRoute.snapshot.paramMap.get('id')
@@ -108,8 +120,15 @@ export class EditMessageComponent implements OnInit {
         title: this.faultData.title,
         message: this.faultData.message,
         timer: this.faultData.duration,
-        reported: this.faultData.reported_date
+        reported_date : this.faultData.reported_date
       })
+
+      this.modalForm.patchValue({
+        title: this.faultData.title,
+        message: this.faultData.message
+      })
+
+      this.modalForm.disable()
 
       // this.faultData.list_of_channel_type_ids.forEach((item: any) => {
       this.faultData.list_of_channel_type_id.forEach((item: any) => {
@@ -199,18 +218,20 @@ export class EditMessageComponent implements OnInit {
 
     // const ebo = this.channelSelectedItems.map((item: any) => item.id).join(',')
     // console.log('something else',ebo)
-    // this.channelSelectedItems = this.channelSelectedItems.map((item: any) => item.id).join(',')
-    this.groupSelectedItems = this.groupSelectedItems.map((item: any) => item.id).join(',')
+    const channelSelectedItem = [...new Set(this.channelSelectedItems.map((item: any) => item.id))].join(',')
+    const groupSelectedItem = [...new Set(this.groupSelectedItems.map((item: any) => item.id))].join(',')
+
+    console.log(this.channelSelectedItems, this.groupSelectedItems)
 
     this.faultService.updateFault({
+      id: parseInt(this.id),
       ...this.form.value,
       //type_id: Number.parseInt(this.form.value.type_id),
-      channel_type_id: this.channelSelectedItems,
-      channel_group_id: this.groupSelectedItems,
+      channel_type_id: channelSelectedItem,
+      channel_group_id: groupSelectedItem,
       "duration": Number.parseInt(this.form.value.timer),
       "internal_code":"2",
       "external_code":"4",
-      message: this.form.value.messages,
       //"state":"PENDING",
       "type_id":1,
     }).subscribe(data => {
@@ -218,6 +239,18 @@ export class EditMessageComponent implements OnInit {
 
       if(data.status) {
         this.alertService.showSuccess('Message Added', data.message)
+      } else {
+        this.alertService.showError('Error', data.message)
+      }
+    })
+  }
+
+  submitMessages(e: any) {
+    console.log('messages', this.form.value.messages)
+
+    this.faultService.sendMessages(this.faultData.id).subscribe(data => {
+      if(data.status) {
+        this.alertService.showSuccess('Sent!', data.message)
       } else {
         this.alertService.showError('Error', data.message)
       }

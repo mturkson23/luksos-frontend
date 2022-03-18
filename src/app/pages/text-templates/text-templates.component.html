@@ -6,7 +6,7 @@
       <div class="col-md-5 p-4">
         <div class="form-group">
           <label for="name">neue Vorlage ersetellen oder bestehende bearbeiten</label>
-          <select formControlName='type_id' class="form-control">
+          <select formControlName='type_id' class="form-control" (change)="getChannel()">
             <option value="">Neue Vorlage</option>
             <option *ngFor="let template of templates" [value]="template.id">{{ template.name }}</option>
           </select>
@@ -33,11 +33,12 @@
         <div class="form-group">
           <label for="title">Kanäle</label>
           <ng-multiselect-dropdown
+            formControlName="channels"
             [placeholder]="'Auswählen Kanäle'"
             [settings]="channelTypeDropdownSettings"
             [data]="channelDropdownList"
+            [(ngModel)]="channelSelectedItems"
             (onSelect)="onChannelItemSelect($event)"
-            (onSelectAll)="onChannelSelectAll($event)"
           >
         </ng-multiselect-dropdown>
         </div>
@@ -46,11 +47,12 @@
         <div class="form-group">
           <label for="title">Benutzergruppen</label>
           <ng-multiselect-dropdown
+            formControlName="userGroups"
             [placeholder]="'Auswählen Benutzergruppen'"
             [settings]="userDropdownSettings"
             [data]="userDropdownList"
+            [(ngModel)]="userSelectedItems"
             (onSelect)="onUserItemSelect($event)"
-            (onSelectAll)="onUserSelectAll($event)"
           >
         </ng-multiselect-dropdown>
         </div>

@@ -41,6 +41,8 @@ export class TextTemplatesComponent implements OnInit {
       Validators.minLength(2),
       Validators.required
     ]),
+    channels: new FormControl('', []),
+    userGroups: new FormControl('', []),
     // timer: new FormControl('', [
     //   Validators.required
     // ])
@@ -100,6 +102,37 @@ export class TextTemplatesComponent implements OnInit {
 
   }
 
+  getChannel() {
+
+    console.log(this.form.value.type_id)
+
+    this.channelService.getChannel(parseInt(this.form.value.type_id)).subscribe(data => {
+
+      console.log(data)
+
+      data.extra.channel_id_list.forEach((item: any) => {
+
+        console.log(item)
+
+        this.channelSelectedItems.push(item)
+      })
+
+      this.form.patchValue({channels: this.channelSelectedItems})
+
+      data.extra.user_group_id_list.forEach((item: any) => {
+        this.userSelectedItems.push(item)
+      })
+
+      this.form.patchValue({userGroups: this.userSelectedItems})
+
+      this.form.patchValue({
+        name: data.extra.name,
+        title: data.extra.title,
+        messages: data.extra.messages,
+      })
+    })
+  }
+
   onChannelItemSelect(item: any) {
     this.channelSelectedItems.push(item)
   }
@@ -135,7 +168,6 @@ export class TextTemplatesComponent implements OnInit {
     this.channelService.getChannels().subscribe(data => {
 
       console.log(data)
-      this.channelDropdownList = data.extra
     })
   }
 
@@ -143,7 +175,7 @@ export class TextTemplatesComponent implements OnInit {
     this.channelService.getChannelTypes().subscribe(data => {
       console.log('::Log:: fetched channel types',data)
       this.channelDropdownList = data.extra
-    });    
+    });
   }
 
   getUserGroups() {
@@ -182,13 +214,15 @@ export class TextTemplatesComponent implements OnInit {
         return
       }
 
+      this.channelSelectedItems = [...new Set(this.channelSelectedItems.map((item: any) => item.id))].join(',')
+      this.userSelectedItems = [...new Set(this.userSelectedItems.map((item: any) => item.id))].join(',')
+
       this.channelService.createChannel({
         ...this.form.value,
-        timer: 6,
-        // type_id: Number.parseInt(this.form.value.type_id),
         type_id: 1,
-        channel_id: this.channelSelectedItems[0].id,
-        user_group_id: this.userSelectedItems[0].id
+        id: Number.parseInt(this.form.value.type_id),
+        channel_id: this.channelSelectedItems,
+        user_groups_id: this.userSelectedItems
       }).subscribe(data => {
         this.router.navigate(['/dashboard']);
 

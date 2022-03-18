@@ -198,6 +198,14 @@ export class ReportComponent implements OnInit {
     })
   }
 
+  submit() {
+
+    this.faultService.updateLog({ id: this.faultData.id, fault_id: this.faultData.fault_id, remarks: this.form.value.resolution_remark }).subscribe(data => {
+      console.log(data);
+      this.router.navigate(['/faults'])
+    })
+  }
+
   getChannelGroup() {
 
     this.channelService.getChannelsGroup().subscribe(data => {
