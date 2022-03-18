@@ -126,7 +126,7 @@ export class EditMessageComponent implements OnInit {
         message: this.faultData.message
       })
 
-      this.modalForm.disable()
+      // this.modalForm.disable()
 
       // this.faultData.list_of_channel_type_ids.forEach((item: any) => {
       this.faultData.list_of_channel_type_id.forEach((item: any) => {
