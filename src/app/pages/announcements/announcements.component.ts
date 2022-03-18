@@ -44,8 +44,8 @@ export class AnnouncementsComponent implements OnInit {
       Validators.minLength(2),
       Validators.required
     ]),
-    timer: new FormControl(0, [
-
+    timer: new FormControl(60, [
+      Validators.required
     ]),
   });
 
@@ -205,7 +205,8 @@ export class AnnouncementsComponent implements OnInit {
         "external_code":"4",
         message: this.form.value.messages,
         //"state":"PENDING",
-        "type_id":1
+        "type_id":1,
+        "reported_date": new Date()
       }).subscribe(data => {
         this.router.navigate(['/dashboard']);
         if(data.status) {
