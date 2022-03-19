@@ -47,8 +47,9 @@ export class FaultService extends ApplicationService {
     return this.makePost('/fault/update', payload)
   }
 
-  sendMessages(id: string) {
-    return this.makePost('/fault/sendemailsms', { id })
+  sendMessages(payload: any) {
+    console.log(payload)
+    return this.makePost('/fault/sendemailsms', payload)
   }
 
   updateLog(payload: any) {

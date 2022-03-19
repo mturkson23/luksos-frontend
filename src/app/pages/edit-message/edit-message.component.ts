@@ -126,8 +126,6 @@ export class EditMessageComponent implements OnInit {
         message: this.faultData.message
       })
 
-      this.modalForm.disable()
-
       // this.faultData.list_of_channel_type_ids.forEach((item: any) => {
       this.faultData.list_of_channel_type_id.forEach((item: any) => {
         // console.log('selected item',item)
@@ -246,7 +244,10 @@ export class EditMessageComponent implements OnInit {
   submitMessages(e: any) {
     console.log('messages', this.form.value.messages)
 
-    this.faultService.sendMessages(this.faultData.id).subscribe(data => {
+    this.faultService.sendMessages({
+      id: this.faultData.id,
+      ...this.modalForm.value,
+    }).subscribe(data => {
       if(data.status) {
         this.alertService.showSuccess('Sent!', data.message)
       } else {

@@ -5,6 +5,7 @@ import { FaultService } from 'src/app/services/fault.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CHANNEL_TYPE } from '../edit-message/type';
 import { ChannelService } from 'src/app/services/channel.service';
+import { AlertService } from 'src/app/services/alert-service.service';
 
 @Component({
   selector: 'app-report',
@@ -35,7 +36,8 @@ export class ReportComponent implements OnInit {
     private router: Router,
     private faultService: FaultService,
     private activatedRoute: ActivatedRoute,
-    private channelService: ChannelService
+    private channelService: ChannelService,
+    private alertService: AlertService
   ) {}
 
   public form: FormGroup = new FormGroup({});
@@ -82,9 +84,15 @@ export class ReportComponent implements OnInit {
     this.form.disable()
 
     const remark = this.form.get('resolution_remark')
+    const ticketNumber = this.form.get('ticket_number')
 
     if(remark) {
       remark.enable()
+
+    }
+
+    if(ticketNumber) {
+      ticketNumber.enable()
     }
 
     this.id = this.activatedRoute.snapshot.paramMap.get('id')
@@ -200,9 +208,15 @@ export class ReportComponent implements OnInit {
 
   submit() {
 
-    this.faultService.updateLog({ id: this.faultData.id, fault_id: this.faultData.fault_id, remarks: this.form.value.resolution_remark }).subscribe(data => {
-      console.log(data);
-      this.router.navigate(['/faults'])
+    this.faultService.updateLog({ id: this.faultData.id, fault_id: this.faultData.fault_id, remarks: this.form.value.resolution_remark, external_code: this.form.value.ticket_number.toString() }).subscribe(data => {
+      console.log(data)
+      if(data.status) {
+        this.alertService.showSuccess('Sent!', data.message)
+        this.router.navigate(['/history'])
+      } else {
+        this.alertService.showError('Error', data.message)
+      }
+
     })
   }
 

@@ -10,7 +10,7 @@ export class ShellComponent implements OnInit {
 
   constructor(private router: Router) {
 
-    if(router.url === '/') {
+    if(router.url == '/') {
       this.router.navigate(['/dashboard']);
     }
   }
