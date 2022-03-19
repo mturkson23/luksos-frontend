@@ -11,14 +11,14 @@
 
           <div class="col-6">
             <div class="form-group mt-4">
-              <label for="title">erstellt am/um</label>
-              <input type="text" class="form-control" id="title" formControlName='reported_date'/>
+              <label for="reported_date">erstellt am/um</label>
+              <input type="text" class="form-control" id="reported_date" formControlName='reported_date'/>
             </div>
           </div>
           <div class="col-6">
             <div class="form-group mt-4">
-              <label for="title">behoben am/um</label>
-              <input type="text" class="form-control" id="title" formControlName='closed_date'/>
+              <label for="closed_date">behoben am/um</label>
+              <input type="text" class="form-control" id="closed_date" formControlName='closed_date'/>
             </div>
           </div>
         </div>
@@ -27,20 +27,20 @@
 
           <div class="col-6">
             <div class="form-group mt-4">
-              <label for="title">Ticketnummer</label>
-              <input type="text" class="form-control" id="title" formControlName='ticket_number'/>
+              <label for="ticket_number">Ticketnummer</label>
+              <input type="text" class="form-control" id="ticket_number" formControlName='ticket_number'/>
             </div>
           </div>
         </div>
 
         <div class="form-group mt-4">
-          <label for="title">Textbaustein</label>
+          <label for="message">Textbaustein</label>
           <textarea class="form-control" rows="10" formControlName='message'></textarea>
         </div>
       </div>
       <div class="col-md-6 p-4">
         <div class="form-group">
-          <label for="title">Losungsweg</label>
+          <label for="resolution_remark">Losungsweg</label>
           <textarea class="form-control" rows="10" formControlName='resolution_remark'></textarea>
         </div>
         <div class="row">
@@ -77,23 +77,23 @@
 
           <div class="col-6">
             <div class="form-group mt-4">
-              <label for="title">voraussichtliche Dauer</label>
-              <input type="text" class="form-control" id="title" formControlName='expected_duration'/>
+              <label for="expected_duration">voraussichtliche Dauer</label>
+              <input type="text" class="form-control" id="expected_duration" formControlName='expected_duration'/>
             </div>
           </div>
           <div class="col-6">
             <div class="form-group mt-4">
-              <label for="title">tatsachliche Dauer</label>
-              <input type="text" class="form-control" id="title" formControlName='actual_duration'/>
+              <label for="actual_duration">tatsachliche Dauer</label>
+              <input type="text" class="form-control" id="actual_duration" formControlName='actual_duration'/>
             </div>
           </div>
         </div>
 
         <div class="col-6">
           <div class="form-group  mt-4">
-            <label for="title">Anzahl Zwischenmeldung</label>
+            <label for="logs">Anzahl Zwischenmeldung</label>
             <div class="input-group">
-              <input type="text" class="form-control" id="title" formControlName='logs' />
+              <input type="text" class="form-control" id="logs" formControlName='logs' />
               <div class="input-group-prepend">
                 <div class="input-group-text input-report" style="height: 2.5rem" (click)="openModal(content)"><i class="fa fa-search" style="justify-content: center; align-items: center;"></i></div>
               </div>

@@ -61,6 +61,10 @@ export class ReportComponent implements OnInit {
     else return days + " Days";
   }
 
+  formatMinSeparators(x: number){
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
   ngOnInit(): void {
     this.channelSelectedItems = [];
 
@@ -84,15 +88,11 @@ export class ReportComponent implements OnInit {
     this.form.disable()
 
     const remark = this.form.get('resolution_remark')
-    const ticketNumber = this.form.get('ticket_number')
+    const ticket_number = this.form.get('ticket_number')
 
-    if(remark) {
-      remark.enable()
-
-    }
-
-    if(ticketNumber) {
-      ticketNumber.enable()
+    if(remark || ticket_number) {
+      remark?.enable()
+      ticket_number?.enable()
     }
 
     this.id = this.activatedRoute.snapshot.paramMap.get('id')
@@ -143,7 +143,7 @@ export class ReportComponent implements OnInit {
       this.reportedBy = this.faultData.reported_by;
       this.resolvedBy = this.faultData.resolved_by;
 
-      const actualDuration = this.msToTime(new Date(this.faultData.resolved_date).valueOf() - new Date(this.faultData.reported_date).valueOf())
+      const actualDuration = new Date(this.faultData.resolved_date).valueOf() - new Date(this.faultData.reported_date).valueOf()
 
       this.form.patchValue({
         title: this.faultData.title,
@@ -152,8 +152,8 @@ export class ReportComponent implements OnInit {
         ticket_number: this.faultData.external_code,
         message: this.faultData.message,
         resolution_remark: this.faultData.remark,
-        expected_duration: this.minToTime(this.faultData.duration),
-        actual_duration: actualDuration,
+        expected_duration: `${this.faultData.duration} mins`,
+        actual_duration: `${this.formatMinSeparators(actualDuration)} mins`,
       })
 
       this.faultService.getLogsByFaultId(parseInt(this.id)).subscribe((data: any) => {
@@ -167,7 +167,6 @@ export class ReportComponent implements OnInit {
       })
 
       this.faultData.list_of_channel_type_id.forEach((item: any) => {
-
         this.channelSelectedItems.push(item)
       })
 
