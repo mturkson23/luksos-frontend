@@ -6,6 +6,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CHANNEL_TYPE } from '../edit-message/type';
 import { ChannelService } from 'src/app/services/channel.service';
 import { AlertService } from 'src/app/services/alert-service.service';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-report',
@@ -139,7 +140,7 @@ export class ReportComponent implements OnInit {
       console.log('Log::fault data::',data);
       this.faultData = data.extra;
 
-      this.pageTitle = `Meldung ${this.id} "${this.faultData.title}" ${this.faultData.reported_date}`;
+      this.pageTitle = `Meldung ${this.id} "${this.faultData.title}" ${formatDate(this.faultData.reported_date, 'dd.MM.yyyy HH:mm', 'en')}`;
       this.reportedBy = this.faultData.reported_by;
       this.resolvedBy = this.faultData.resolved_by;
 
@@ -147,8 +148,8 @@ export class ReportComponent implements OnInit {
 
       this.form.patchValue({
         title: this.faultData.title,
-        reported_date: this.faultData.reported_date,
-        closed_date: this.faultData.resolved_date,
+        reported_date: formatDate(this.faultData.reported_date, 'dd.MM.yyyy HH:mm', 'en'),
+        closed_date: formatDate(this.faultData.resolved_date, 'dd.MM.yyyy HH:mm', 'en'),
         ticket_number: this.faultData.external_code,
         message: this.faultData.message,
         resolution_remark: this.faultData.remark,

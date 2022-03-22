@@ -15,7 +15,7 @@
     <tbody>
       <tr *ngFor="let fault of faults;">
         <td>{{ fault.id }}</td>
-        <td>{{ fault.reported_date }}</td>
+        <td>{{ fault.reported_date | customDate }}</td>
         <td>{{ fault.state }}</td>
         <td>{{ fault.title }}</td>
         <td>{{ fault.date_created | customDate }}</td>

@@ -6,7 +6,10 @@ import { FaultService } from 'src/app/services/fault.service';
 import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ChannelService } from 'src/app/services/channel.service';
 import { AlertService } from 'src/app/services/alert-service.service';
-import { CHANNEL_TYPE } from "./type";
+import { formatDate } from '@angular/common';
+// import { CHANNEL_TYPE } from "./type";
+
+// import { CustomDatePipe } from 'src/app/components/utils/custom.datepipe';
 @Component({
   selector: 'app-edit-message',
   templateUrl: './edit-message.component.html',
@@ -111,14 +114,14 @@ export class EditMessageComponent implements OnInit {
       // console.log(data)
       this.faultData = data.extra;
 
-      this.pageTitle = `Meldung ${this.id} "${this.faultData.title}" ${this.faultData.reported_date}`;
+      this.pageTitle = `Meldung ${this.id} "${this.faultData.title}" ${formatDate(this.faultData.reported_date, 'dd.MM.yyyy HH:mm', 'en')}`;
       this.reportedBy = this.faultData.reported_by;
 
       this.form.patchValue({
         title: this.faultData.title,
         message: this.faultData.message,
         timer: `${this.faultData.duration} mins`,
-        reported_date: this.faultData.reported_date
+        reported_date: formatDate(this.faultData.reported_date, 'dd.MM.yyyy HH:mm', 'en')
       })
 
       this.modalForm.patchValue({
