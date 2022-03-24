@@ -1,3 +1,5 @@
+import { AddUserComponent } from './pages/users/add-user/add-user.component';
+import { UserGroupsComponent } from './pages/users/user-groups/user-groups.component';
 import { TextTemplatesListComponent } from './pages/settings/text-templates-list/text-templates-list.component';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { ReportComponent } from './pages/report/report.component';
@@ -33,6 +35,9 @@ const routes: Routes = [
   { path: 'settings', component: SettingsComponent, canActivateChild: [ SettingsGuard ], children: [
     { path: 'text-templates', component: TextTemplatesListComponent },
     { path: 'text-templates-groups', component: TextTemplatesGroupsComponent },
+    { path: 'user-management', component: UsersComponent },
+    { path: 'user-groups', component: UserGroupsComponent },
+    { path: 'add-user', component: AddUserComponent },
     { path: '**', redirectTo: 'text-templates' }
   ] },
   { path: 'signup', component: SignupComponent },

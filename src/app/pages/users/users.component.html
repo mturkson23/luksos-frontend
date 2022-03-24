@@ -1,80 +1,31 @@
 <app-panel [title]="'Benutzerkonten'">
 
+  <div class="d-flex justify-content-end w-100 mb-5">
+    <button class="btn btn-secondary" (click)="goToUserAddUser()">
+      <i class="fas fa-plus"></i>
+      <span>Benutzergruppe hinzufügen</span>
+    </button>
+  </div>
+
   <table class="table table-striped">
     <thead>
       <tr>
         <td>ID</td>
+        <td>FIRST NAME</td>
+        <td>LAST NAME</td>
+        <td>EMAIL</td>
         <td>ERSTELLDATUM</td>
-        <td>STATUS</td>
-        <td>TITEL</td>
-        <td>BEKANNT SEIT</td>
-        <td>TIMER</td>
-        <td></td>
+        <!-- <td></td> -->
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>1</td>
-        <td>01.01.2020</td>
-        <td>akvin</td>
-        <td>Luksal Akfal</td>
-        <td>01.01.2020</td>
-        <td>1h</td>
-        <td><button (click)="goToUser()" class="btn btn-warning btn-block">EDIT</button></td>
-      </tr>
-      <tr>
-        <td>1</td>
-        <td>01.01.2020</td>
-        <td>akvin</td>
-        <td>Luksal Akfal</td>
-        <td>01.01.2020</td>
-        <td>1h</td>
-        <td><button (click)="goToUser()" class="btn btn-warning btn-block">EDIT</button></td>
-      </tr>
-      <tr>
-        <td>1</td>
-        <td>01.01.2020</td>
-        <td>akvin</td>
-        <td>Luksal Akfal</td>
-        <td>01.01.2020</td>
-        <td>1h</td>
-        <td><button (click)="goToUser()" class="btn btn-warning btn-block">EDIT</button></td>
-      </tr>
-      <tr>
-        <td>1</td>
-        <td>01.01.2020</td>
-        <td>akvin</td>
-        <td>Luksal Akfal</td>
-        <td>01.01.2020</td>
-        <td>1h</td>
-        <td><button (click)="goToUser()" class="btn btn-warning btn-block">EDIT</button></td>
-      </tr>
-      <tr>
-        <td>1</td>
-        <td>01.01.2020</td>
-        <td>akvin</td>
-        <td>Luksal Akfal</td>
-        <td>01.01.2020</td>
-        <td>1h</td>
-        <td><button (click)="goToUser()" class="btn btn-warning btn-block">EDIT</button></td>
-      </tr>
-      <tr>
-        <td>1</td>
-        <td>01.01.2020</td>
-        <td>akvin</td>
-        <td>Luksal Akfal</td>
-        <td>01.01.2020</td>
-        <td>1h</td>
-        <td><button (click)="goToUser()" class="btn btn-warning btn-block">EDIT</button></td>
-      </tr>
-      <tr>
-        <td>1</td>
-        <td>01.01.2020</td>
-        <td>akvin</td>
-        <td>Luksal Akfal</td>
-        <td>01.01.2020</td>
-        <td>1h</td>
-        <td><button (click)="goToUser()" class="btn btn-warning btn-block">EDIT</button></td>
+      <tr *ngFor="let user of users">
+        <td>{{ user.id }}</td>
+        <td>{{ user.first_name }}</td>
+        <td>{{ user.last_name }}</td>
+        <td>{{ user.email_address }}</td>
+        <td>{{ user.date_created }}</td>
+        <!-- <td><button (click)="goToUser()" class="btn btn-warning btn-block">VIEW</button></td> -->
       </tr>
     </tbody>
   </table>

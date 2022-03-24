@@ -40,6 +40,7 @@ import { SettingsComponent } from './pages/settings/settings.component';
 import { SettingsSidebarComponent } from './components/settings-sidebar/settings-sidebar.component';
 import { TextTemplatesListComponent } from './pages/settings/text-templates-list/text-templates-list.component';
 import { TextTemplatesGroupsComponent } from './pages/settings/text-templates-groups/text-templates-groups.component';
+import { UserGroupsComponent } from './pages/users/user-groups/user-groups.component';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,8 @@ import { TextTemplatesGroupsComponent } from './pages/settings/text-templates-gr
     SettingsComponent,
     SettingsSidebarComponent,
     TextTemplatesListComponent,
-    TextTemplatesGroupsComponent
+    TextTemplatesGroupsComponent,
+    UserGroupsComponent
   ],
   imports: [
     BrowserModule,

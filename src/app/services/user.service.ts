@@ -25,6 +25,11 @@ export class UserService extends ApplicationService {
 
   getUserGroupTypes() {
 
-    return this.makeGet('/usergroup/getall')
+    return this.makePost('/grouptype/getall', {})
+  }
+
+  addUser(payload: any) {
+
+      return this.makePost('/user/register', {})
   }
 }

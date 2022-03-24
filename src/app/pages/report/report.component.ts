@@ -235,5 +235,4 @@ export class ReportComponent implements OnInit {
   gotoDashboard() {
     this.router.navigate(['/history']);
   }
-
 }

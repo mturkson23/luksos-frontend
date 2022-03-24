@@ -1,4 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnInit
+} from '@angular/core';
+import {
+  FormControl,
+  FormGroup,
+  Validators
+} from '@angular/forms';
+import { Router } from '@angular/router';
+import { AlertService } from 'src/app/services/alert-service.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-add-user',
@@ -7,9 +18,77 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddUserComponent implements OnInit {
 
-  constructor() { }
+  userGroups: any = []
+
+  constructor(private userService: UserService, private alertService: AlertService, private router: Router) {}
+
+  public form: FormGroup = new FormGroup({});
 
   ngOnInit(): void {
+
+    this.form = new FormGroup({
+      first_name: new FormControl('', [
+        Validators.minLength(2),
+        Validators.required
+      ]),
+      last_name: new FormControl('', [
+        Validators.minLength(2),
+        Validators.required
+      ]),
+      email_address: new FormControl('', [
+        Validators.required,
+        Validators.email
+      ]),
+      password: new FormControl('', [
+        Validators.minLength(2),
+        Validators.required
+      ]),
+      confirm_password: new FormControl('', [
+        Validators.minLength(2),
+        Validators.required
+      ]),
+      group_type_id: new FormControl('', [
+        // Validators.minLength(2),
+        Validators.required
+      ]),
+    })
+
+    this.userService.getUserGroupTypes().subscribe(users => {
+      console.log(users)
+      this.userGroups = users.extra
+    })
+  }
+
+  submit() {
+
+    console.log(this.form.value)
+
+    const password = this.form.value.password
+    const confirm_password = this.form.value.confirm_password
+
+    if(password != confirm_password) {
+
+      this.alertService.showError('Password Mismatch', 'Passwords do not match')
+      return
+    }
+
+    this.userService.addUser({
+      first_name: this.form.value.first_name,
+      last_name: this.form.value.last_name,
+      email_address: this.form.value.email_address,
+      password: this.form.value.password,
+      confirm_password: this.form.value.confirm_password,
+      group_type_id: parseInt(this.form.value.group_type_id)
+     }).subscribe(data => {
+      console.log(data)
+      if(data.status) {
+        this.alertService.showSuccess('Sent!', data.message)
+        this.router.navigate(['/dashboard'])
+      } else {
+        this.alertService.showError('Error', data.message)
+      }
+
+    })
   }
 
 }

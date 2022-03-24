@@ -1,0 +1,17 @@
+<app-panel [title]="'Benutzerkonten'">
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <td>ID</td>
+        <td>NAME</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let group of userGroups">
+        <td>{{ group.id }}</td>
+        <td>{{ group.name }}</td>
+      </tr>
+    </tbody>
+  </table>
+</app-panel>

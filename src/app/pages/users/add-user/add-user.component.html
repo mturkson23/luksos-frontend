@@ -1,1 +1,71 @@
-<p>add-user works!</p>
+<app-panel [title]="'Benutzerkonten'">
+
+  <form [formGroup]='form' (validSubmit)="submit()">
+    <div class="row">
+      <div class="col-md-6">
+
+        <div class="form-group">
+          <label for="title">VORNAME</label>
+          <input type="text" class="form-control" id="title" formControlName='first_name'/>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="reported_date">NACHNAME</label>
+          <input type="text" class="form-control" id="reported_date" formControlName='last_name'/>
+        </div>
+      </div>
+
+      <div class="row">
+
+        <div class="col-12">
+          <div class="form-group mt-4">
+            <label for="closed_date">EMAIL</label>
+            <input type="text" class="form-control" id="closed_date" formControlName='email_address'/>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+
+        <div class="col-6">
+          <div class="form-group mt-4">
+            <label for="ticket_number">Password</label>
+            <input type="password" class="form-control" id="ticket_number" formControlName='password'/>
+          </div>
+        </div>
+
+        <div class="col-6">
+          <div class="form-group mt-4">
+            <label for="message">Confirm Password</label>
+            <input type="password" class="form-control" id="ticket_number" formControlName='confirm_password'/>
+          </div>
+        </div>
+
+
+      </div>
+
+
+      <div class="row">
+
+        <div class="col-6 mt-4">
+
+          <div class="form-group">
+
+            <label for="resolution_remark">Group Type</label>
+            <select class="form-control" formControlName='group_type_id'>
+              <option value="">Select Group Type</option>
+              <option [value]="group.id" *ngFor="let group of userGroups">{{ group.name }}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-end">
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+  </form>
+
+</app-panel>
