@@ -24,7 +24,7 @@
         <td>{{ user.first_name }}</td>
         <td>{{ user.last_name }}</td>
         <td>{{ user.email_address }}</td>
-        <td>{{ user.date_created }}</td>
+        <td>{{ user.date_created | customDate }}</td>
         <!-- <td><button (click)="goToUser()" class="btn btn-warning btn-block">VIEW</button></td> -->
       </tr>
     </tbody>

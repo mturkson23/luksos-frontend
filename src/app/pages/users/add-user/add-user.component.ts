@@ -83,7 +83,7 @@ export class AddUserComponent implements OnInit {
       console.log(data)
       if(data.status) {
         this.alertService.showSuccess('Sent!', data.message)
-        this.router.navigate(['/dashboard'])
+        this.router.navigate(['/users'])
       } else {
         this.alertService.showError('Error', data.message)
       }
