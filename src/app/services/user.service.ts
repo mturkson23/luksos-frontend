@@ -30,6 +30,6 @@ export class UserService extends ApplicationService {
 
   addUser(payload: any) {
 
-      return this.makePost('/user/register', {})
+      return this.makePost('/user/register', payload)
   }
 }
