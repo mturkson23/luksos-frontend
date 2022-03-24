@@ -82,7 +82,7 @@ export class AddUserComponent implements OnInit {
      }).subscribe(data => {
       console.log(data)
       if(data.status) {
-        this.alertService.showSuccess('Sent!', data.message)
+        this.alertService.showSuccess('Updated!', data.message)
         this.router.navigate(['/users'])
       } else {
         this.alertService.showError('Error', data.message)

@@ -28,8 +28,19 @@ export class UserService extends ApplicationService {
     return this.makePost('/grouptype/getall', {})
   }
 
+  getUserById(id: any) {
+
+    return this.makePost('/user/getuserbyId', { id: id })
+
+  }
+
   addUser(payload: any) {
 
       return this.makePost('/user/register', payload)
+  }
+
+  editUser(payload: any) {
+
+    return this.makePost('/user/update', payload)
   }
 }

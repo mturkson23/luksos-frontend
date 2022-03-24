@@ -19,6 +19,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { DashboardGuard } from './guards/dashboard.guard';
 import { SettingsGuard } from './guards/settings.guard';
 import { TextTemplatesGroupsComponent } from './pages/settings/text-templates-groups/text-templates-groups.component';
+import { EditUserComponent } from './pages/users/edit-user/edit-user.component';
 
 const routes: Routes = [
   { path: '', component: ShellComponent, canActivateChild: [ DashboardGuard ], children: [
@@ -38,6 +39,7 @@ const routes: Routes = [
     { path: 'user-management', component: UsersComponent },
     { path: 'user-groups', component: UserGroupsComponent },
     { path: 'add-user', component: AddUserComponent },
+    { path: 'edit-user/:id', component: EditUserComponent },
     { path: '**', redirectTo: 'text-templates' }
   ] },
   { path: 'signup', component: SignupComponent },

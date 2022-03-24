@@ -2,8 +2,7 @@
 
   <div class="d-flex justify-content-end w-100 mb-5">
     <button class="btn btn-secondary" (click)="goToUserAddUser()">
-      <i class="fas fa-plus"></i>
-      <span>Benutzergruppe hinzufügen</span>
+      <span>Benutzergruppe hinzufügen <i class="fas fa-plus"></i></span>
     </button>
   </div>
 
@@ -15,7 +14,7 @@
         <td>LAST NAME</td>
         <td>EMAIL</td>
         <td>ERSTELLDATUM</td>
-        <!-- <td></td> -->
+        <td></td>
       </tr>
     </thead>
     <tbody>
@@ -25,7 +24,7 @@
         <td>{{ user.last_name }}</td>
         <td>{{ user.email_address }}</td>
         <td>{{ user.date_created | customDate }}</td>
-        <!-- <td><button (click)="goToUser()" class="btn btn-warning btn-block">VIEW</button></td> -->
+        <td><button (click)="goToUser(user.id)" class="btn btn-warning btn-block">VIEW</button></td>
       </tr>
     </tbody>
   </table>

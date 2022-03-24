@@ -26,4 +26,9 @@ export class UsersComponent implements OnInit {
     this.router.navigate(['/settings/add-user'])
   }
 
+  goToUser(id: any) {
+
+    this.router.navigate(['/settings/edit-user', id])
+  }
+
 }

@@ -1,19 +1,20 @@
 <app-panel [title]="'Erstellen Sie einen neuen Benutzer'">
 
   <form [formGroup]='form' (validSubmit)="submit()">
-    <div class="row">
-      <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-6">
 
-        <div class="form-group">
-          <label for="title">VORNAME</label>
-          <input type="text" class="form-control" id="title" formControlName='first_name'/>
+          <div class="form-group">
+            <label for="title">VORNAME</label>
+            <input type="text" class="form-control" id="title" formControlName='first_name'/>
+          </div>
         </div>
-      </div>
 
-      <div class="col-md-6">
-        <div class="form-group">
-          <label for="reported_date">NACHNAME</label>
-          <input type="text" class="form-control" id="reported_date" formControlName='last_name'/>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="reported_date">NACHNAME</label>
+            <input type="text" class="form-control" id="reported_date" formControlName='last_name'/>
+          </div>
         </div>
       </div>
 
@@ -61,7 +62,7 @@
           </div>
         </div>
       </div>
-    </div>
+
 
     <div class="d-flex justify-content-end">
       <button type="submit" class="btn btn-primary">Submit</button>
