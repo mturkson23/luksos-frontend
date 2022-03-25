@@ -109,15 +109,26 @@
     </div>
 
     <div class="row">
-      <div class="d-flex justify-content-end">
-
+      <div class="col-md-6"></div>
+      <div class="col-md-3 d-flex justify-content-end">
+        <button class="btn btn-secondary" type="submit">
+          <i class="fa fa-save"></i>
+          Mitteilung Speichern
+        </button>
+      </div>
+      <div class="col-md-3 d-flex justify-content-end">
+        <button class="btn btn-secondary" (click)="gotoDashboard()">
+          Schließen
+        </button>
+      </div>
+      <!-- <div class="d-flex justify-content-end">
         <div>
           <button class="btn btn-secondary" type="submit">
             <i class="fa fa-save"></i>
             Mitteilung Speichern
           </button>
         </div>
-      </div>
+      </div> -->
     </div>
     <div class="row">
       <div class="col-md-3"><b>Ersteller/in: {{reportedBy}}</b></div>
@@ -148,7 +159,7 @@
               <tbody>
                 <tr *ngFor="let log of logs">
                   <td>{{log.updated_by}}</td>
-                  <td>{{log.date_created}}</td>
+                  <td>{{log.date_created | customDate}}</td>
                   <td>{{log.updated_text}}</td>
                 </tr>
               </tbody>
