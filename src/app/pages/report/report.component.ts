@@ -43,27 +43,18 @@ export class ReportComponent implements OnInit {
 
   public form: FormGroup = new FormGroup({});
 
-  msToTime(ms: number) {
-    let seconds = (ms / 1000).toFixed(1);
-    let minutes = (ms / (1000 * 60)).toFixed(1);
-    let hours = (ms / (1000 * 60 * 60)).toFixed(1);
-    let days = (ms / (1000 * 60 * 60 * 24)).toFixed(1);
-    if (parseInt(seconds) < 60) return seconds + " s";
-    else if (parseInt(minutes) < 60) return minutes + " min";
-    else if (parseInt(hours) < 24) return hours + " h";
-    else return days + " Days";
+  toHoursAndMinutes(totalMinutes: number) {
+    const minutes = totalMinutes % 60;
+    const hours = Math.floor(totalMinutes / 60);
+    return `${this.padTo2Digits(hours)} : ${this.padTo2Digits(minutes)}`;
   }
 
-  minToTime(mins: number) {
-    let hours = (mins / (60)).toFixed(1);
-    let days = (mins / (60 * 24)).toFixed(1);
-    if (mins < 60) return mins + " min";
-    else if (parseInt(hours) < 24) return hours + " h";
-    else return days + " Days";
+  padTo2Digits(num: number) {
+    return this.formatNumberSeparators(num.toString().padStart(2, '0'));
   }
 
-  formatMinSeparators(x: number){
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  formatNumberSeparators(x: string){
+    return x.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
 
   ngOnInit(): void {
@@ -153,8 +144,8 @@ export class ReportComponent implements OnInit {
         ticket_number: this.faultData.external_code,
         message: this.faultData.message,
         resolution_remark: this.faultData.remark,
-        expected_duration: `${this.faultData.duration} mins`,
-        actual_duration: `${this.formatMinSeparators(actualDuration)} mins`,
+        expected_duration: `${this.toHoursAndMinutes(this.faultData.duration)}`,
+        actual_duration: `${this.toHoursAndMinutes(actualDuration)}`,
       })
 
       this.faultService.getLogsByFaultId(parseInt(this.id)).subscribe((data: any) => {
