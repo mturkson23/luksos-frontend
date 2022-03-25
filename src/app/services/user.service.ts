@@ -43,4 +43,9 @@ export class UserService extends ApplicationService {
 
     return this.makePost('/user/update', payload)
   }
+
+  deleteUser(id: any) {
+
+    return this.makePost('/user/delete', { id })
+  }
 }

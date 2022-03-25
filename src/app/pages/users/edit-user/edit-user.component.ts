@@ -97,4 +97,17 @@ export class EditUserComponent implements OnInit {
     })
   }
 
+  deleteUser() {
+
+    this.userService.deleteUser(parseInt(this.id)).subscribe((data: any) => {
+      console.log(data)
+      if(data.status) {
+        this.alertService.showSuccess('Deleted!', data.message)
+        this.router.navigate(['/users'])
+      } else {
+        this.alertService.showError('Error', data.message)
+      }
+    })
+  }
+
 }
