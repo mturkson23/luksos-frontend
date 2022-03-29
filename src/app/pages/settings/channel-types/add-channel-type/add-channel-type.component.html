@@ -1,0 +1,32 @@
+<app-panel [title]="'Kanalgruppe hinzufügen'">
+
+  <form [formGroup]='form' (validSubmit)="submit()">
+      <div class="row">
+
+        <div class="col-md-6">
+
+          <div class="form-group">
+            <label for="title">NAME</label>
+            <input type="text" class="form-control" id="title" formControlName='name'/>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+
+          <div class="form-group">
+            <label for="resolution_remark">Kanaltyp</label>
+            <select class="form-control" formControlName='type_id'>
+              <option value="">Kanaltyp auswählen</option>
+              <option [value]="channel.id" *ngFor="let channel of channelTypes">{{ channel.name }}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+    <div class="d-flex justify-content-end mt-4">
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+  </form>
+
+</app-panel>
+

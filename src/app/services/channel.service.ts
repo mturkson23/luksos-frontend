@@ -37,6 +37,10 @@ export class ChannelService extends ApplicationService {
     return this.makeGet('/channeltype/getall')
   }
 
+  getChannelGroupTypes() {
+    return this.makePost('/channelgroup/getall', {})
+  }
+
   getTemplateTypes() {
     return this.makePost('/messagetemplatetype/getall', {})
   }
@@ -52,5 +56,20 @@ export class ChannelService extends ApplicationService {
 
   getChannel(id: any) {
     return this.makePost('/messagetemplate/getbyid', { id })
+  }
+
+  addChannelGroup(payload: any) {
+
+    return this.makePost('/channelgroup/add', payload)
+  }
+
+  updateChannelGroup(payload: any) {
+
+    return this.makePost('/channelgroup/update', payload)
+  }
+
+  getChannelGroupById(id: any) {
+
+    return this.makePost('/channelgroup/getbyid', { id })
   }
 }

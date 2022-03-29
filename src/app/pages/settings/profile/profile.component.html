@@ -1,0 +1,43 @@
+<app-panel [title]="'Mein Profil'">
+  <form [formGroup]='form'>
+    <div class="row">
+      <div class="col-md-6">
+
+        <div class="form-group">
+          <label for="title">VORNAME</label>
+          <input type="text" class="form-control" id="title" formControlName='first_name'/>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="reported_date">NACHNAME</label>
+          <input type="text" class="form-control" id="reported_date" formControlName='last_name'/>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+
+      <div class="col-12">
+        <div class="form-group mt-4">
+          <label for="closed_date">EMAIL</label>
+          <input type="text" class="form-control" id="closed_date" formControlName='email_address'/>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- <div class="row">
+
+      <div class="col-6 mt-4">
+
+        <div class="form-group">
+
+          <label for="resolution_remark">Group Type</label>
+          <input type="text" class="form-control" id="closed_date" formControlName='group_type_id'/>
+        </div>
+      </div>
+    </div> -->
+</form>
+</app-panel>

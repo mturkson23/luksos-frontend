@@ -1,3 +1,5 @@
+import { AddChannelGroupComponent } from './pages/channels/add-channel-group/add-channel-group.component';
+import { ChannelTypesComponent } from './pages/settings/channel-types/channel-types.component';
 import { AddUserComponent } from './pages/users/add-user/add-user.component';
 import { UserGroupsComponent } from './pages/users/user-groups/user-groups.component';
 import { TextTemplatesListComponent } from './pages/settings/text-templates-list/text-templates-list.component';
@@ -20,6 +22,9 @@ import { DashboardGuard } from './guards/dashboard.guard';
 import { SettingsGuard } from './guards/settings.guard';
 import { TextTemplatesGroupsComponent } from './pages/settings/text-templates-groups/text-templates-groups.component';
 import { EditUserComponent } from './pages/users/edit-user/edit-user.component';
+import { ProfileComponent } from './pages/settings/profile/profile.component';
+import { AddChannelTypeComponent } from './pages/settings/channel-types/add-channel-type/add-channel-type.component';
+import { EditChannelTypeComponent } from './pages/settings/channel-types/edit-channel-type/edit-channel-type.component';
 
 const routes: Routes = [
   { path: '', component: ShellComponent, canActivateChild: [ DashboardGuard ], children: [
@@ -30,10 +35,14 @@ const routes: Routes = [
     { path: 'edit-message/:id', component: EditMessageComponent },
     { path: 'edit-history/:id', component: ReportComponent },
     { path: 'channels', component: ChannelsComponent },
+    { path: 'profile', component: ProfileComponent },
     { path: 'users', component: UsersComponent }
   ]},
   { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
   { path: 'settings', component: SettingsComponent, canActivateChild: [ SettingsGuard ], children: [
+    { path: 'channel-groups', component: ChannelTypesComponent },
+    { path: 'add-channel-group', component: AddChannelTypeComponent },
+    { path: 'edit-channel-group/:id', component: EditChannelTypeComponent },
     { path: 'text-templates', component: TextTemplatesListComponent },
     { path: 'text-templates-groups', component: TextTemplatesGroupsComponent },
     { path: 'user-management', component: UsersComponent },

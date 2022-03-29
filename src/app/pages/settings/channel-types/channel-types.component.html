@@ -1,0 +1,27 @@
+<app-panel [title]="'Kanalgruppe'">
+
+  <div class="d-flex justify-content-end w-100 mb-5">
+    <button class="btn btn-secondary" (click)="goToUserAddChannelGroup()">
+      <span>Kanalgruppe hinzufügen <i class="fas fa-plus"></i></span>
+    </button>
+  </div>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <td>ID</td>
+        <td>Name</td>
+        <td>Type</td>
+        <td></td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let channel of channels">
+        <td>{{ channel.id }}</td>
+        <td>{{ channel.name }}</td>
+        <td>{{ channel.typename }}</td>
+        <td><button (click)="goToChannelGroup(channel.id)" class="btn btn-warning btn-block">VIEW</button></td>
+      </tr>
+    </tbody>
+  </table>
+</app-panel>

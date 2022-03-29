@@ -41,6 +41,10 @@ import { SettingsSidebarComponent } from './components/settings-sidebar/settings
 import { TextTemplatesListComponent } from './pages/settings/text-templates-list/text-templates-list.component';
 import { TextTemplatesGroupsComponent } from './pages/settings/text-templates-groups/text-templates-groups.component';
 import { UserGroupsComponent } from './pages/users/user-groups/user-groups.component';
+import { ProfileComponent } from './pages/settings/profile/profile.component';
+import { ChannelTypesComponent } from './pages/settings/channel-types/channel-types.component';
+import { AddChannelTypeComponent } from './pages/settings/channel-types/add-channel-type/add-channel-type.component';
+import { EditChannelTypeComponent } from './pages/settings/channel-types/edit-channel-type/edit-channel-type.component';
 
 @NgModule({
   declarations: [
@@ -71,7 +75,11 @@ import { UserGroupsComponent } from './pages/users/user-groups/user-groups.compo
     SettingsSidebarComponent,
     TextTemplatesListComponent,
     TextTemplatesGroupsComponent,
-    UserGroupsComponent
+    UserGroupsComponent,
+    ProfileComponent,
+    ChannelTypesComponent,
+    AddChannelTypeComponent,
+    EditChannelTypeComponent
   ],
   imports: [
     BrowserModule,

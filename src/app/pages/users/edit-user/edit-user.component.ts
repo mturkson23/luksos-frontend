@@ -89,7 +89,7 @@ export class EditUserComponent implements OnInit {
       console.log(data)
       if(data.status) {
         this.alertService.showSuccess('Updated!', data.message)
-        this.router.navigate(['/users'])
+        this.router.navigate(['/settings/user-management'])
       } else {
         this.alertService.showError('Error', data.message)
       }
