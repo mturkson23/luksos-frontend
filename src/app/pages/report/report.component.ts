@@ -43,11 +43,17 @@ export class ReportComponent implements OnInit {
 
   public form: FormGroup = new FormGroup({});
 
-  toHoursAndMinutes(totalMinutes: number) {
-    const minutes = totalMinutes % 60;
+  minToHoursAndMinutes(totalMinutes: number) {
+    const minutes = Math.floor(totalMinutes % 60);
     const hours = Math.floor(totalMinutes / 60);
     return `${this.padTo2Digits(hours)} : ${this.padTo2Digits(minutes)}`;
   }
+
+  msToHoursAndMinutes(ms: number) {
+    const minutes = Math.floor((ms / 60000) % 60);
+    const hours = Math.floor((ms / 60000) / 60);
+    return `${this.padTo2Digits(hours)} : ${this.padTo2Digits(minutes)}`;
+  }  
 
   padTo2Digits(num: number) {
     return this.formatNumberSeparators(num.toString().padStart(2, '0'));
@@ -137,6 +143,8 @@ export class ReportComponent implements OnInit {
 
       const actualDuration = new Date(this.faultData.resolved_date).valueOf() - new Date(this.faultData.reported_date).valueOf()
 
+      console.log('::luksos::',actualDuration)
+
       this.form.patchValue({
         title: this.faultData.title,
         reported_date: formatDate(this.faultData.reported_date, 'dd.MM.yyyy HH:mm', 'en'),
@@ -144,8 +152,8 @@ export class ReportComponent implements OnInit {
         ticket_number: this.faultData.external_code,
         message: this.faultData.message,
         resolution_remark: this.faultData.remark,
-        expected_duration: `${this.toHoursAndMinutes(this.faultData.duration)}`,
-        actual_duration: `${this.toHoursAndMinutes(actualDuration)}`,
+        expected_duration: `${this.minToHoursAndMinutes(this.faultData.duration)}`,
+        actual_duration: `${this.msToHoursAndMinutes(actualDuration)}`,
       })
 
       this.faultService.getLogsByFaultId(parseInt(this.id)).subscribe((data: any) => {
