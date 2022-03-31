@@ -180,7 +180,7 @@ export class TextTemplatesComponent implements OnInit {
 
   getUserGroups() {
 
-    this.userService.getUserGroupTypes().subscribe(data => {
+    this.channelService.getChannelGroupTypes().subscribe(data => {
 
       console.log(data)
       this.userDropdownList = data.extra
