@@ -41,7 +41,7 @@ export class AnnouncementsComponent implements OnInit {
       Validators.minLength(2),
       Validators.required
     ]),
-    messages: new FormControl('', [
+    messages: new FormControl('\n\n\nMit freundlichen Grüßen', [
       Validators.minLength(2),
       Validators.required
     ]),
