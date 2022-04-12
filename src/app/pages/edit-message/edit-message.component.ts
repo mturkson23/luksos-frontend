@@ -269,6 +269,8 @@ export class EditMessageComponent implements OnInit {
       } else {
         this.alertService.showError('Error', data.message)
       }
+
+      this.modalService.dismissAll()
     })
   }
 
