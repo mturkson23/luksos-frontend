@@ -39,7 +39,6 @@ export class EditMessageComponent implements OnInit {
   public modalForm: FormGroup = new FormGroup({})
 
   ngOnInit(): void {
-
     this.form = new FormGroup({
       title: new FormControl('', [
         Validators.minLength(2),
@@ -57,7 +56,11 @@ export class EditMessageComponent implements OnInit {
       ]),
       channelType: new FormControl('', []),
       channelGroup: new FormControl('', []),
-    })
+
+      zwischenmeldung_erstellen: new FormControl('', []),
+      gutmeldung_schicken: new FormControl('', []),
+      aktivieren: new FormControl('', [])
+    }) 
 
     this.modalForm = new FormGroup({
       title: new FormControl('', [
@@ -68,8 +71,16 @@ export class EditMessageComponent implements OnInit {
         Validators.minLength(2),
         Validators.required
       ]),
+      senden: new FormControl('', []),
+
     })
 
+    const userRoleId = localStorage.getItem('AUTH_USER_ROLE_ID');
+    if (userRoleId && parseInt(userRoleId) != 1) {
+      this.modalForm.controls['senden'].disable();
+      this.form.controls['gutmeldung_schicken'].disable();
+      this.form.controls['aktivieren'].disable();
+    } 
     this.id = this.activatedRoute.snapshot.paramMap.get('id')
 
     this.channelDropdownList = []

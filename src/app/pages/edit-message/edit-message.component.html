@@ -58,17 +58,17 @@
       <div class="d-flex">
 
         <div>
-          <button class="btn btn-secondary" (click)="openModal(content)" type="button">
+          <button ngDefaultControl formControlName="zwischenmeldung_erstellen" class="btn btn-secondary" (click)="openModal(content)" type="button">
             Zwischenmeldung erstellen
           </button>
         </div>
 
         <div class="ml-auto" style="margin-left: auto">
-          <button class="btn btn-success" style="margin-right: 10px;" (click)="closeFault(id)" type="button">
+          <button ngDefaultControl formControlName="gutmeldung_schicken" class="btn btn-success" style="margin-right: 10px;" (click)="closeFault(id)" type="button">
             <i class="fa-solid fa-circle-check"></i>
             Gutmeldung schicken
           </button>
-          <button class="btn btn-secondary" type="submit">
+          <button ngDefaultControl formControlName="aktivieren" class="btn btn-secondary" type="submit">
             <i class="fa fa-save"></i>
             Mitteilung aktivieren
           </button>
@@ -111,7 +111,7 @@
         <button class="btn btn-light" style="margin-right: 10px;" (click)="modal.close()">
           Verwerfen
         </button>
-        <button class="btn btn-secondary" (click)="submitMessages($event)">
+        <button ngDefaultControl formControlName="senden" class="btn btn-secondary" (click)="submitMessages($event)">
           Zwischenmeldung senden
         </button>
       </div>

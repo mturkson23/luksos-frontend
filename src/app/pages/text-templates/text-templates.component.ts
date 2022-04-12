@@ -46,9 +46,14 @@ export class TextTemplatesComponent implements OnInit {
     // timer: new FormControl('', [
     //   Validators.required
     // ])
+    vorlage_speichern: new FormControl('', [])
   });
 
   ngOnInit(): void {
+    const userRoleId = localStorage.getItem('AUTH_USER_ROLE_ID');
+    if (userRoleId && parseInt(userRoleId) != 1) {
+      this.form.controls['vorlage_speichern'].disable();
+    }
 
     this.channelDropdownList = []
 

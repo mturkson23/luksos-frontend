@@ -81,6 +81,7 @@ export class ReportComponent implements OnInit {
       logs: new FormControl(0, []),
       channelType: new FormControl('', []),
       channelGroup: new FormControl('', []),
+      mitteilung_speichern: new FormControl('', [])
     });
 
     this.form.disable()
@@ -93,6 +94,10 @@ export class ReportComponent implements OnInit {
       ticket_number?.enable()
     }
 
+    const userRoleId = localStorage.getItem('AUTH_USER_ROLE_ID');
+    if (userRoleId && parseInt(userRoleId) != 1) {
+      this.form.controls['mitteilung_speichern'].disable();
+    }    
     this.id = this.activatedRoute.snapshot.paramMap.get('id')
 
     this.channelDropdownList = []

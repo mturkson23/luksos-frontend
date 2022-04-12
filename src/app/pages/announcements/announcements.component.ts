@@ -51,9 +51,16 @@ export class AnnouncementsComponent implements OnInit {
     reminder_timer: new FormControl(10, [
       Validators.required
     ]),
+    aktivieren: new FormControl('', [])
   });
 
   ngOnInit(): void {
+    const userRoleId = localStorage.getItem('AUTH_USER_ROLE_ID');
+    if (userRoleId && parseInt(userRoleId) != 1) {
+      this.form.controls['aktivieren'].disable();
+    }
+    console.log('userRoleId', userRoleId)
+    // console.log(this.form)
 
     this.channelDropdownList = []
 
