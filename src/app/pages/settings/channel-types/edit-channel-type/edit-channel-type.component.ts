@@ -25,6 +25,7 @@ export class EditChannelTypeComponent implements OnInit {
     type_id: new FormControl('', [
       Validators.required
     ]),
+    saveButton: new FormControl('', []),
   })
 
   ngOnInit(): void {
@@ -43,6 +44,11 @@ export class EditChannelTypeComponent implements OnInit {
           type_id: data.extra.type_id
         })
       })
+
+      const userRoleId = localStorage.getItem('AUTH_USER_ROLE_ID');
+      if (userRoleId && parseInt(userRoleId) != 1) {
+        this.form.controls['saveButton'].disable();
+      }      
   }
 
   submit() {

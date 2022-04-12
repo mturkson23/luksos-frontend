@@ -23,6 +23,7 @@ export class AddChannelTypeComponent implements OnInit {
     type_id: new FormControl('', [
       Validators.required
     ]),
+    saveButton: new FormControl('', []),
   })
 
   ngOnInit(): void {
@@ -31,6 +32,11 @@ export class AddChannelTypeComponent implements OnInit {
         console.log(channels)
         this.channelTypes = channels.extra
       })
+
+      const userRoleId = localStorage.getItem('AUTH_USER_ROLE_ID');
+      if (userRoleId && parseInt(userRoleId) != 1) {
+        this.form.controls['saveButton'].disable();
+      }
   }
 
   submit() {

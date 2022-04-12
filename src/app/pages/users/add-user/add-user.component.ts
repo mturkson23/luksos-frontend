@@ -51,8 +51,13 @@ export class AddUserComponent implements OnInit {
         // Validators.minLength(2),
         Validators.required
       ]),
+      saveButton: new FormControl('', []),
     })
-
+    const userRoleId = localStorage.getItem('AUTH_USER_ROLE_ID');
+    if (userRoleId && parseInt(userRoleId) != 1) {
+      console.log(this.form.controls)
+      this.form.controls['saveButton'].disable();
+    }
     this.userService.getUserGroupTypes().subscribe(users => {
       console.log(users)
       this.userGroups = users.extra

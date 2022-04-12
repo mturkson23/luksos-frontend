@@ -45,6 +45,8 @@ export class EditUserComponent implements OnInit {
         // Validators.minLength(2),
         Validators.required
       ]),
+      delete: new FormControl('', []),
+      save: new FormControl('', []),
     })
 
     this.id = this.activatedRoute.snapshot.paramMap.get('id')
@@ -64,6 +66,12 @@ export class EditUserComponent implements OnInit {
       console.log(users)
       this.userGroups = users.extra
     })
+
+    const userRoleId = localStorage.getItem('AUTH_USER_ROLE_ID');
+    if (userRoleId && parseInt(userRoleId) != 1) {
+      this.form.controls['delete'].disable();
+      this.form.controls['save'].disable();
+    }
   }
 
   submit() {
