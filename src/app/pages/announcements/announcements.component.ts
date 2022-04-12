@@ -100,7 +100,7 @@ export class AnnouncementsComponent implements OnInit {
       allowSearchFilter: true
     };
 
-    this.getUserGroups()
+    // this.getUserGroups()
 
     // this.getChannels()
     this.getChannelTypes()
