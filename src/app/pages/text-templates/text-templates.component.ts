@@ -109,7 +109,17 @@ export class TextTemplatesComponent implements OnInit {
 
   getChannel() {
 
-    console.log(this.form.value.type_id)
+    // console.log("$$$$$$$$$$$$",this.form.value.type_id)
+    if (this.form.value.type_id == ""){
+      this.channelSelectedItems = [];
+      this.userSelectedItems = [];
+      this.form.patchValue({
+        name: "",
+        title: "",
+        messages: "",
+      });
+      return;
+    }
 
     this.channelService.getChannel(parseInt(this.form.value.type_id)).subscribe(data => {
       this.channelSelectedItems = [];
