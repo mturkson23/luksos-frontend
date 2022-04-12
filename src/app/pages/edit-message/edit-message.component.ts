@@ -30,6 +30,7 @@ export class EditMessageComponent implements OnInit {
   reportedBy: string = '';
 
   faultData: any = {};
+  logs: any = [];
 
   id: any;
 
@@ -59,7 +60,8 @@ export class EditMessageComponent implements OnInit {
 
       zwischenmeldung_erstellen: new FormControl('', []),
       gutmeldung_schicken: new FormControl('', []),
-      aktivieren: new FormControl('', [])
+      aktivieren: new FormControl('', []),
+      logs: new FormControl(0, []),
     }) 
 
     this.modalForm = new FormGroup({
@@ -161,6 +163,15 @@ export class EditMessageComponent implements OnInit {
 
     this.getChannelTypes()
     this.getChannelGroup()
+
+
+    this.faultService.getLogsByFaultId(parseInt(this.id)).subscribe((data: any) => {
+      console.log(data);
+      this.logs = data.extra;
+      this.form.patchValue({
+        logs: this.logs.length
+      })
+    })        
   }
 
   onChannelItemSelect(item: any) {
@@ -196,7 +207,7 @@ export class EditMessageComponent implements OnInit {
 
   openModal(content: any) {
     console.log(content)
-    this.modalService.open(content);
+    this.modalService.open(content, {size: 'lg'});
   }
 
   closeFault(faultId: number) {
