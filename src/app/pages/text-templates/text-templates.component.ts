@@ -112,11 +112,11 @@ export class TextTemplatesComponent implements OnInit {
     console.log(this.form.value.type_id)
 
     this.channelService.getChannel(parseInt(this.form.value.type_id)).subscribe(data => {
-
+      this.channelSelectedItems = [];
+      this.userSelectedItems = [];
       console.log(data)
 
       data.extra.channel_id_list.forEach((item: any) => {
-
         console.log(item)
 
         this.channelSelectedItems.push(item)
@@ -128,7 +128,7 @@ export class TextTemplatesComponent implements OnInit {
         this.userSelectedItems.push(item)
       })
 
-      this.form.patchValue({userGroups: this.userSelectedItems})
+      this.form.patchValue({userGroups: this.userSelectedItems});
 
       this.form.patchValue({
         name: data.extra.name,
@@ -225,12 +225,11 @@ export class TextTemplatesComponent implements OnInit {
       this.channelService.createChannel({
         ...this.form.value,
         type_id: 1,
-        id: Number.parseInt(this.form.value.type_id),
+        // id: Number.parseInt(this.form.value.type_id),
         channel_id: this.channelSelectedItems,
         user_groups_id: this.userSelectedItems
       }).subscribe(data => {
         this.router.navigate(['/dashboard']);
-
         if(data.status) {
           this.alertService.showSuccess('Message Added', data.message)
         } else {
