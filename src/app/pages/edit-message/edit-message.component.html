@@ -2,7 +2,7 @@
   <form [formGroup]='form' (validSubmit)='onSubmit()'>
 
     <div class="row">
-      <div class="col-md-5 p-4">
+      <div class="col-md-7 p-4">
 
         <div class="form-group">
           <label for="title">Titel</label>
@@ -18,7 +18,7 @@
           <textarea class="form-control" rows="10" formControlName='message' readonly='true'></textarea>
         </div>
       </div>
-      <div class="col-md-4 p-4">
+      <div class="col-md-5 p-4">
         <div class="form-group">
           <label for="timer">voraussichtliche Dauer</label>
           <input type="text" class="form-control" id="timer" formControlName='timer' readonly='true'/>
@@ -46,7 +46,16 @@
             [(ngModel)]="groupSelectedItems"
             [disabled]='true'
           >
-        </ng-multiselect-dropdown>
+          </ng-multiselect-dropdown>
+        </div>
+        <div class="form-group" style="margin-top: 8em;">
+          <label for="logs">Anzahl Zwischenmeldung</label>
+          <div class="input-group">
+            <input type="text" class="form-control" id="logs" formControlName='logs' />
+            <div class="input-group-prepend">
+              <div class="input-group-text input-report" style="height: 2.5rem" (click)="openModal(logMessages)"><i class="fa fa-search" style="justify-content: center; align-items: center;"></i></div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="col-md-3  d-flex justify-content-center align-items-center">
@@ -58,15 +67,7 @@
       <div class="col-md-4"></div>
       <div class="col-md-4"></div>
       <div class="col-md-4">
-        <div class="form-group  mt-4">
-          <label for="logs">Anzahl Zwischenmeldung</label>
-          <div class="input-group">
-            <input type="text" class="form-control" id="logs" formControlName='logs' />
-            <div class="input-group-prepend">
-              <div class="input-group-text input-report" style="height: 2.5rem" (click)="openModal(logMessages)"><i class="fa fa-search" style="justify-content: center; align-items: center;"></i></div>
-            </div>
-          </div>
-        </div>
+
       </div>
       <!-- <div class="col-md-2"></div> -->
     </div>
