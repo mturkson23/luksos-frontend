@@ -51,7 +51,9 @@ export class AnnouncementsComponent implements OnInit {
     reminder_timer: new FormControl(10, [
       Validators.required
     ]),
-    aktivieren: new FormControl('', [])
+    aktivieren: new FormControl('', []),
+    channels: new FormControl('', []),
+    userGroups: new FormControl('', []),
   });
 
   ngOnInit(): void {
@@ -188,6 +190,38 @@ export class AnnouncementsComponent implements OnInit {
         timer: message.timer,
       })
     }
+  }
+
+  getChannel() {
+
+    console.log(this.form.value.type_id)
+
+    this.channelService.getChannel(parseInt(this.form.value.type_id)).subscribe(data => {
+
+      console.log(data)
+
+      data.extra.channel_id_list.forEach((item: any) => {
+
+        console.log(item)
+
+        this.channelSelectedItems.push(item)
+      })
+
+      this.form.patchValue({channels: this.channelSelectedItems})
+
+      data.extra.user_group_id_list.forEach((item: any) => {
+        this.groupSelectedItems.push(item)
+      })
+
+      this.form.patchValue({userGroups: this.groupSelectedItems})
+
+      this.form.patchValue({
+        name: data.extra.name,
+        title: data.extra.title,
+        messages: data.extra.messages,
+        //type_id: data.extra.id
+      })
+    })
   }
 
   onSubmit() {

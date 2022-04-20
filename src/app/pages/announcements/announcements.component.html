@@ -8,7 +8,7 @@
         <div class="form-group">
           <label for="name">Vorlage</label>
 
-          <select formControlName='type_id' class="form-control" (change)="updateForm($event)">
+          <select formControlName='type_id' class="form-control" (change)="getChannel()">
             <option value="">Wähle eins</option>
             <option *ngFor="let message of messages" [value]="message.id">{{ message.name }}</option>
           </select>
@@ -32,27 +32,29 @@
         <div class="form-group mt-4">
           <label for="title">Verbleibende Zeit (min)</label>
           <input type="number" class="form-control" id="reminder_timer" formControlName='reminder_timer' />
-        </div>        
-        
+        </div>
+
         <div class="form-group mt-4">
           <label for="title">Kanäle</label>
           <ng-multiselect-dropdown
+            formControlName="channels"
             [placeholder]="'Auswählen Kanäle'"
             [settings]="channelTypeDropdownSettings"
             [data]="channelDropdownList"
+            [(ngModel)]="channelSelectedItems"
             (onSelect)="onChannelItemSelect($event)"
-            (onSelectAll)="onChannelSelectAll($event)"
           >
         </ng-multiselect-dropdown>
         </div>
         <div class="form-group mt-4">
           <label for="title">Benutzergruppen</label>
           <ng-multiselect-dropdown
-            [placeholder]="'Auswählen Kanalgruppe'"
+            formControlName="userGroups"
+            [placeholder]="'Auswählen Benutzergruppen'"
             [settings]="groupDropdownSettings"
             [data]="groupDropdownList"
+            [(ngModel)]="groupSelectedItems"
             (onSelect)="onUserItemSelect($event)"
-            (onSelectAll)="onUserSelectAll($event)"
           >
         </ng-multiselect-dropdown>
         </div>

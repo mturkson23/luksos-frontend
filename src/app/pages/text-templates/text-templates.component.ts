@@ -29,7 +29,7 @@ export class TextTemplatesComponent implements OnInit {
   constructor(private modalService: NgbModal, private router: Router, private userService: UserService, private channelService: ChannelService, private alertService: AlertService) { }
 
   public form: FormGroup = new FormGroup({
-    type_id: new FormControl('', []),
+    type_id: new FormControl(0, []),
     name: new FormControl('', [
       Validators.required,
     ]),
@@ -46,14 +46,9 @@ export class TextTemplatesComponent implements OnInit {
     // timer: new FormControl('', [
     //   Validators.required
     // ])
-    vorlage_speichern: new FormControl('', [])
   });
 
   ngOnInit(): void {
-    const userRoleId = localStorage.getItem('AUTH_USER_ROLE_ID');
-    if (userRoleId && parseInt(userRoleId) != 1) {
-      this.form.controls['vorlage_speichern'].disable();
-    }
 
     this.channelDropdownList = []
 
@@ -109,24 +104,14 @@ export class TextTemplatesComponent implements OnInit {
 
   getChannel() {
 
-    // console.log("$$$$$$$$$$$$",this.form.value.type_id)
-    if (this.form.value.type_id == ""){
-      this.channelSelectedItems = [];
-      this.userSelectedItems = [];
-      this.form.patchValue({
-        name: "",
-        title: "",
-        messages: "",
-      });
-      return;
-    }
+    console.log(this.form.value.type_id)
 
     this.channelService.getChannel(parseInt(this.form.value.type_id)).subscribe(data => {
-      this.channelSelectedItems = [];
-      this.userSelectedItems = [];
+
       console.log(data)
 
       data.extra.channel_id_list.forEach((item: any) => {
+
         console.log(item)
 
         this.channelSelectedItems.push(item)
@@ -138,12 +123,13 @@ export class TextTemplatesComponent implements OnInit {
         this.userSelectedItems.push(item)
       })
 
-      this.form.patchValue({userGroups: this.userSelectedItems});
+      this.form.patchValue({userGroups: this.userSelectedItems})
 
       this.form.patchValue({
         name: data.extra.name,
         title: data.extra.title,
         messages: data.extra.messages,
+        type_id: data.extra.id
       })
     })
   }
@@ -235,11 +221,12 @@ export class TextTemplatesComponent implements OnInit {
       this.channelService.createChannel({
         ...this.form.value,
         type_id: 1,
-        id: 0,
+        id: Number.parseInt(this.form.value.type_id),
         channel_id: this.channelSelectedItems,
         user_groups_id: this.userSelectedItems
       }).subscribe(data => {
         this.router.navigate(['/dashboard']);
+
         if(data.status) {
           this.alertService.showSuccess('Message Added', data.message)
         } else {
