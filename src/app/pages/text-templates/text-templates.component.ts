@@ -220,7 +220,7 @@ export class TextTemplatesComponent implements OnInit {
       this.channelService.createChannel({
         ...this.form.value,
         type_id: 1,
-        id: Number.parseInt(this.form.value.type_id),
+        id: 0,
         channel_id: this.channelSelectedItems,
         user_groups_id: this.userSelectedItems
       }).subscribe(data => {
