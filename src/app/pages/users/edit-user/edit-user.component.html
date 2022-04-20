@@ -46,8 +46,8 @@
 
     <div class="d-flex justify-content-end gap-3">
 
-      <button type="button" class="btn btn-danger" (click)="deleteUser()">Delete</button>
-      <button type="submit" class="btn btn-secondary">Submit</button>
+      <button ngDefaultControl formControlName="delete" type="button" class="btn btn-danger" (click)="deleteUser()">Delete</button>
+      <button ngDefaultControl formControlName="save"type="submit" class="btn btn-secondary">Submit</button>
     </div>
   </form>
 

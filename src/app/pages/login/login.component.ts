@@ -40,9 +40,9 @@ export class LoginComponent implements OnInit {
 
         if(data.status) {
 
-          console.log(data.extra)
+          console.log('data.extra :: ',data.extra)
 
-          this.authService.saveTokens(data.message, '', { username: this.loginForm.value.username, fullName: data.extra.fullName, id: data.extra.id } as User).then(() => {
+          this.authService.saveTokens(data.message, '', { role: data.extra.roleId, username: this.loginForm.value.username, fullName: data.extra.fullName, id: data.extra.id } as User).then(() => {
             this.alertService.showSuccess('Authenticated', 'You are now Logged In!')
             this.router.navigateByUrl('/dashboard').then(() => {
               ApplicationService.Appsettings = settings as Appsettings;

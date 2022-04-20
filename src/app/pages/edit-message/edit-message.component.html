@@ -2,7 +2,7 @@
   <form [formGroup]='form' (validSubmit)='onSubmit()'>
 
     <div class="row">
-      <div class="col-md-5 p-4">
+      <div class="col-md-7 p-4">
 
         <div class="form-group">
           <label for="title">Titel</label>
@@ -18,7 +18,7 @@
           <textarea class="form-control" rows="10" formControlName='message' readonly='true'></textarea>
         </div>
       </div>
-      <div class="col-md-4 p-4">
+      <div class="col-md-5 p-4">
         <div class="form-group">
           <label for="timer">voraussichtliche Dauer</label>
           <input type="text" class="form-control" id="timer" formControlName='timer' readonly='true'/>
@@ -46,7 +46,16 @@
             [(ngModel)]="groupSelectedItems"
             [disabled]='true'
           >
-        </ng-multiselect-dropdown>
+          </ng-multiselect-dropdown>
+        </div>
+        <div class="form-group" style="margin-top: 8em;">
+          <label for="logs">Anzahl Zwischenmeldung</label>
+          <div class="input-group">
+            <input type="text" class="form-control" id="logs" formControlName='logs' />
+            <div class="input-group-prepend">
+              <div class="input-group-text input-report" style="height: 2.5rem" (click)="openModal(logMessages)"><i class="fa fa-search" style="justify-content: center; align-items: center;"></i></div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="col-md-3  d-flex justify-content-center align-items-center">
@@ -54,21 +63,28 @@
       </div>
     </div>
 
+    <div class="row mb-4">
+      <div class="col-md-4"></div>
+      <div class="col-md-4"></div>
+      <div class="col-md-4">
+
+      </div>
+      <!-- <div class="col-md-2"></div> -->
+    </div>
     <div class="row">
       <div class="d-flex">
-
         <div>
-          <button class="btn btn-secondary" (click)="openModal(content)" type="button">
+          <button ngDefaultControl formControlName="zwischenmeldung_erstellen" class="btn btn-secondary" (click)="openModal(content)" type="button">
             Zwischenmeldung erstellen
           </button>
         </div>
 
         <div class="ml-auto" style="margin-left: auto">
-          <button class="btn btn-success" style="margin-right: 10px;" (click)="closeFault(id)" type="button">
+          <button ngDefaultControl formControlName="gutmeldung_schicken" class="btn btn-success" style="margin-right: 10px;" (click)="closeFault(id)" type="button">
             <i class="fa-solid fa-circle-check"></i>
             Gutmeldung schicken
           </button>
-          <button class="btn btn-secondary" type="submit">
+          <button ngDefaultControl formControlName="aktivieren" class="btn btn-secondary" type="submit">
             <i class="fa fa-save"></i>
             Mitteilung aktivieren
           </button>
@@ -78,7 +94,7 @@
     </div>
 
     <div class="row mt-4">
-      <div class="col-md-3"><b>Ersteller/in: {{reportedBy}}</b></div>
+      <div class="col-md-3"><b>Ersteller/in:</b> {{reportedBy}}</div>
       <div class="col-md-3"><b>Bearbeiter/in: </b></div>
       <div class="col-md-6"></div>
     </div>
@@ -111,7 +127,7 @@
         <button class="btn btn-light" style="margin-right: 10px;" (click)="modal.close()">
           Verwerfen
         </button>
-        <button class="btn btn-secondary" (click)="submitMessages($event)">
+        <button ngDefaultControl formControlName="senden" class="btn btn-secondary" (click)="submitMessages($event)">
           Zwischenmeldung senden
         </button>
       </div>
@@ -119,4 +135,40 @@
 
   </ng-template>
 
+
+  <ng-template #logMessages let-modal>
+    <div class="modal-header justify-content-center">
+      <h4 class="modal-title text-center" id="modal-title">Zwischenmeldung einsehen</h4>
+    </div>
+    <div class="modal-body" style="background-color: #f4f4f4;">
+      <div class="form">
+        <div class="row">
+          <div class="col-md-12 p-4">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <td>ERSTELLER</td>
+                  <td>ERSTELLT</td>
+                  <td>TEXT</td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let log of logs">
+                  <td>{{log.updated_by}}</td>
+                  <td>{{log.date_created | customDate}}</td>
+                  <td>{{log.updated_text}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex justify-content-center p-4">
+        <button class="btn btn-dark" (click)="modal.close()">
+          Schließen
+        </button>
+      </div>
+    </div>
+
+  </ng-template>  
 </app-panel>

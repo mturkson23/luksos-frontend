@@ -26,8 +26,14 @@
       <div class="col-md-4 p-4">
         <div class="form-group">
           <label for="title">Zeituhr (min)</label>
-          <input type="number" class="form-control" id="title" formControlName='timer' />
+          <input type="number" class="form-control" id="timer" formControlName='timer' />
         </div>
+
+        <div class="form-group mt-4">
+          <label for="title">Verbleibende Zeit (min)</label>
+          <input type="number" class="form-control" id="reminder_timer" formControlName='reminder_timer' />
+        </div>        
+        
         <div class="form-group mt-4">
           <label for="title">Kanäle</label>
           <ng-multiselect-dropdown
@@ -57,7 +63,7 @@
     </div>
 
     <div class="w-100 d-flex justify-content-end">
-      <button class="btn btn-secondary" type="submit"><i class="fa fa-save"></i> Mitteilung aktivieren</button>
+      <button ngDefaultControl formControlName="aktivieren" class="btn btn-secondary" type="submit"><i class="fa fa-save"></i> Mitteilung aktivieren</button>
     </div>
 
   </form>

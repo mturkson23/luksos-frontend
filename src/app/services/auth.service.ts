@@ -39,10 +39,12 @@ export class AuthService extends ApplicationService {
   }
 
   public saveTokens(Token: string, RefreshToken: string, User: User) {
+    console.log('logging user :: ',User)
 
     localStorage.setItem('AUTH_TOKEN', Token);
     localStorage.setItem('AUTH_REFRESH_TOKEN', RefreshToken);
     localStorage.setItem('AUTH_USER_ID', User.username);
+    localStorage.setItem('AUTH_USER_ROLE_ID', User.role);
     localStorage.setItem('AUTH_USER_FULL_NAME', User.fullName);
 
     // if(User.IsSuper == 'YES') {

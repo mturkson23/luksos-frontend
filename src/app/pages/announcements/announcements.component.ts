@@ -29,6 +29,7 @@ export class AnnouncementsComponent implements OnInit {
   channelsGroup: any =[]
   templates: any = []
   messages: any = []
+  reminder_timer: number = 10;
 
   constructor(private modalService: NgbModal, private router: Router, private userService: UserService, private channelService: ChannelService, private alertService: AlertService, private messageService: MessageService, private faultService: FaultService) { }
 
@@ -40,16 +41,26 @@ export class AnnouncementsComponent implements OnInit {
       Validators.minLength(2),
       Validators.required
     ]),
-    messages: new FormControl('', [
+    messages: new FormControl('\n\n\nMit freundlichen Grüßen', [
       Validators.minLength(2),
       Validators.required
     ]),
     timer: new FormControl(60, [
       Validators.required
     ]),
+    reminder_timer: new FormControl(10, [
+      Validators.required
+    ]),
+    aktivieren: new FormControl('', [])
   });
 
   ngOnInit(): void {
+    const userRoleId = localStorage.getItem('AUTH_USER_ROLE_ID');
+    if (userRoleId && parseInt(userRoleId) != 1) {
+      this.form.controls['aktivieren'].disable();
+    }
+    console.log('userRoleId', userRoleId)
+    // console.log(this.form)
 
     this.channelDropdownList = []
 
@@ -89,7 +100,7 @@ export class AnnouncementsComponent implements OnInit {
       allowSearchFilter: true
     };
 
-    this.getUserGroups()
+    // this.getUserGroups()
 
     // this.getChannels()
     this.getChannelTypes()
@@ -204,6 +215,7 @@ export class AnnouncementsComponent implements OnInit {
         "internal_code":"2",
         "external_code":"4",
         message: this.form.value.messages,
+        reminder_timer: this.form.value.reminder_timer,
         //"state":"PENDING",
         "type_id":1,
         "reported_date": new Date()

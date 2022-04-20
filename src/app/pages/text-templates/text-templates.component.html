@@ -1,11 +1,11 @@
-<app-panel [title]="'neue Textvorlage ersetellen order vorhandene Vorlage bearbeiten'">
+<app-panel [title]="'neue Textvorlage erstellen oder vorhandene Vorlage bearbeiten'">
 
   <form [formGroup]='form' (validSubmit)='onSubmit()'>
 
     <div class="row">
       <div class="col-md-5 p-4">
         <div class="form-group">
-          <label for="name">neue Vorlage ersetellen oder bestehende bearbeiten</label>
+          <label for="name">neue Textvorlage erstellen oder bestehende bearbeiten</label>
           <select formControlName='type_id' class="form-control" (change)="getChannel()">
             <option value="">Neue Vorlage</option>
             <option *ngFor="let template of templates" [value]="template.id">{{ template.name }}</option>
@@ -60,7 +60,7 @@
     </div>
 
     <div class="w-100 d-flex justify-content-end">
-      <button class="btn btn-secondary" type="submit">
+      <button ngDefaultControl formControlName="vorlage_speichern" class="btn btn-secondary" type="submit">
         <i class="fa fa-save"></i>
         Vorlage Speichern
       </button>

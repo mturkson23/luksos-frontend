@@ -111,7 +111,7 @@
     <div class="row">
       <div class="col-md-6"></div>
       <div class="col-md-3 d-flex justify-content-end">
-        <button class="btn btn-secondary" type="submit">
+        <button ngDefaultControl formControlName="mitteilung_speichern" class="btn btn-secondary" type="submit">
           <i class="fa fa-save"></i>
           Mitteilung Speichern
         </button>
@@ -131,8 +131,8 @@
       </div> -->
     </div>
     <div class="row">
-      <div class="col-md-3"><b>Ersteller/in: {{reportedBy}}</b></div>
-      <div class="col-md-3"><b>Bearbeiter/in: {{resolvedBy}}</b></div>
+      <div class="col-md-3"><b>Ersteller/in:</b> {{reportedBy}}</div>
+      <div class="col-md-3"><b>Bearbeiter/in:</b> {{resolvedBy}}</div>
       <div class="col-md-6"></div>
     </div>
   </form>
