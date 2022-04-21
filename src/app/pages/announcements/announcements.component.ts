@@ -193,6 +193,8 @@ export class AnnouncementsComponent implements OnInit {
   }
 
   getChannel() {
+    this.channelSelectedItems = [];
+    this.groupSelectedItems = [];
 
     console.log(this.form.value.type_id)
 

@@ -46,9 +46,14 @@ export class TextTemplatesComponent implements OnInit {
     // timer: new FormControl('', [
     //   Validators.required
     // ])
+    vorlage_speichern: new FormControl('', []),
   });
 
   ngOnInit(): void {
+    const userRoleId = localStorage.getItem('AUTH_USER_ROLE_ID');
+    if (userRoleId && parseInt(userRoleId) != 1) {
+      this.form.controls['vorlage_speichern'].disable();
+    }
 
     this.channelDropdownList = []
 
@@ -103,10 +108,22 @@ export class TextTemplatesComponent implements OnInit {
   }
 
   getChannel() {
+    if (this.form.value.type_id == ""){
+      this.channelSelectedItems = [];
+      this.userSelectedItems = [];
+      this.form.patchValue({
+        name: "",
+        title: "",
+        messages: "",
+      });
+      return;
+    }
 
     console.log(this.form.value.type_id)
 
     this.channelService.getChannel(parseInt(this.form.value.type_id)).subscribe(data => {
+      this.userSelectedItems = [];
+      this.channelSelectedItems = [];
 
       console.log(data)
 
