@@ -25,6 +25,7 @@ import { EditUserComponent } from './pages/users/edit-user/edit-user.component';
 import { ProfileComponent } from './pages/settings/profile/profile.component';
 import { AddChannelTypeComponent } from './pages/settings/channel-types/add-channel-type/add-channel-type.component';
 import { EditChannelTypeComponent } from './pages/settings/channel-types/edit-channel-type/edit-channel-type.component';
+import { ReportsComponent } from './pages/settings/reports/reports.component';
 
 const routes: Routes = [
   { path: '', component: ShellComponent, canActivateChild: [ DashboardGuard ], children: [
@@ -49,6 +50,7 @@ const routes: Routes = [
     { path: 'user-groups', component: UserGroupsComponent },
     { path: 'add-user', component: AddUserComponent },
     { path: 'edit-user/:id', component: EditUserComponent },
+    { path: 'reports', component: ReportsComponent },
     { path: '**', redirectTo: 'text-templates' }
   ] },
   { path: 'signup', component: SignupComponent },

@@ -45,6 +45,7 @@ import { ProfileComponent } from './pages/settings/profile/profile.component';
 import { ChannelTypesComponent } from './pages/settings/channel-types/channel-types.component';
 import { AddChannelTypeComponent } from './pages/settings/channel-types/add-channel-type/add-channel-type.component';
 import { EditChannelTypeComponent } from './pages/settings/channel-types/edit-channel-type/edit-channel-type.component';
+import { ReportsComponent } from './pages/settings/reports/reports.component';
 
 @NgModule({
   declarations: [
@@ -79,7 +80,8 @@ import { EditChannelTypeComponent } from './pages/settings/channel-types/edit-ch
     ProfileComponent,
     ChannelTypesComponent,
     AddChannelTypeComponent,
-    EditChannelTypeComponent
+    EditChannelTypeComponent,
+    ReportsComponent
   ],
   imports: [
     BrowserModule,
