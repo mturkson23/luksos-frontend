@@ -29,8 +29,8 @@ export class ReportsComponent implements OnInit {
   settings: any = {
     dom: 'Bfrtip',
     buttons: [
-      { extend: 'copyHtml5', className: 'btn-secondary' },
-      { extend: 'excelHtml5', className: 'btn-default' },
+      // { extend: 'copyHtml5', className: 'btn-secondary' },
+      // { extend: 'excelHtml5', className: 'btn-default' },
       { extend: 'csvHtml5', className: 'btn-dark' }
   ],
   }

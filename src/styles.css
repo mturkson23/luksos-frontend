@@ -30,3 +30,7 @@ table * {
   font-weight: bold;
   border-bottom: 3px solid #ff2448;
 }
+
+.pagination * {
+  margin-right: 0.3rem !important;
+}
