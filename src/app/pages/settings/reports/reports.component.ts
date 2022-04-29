@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FaultService } from 'src/app/services/fault.service';
@@ -18,13 +18,14 @@ import 'datatables.net-buttons/js/buttons.html5.min';
   templateUrl: './reports.component.html',
   styleUrls: ['./reports.component.css']
 })
-export class ReportsComponent implements OnInit {
+export class ReportsComponent implements OnInit, OnDestroy {
 
   faults: any = []
   faultTypes: any = []
 
   table: any;
   dataTable: any;
+  alertObject: any;
 
   settings: any = {
     dom: 'Bfrtip',
@@ -50,6 +51,12 @@ export class ReportsComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.alertObject = window.alert
+
+    window.alert = (msg) => {
+      console.log(msg)
+    }
+
     this.faultService.getFaultTypes().subscribe((data: any) => {
       // console.log(data)
       this.faultTypes = data.extra;
@@ -66,6 +73,11 @@ export class ReportsComponent implements OnInit {
         Validators.required
       ])
     })
+  }
+
+  ngOnDestroy(): void {
+
+    window.alert = this.alertObject
   }
 
   goToEdit(id: number) {
