@@ -7,7 +7,7 @@
         <div class="form-group">
           <label for="name">neue Textvorlage erstellen oder bestehende bearbeiten</label>
           <select formControlName='type_id' class="form-control" (change)="getChannel()">
-            <option value="">Neue Vorlage</option>
+            <option value="0">Neue Vorlage</option>
             <option *ngFor="let template of templates" [value]="template.id">{{ template.name }}</option>
           </select>
         </div>
