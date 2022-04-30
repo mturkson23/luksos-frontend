@@ -108,7 +108,7 @@ export class TextTemplatesComponent implements OnInit {
   }
 
   getChannel() {
-    if (this.form.value.type_id == ""){
+    if (this.form.value.type_id == 0){
       this.channelSelectedItems = [];
       this.userSelectedItems = [];
       this.form.patchValue({
