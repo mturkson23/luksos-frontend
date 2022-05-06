@@ -1,4 +1,4 @@
-import { AddChannelGroupComponent } from './pages/channels/add-channel-group/add-channel-group.component';
+// import { AddChannelGroupComponent } from './pages/channels/add-channel-group/add-channel-group.component';
 import { ChannelTypesComponent } from './pages/settings/channel-types/channel-types.component';
 import { AddUserComponent } from './pages/users/add-user/add-user.component';
 import { UserGroupsComponent } from './pages/users/user-groups/user-groups.component';
@@ -6,6 +6,7 @@ import { TextTemplatesListComponent } from './pages/settings/text-templates-list
 import { SettingsComponent } from './pages/settings/settings.component';
 import { ReportComponent } from './pages/report/report.component';
 import { HistoryComponent } from './pages/history/history.component';
+import { BerichtComponent } from './pages/bericht/bericht.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { ShellComponent } from './pages/shell/shell.component';
 import { NgModule } from '@angular/core';
@@ -33,6 +34,7 @@ const routes: Routes = [
     { path: 'announcements', component: AnnouncementsComponent },
     { path: 'text-templates', component: TextTemplatesComponent },
     { path: 'history', component: HistoryComponent},
+    { path: 'bericht', component: BerichtComponent},
     { path: 'edit-message/:id', component: EditMessageComponent },
     { path: 'edit-history/:id', component: ReportComponent },
     { path: 'channels', component: ChannelsComponent },
