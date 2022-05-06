@@ -20,6 +20,7 @@ import { TextTemplatesComponent } from './pages/text-templates/text-templates.co
 import { HistoryComponent } from './pages/history/history.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { ReportComponent } from './pages/report/report.component';
+import { BerichtComponent } from './pages/bericht/bericht.component';
 import { EditMessageComponent } from './pages/edit-message/edit-message.component';
 import { ModalComponent } from './components/modal/modal.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -60,6 +61,7 @@ import { ReportsComponent } from './pages/settings/reports/reports.component';
     TextTemplatesComponent,
     HistoryComponent,
     ReportComponent,
+    BerichtComponent,
     EditMessageComponent,
     ModalComponent,
     UsersComponent,
