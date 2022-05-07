@@ -127,14 +127,14 @@ export class EditMessageComponent implements OnInit {
       // console.log(data)
       this.faultData = data.extra;
 
-      this.pageTitle = `Meldung ${this.id} "${this.faultData.title}" ${formatDate(this.faultData.reported_date, 'dd.MM.yyyy HH:mm', 'en')}`;
+      this.pageTitle = `Meldung ${this.id} "${this.faultData.title}" ${formatDate(this.faultData.date_created, 'dd.MM.yyyy HH:mm', 'en')}`;
       this.reportedBy = this.faultData.reported_by;
 
       this.form.patchValue({
         title: this.faultData.title,
         message: this.faultData.message,
         timer: `${this.faultData.duration} mins`,
-        reported_date: formatDate(this.faultData.reported_date, 'dd.MM.yyyy HH:mm', 'en')
+        reported_date: formatDate(this.faultData.date_created, 'dd.MM.yyyy HH:mm', 'en')
       })
 
       this.modalForm.patchValue({
