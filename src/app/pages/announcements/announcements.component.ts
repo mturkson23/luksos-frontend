@@ -41,7 +41,7 @@ export class AnnouncementsComponent implements OnInit {
       Validators.minLength(2),
       Validators.required
     ]),
-    messages: new FormControl('\n\n\nMit freundlichen Grüßen', [
+    messages: new FormControl('Sehr geehrte Damen und Herren!\n\n\nMit freundlichen Grüßen\nIhr IT Servicedesk', [
       Validators.minLength(2),
       Validators.required
     ]),
@@ -156,7 +156,7 @@ export class AnnouncementsComponent implements OnInit {
   getChannelGroup() {
     this.channelService.getChannelsGroup().subscribe(data => {
       this.groupDropdownList = data.extra
-      console.log('sfasdf', this.channelsGroup)
+      console.log('channels group', this.channelsGroup)
     })
   }
 
