@@ -139,7 +139,7 @@ export class EditMessageComponent implements OnInit {
 
       this.modalForm.patchValue({
         title: this.faultData.title,
-        message: this.faultData.message
+        message: "Sehr geehrte Damen und Herren!\n\n\nMit freundlichen Grüßen\nIhr IT Servicedesk"
       })
 
       // this.modalForm.disable()
@@ -253,8 +253,8 @@ export class EditMessageComponent implements OnInit {
       channel_type_id: channelSelectedItem,
       channel_group_id: groupSelectedItem,
       "duration": Number.parseInt(this.form.value.timer),
-      "internal_code":"2",
-      "external_code":"4",
+      "internal_code":`${this.id}`,
+      "external_code":`${this.id}`,
       //"state":"PENDING",
       "type_id":1,
     }).subscribe(data => {
