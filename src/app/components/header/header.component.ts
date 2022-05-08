@@ -15,8 +15,11 @@ export class HeaderComponent implements OnInit {
 
   logOut() {
 
-    localStorage.clear()
-    location.reload();
+    if(window.confirm('Are you sure you want to log out?')) {
+
+      localStorage.clear()
+      location.reload()
+    }
   }
 
 }

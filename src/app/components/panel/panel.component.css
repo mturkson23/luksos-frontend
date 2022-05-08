@@ -1,0 +1,8 @@
+
+.isInnerPage {
+  position: relative;
+}
+
+.isInnerPage:hover {
+  cursor: pointer;
+}

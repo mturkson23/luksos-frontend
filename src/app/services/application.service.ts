@@ -132,10 +132,7 @@ export class ApplicationService {
 
           this.alertService.showError('Re-authenticating Failed', 'Server was restarted, please login');
 
-          this.http.post(`${this.connectionString}/users/logout`, {}, this.httpOptions).subscribe(data => {
-            localStorage.clear();
-            this.router.navigateByUrl('/authentication/login')
-          })
+          this.router.navigateByUrl('/login')
           return throwError(error)
         })
       ).subscribe((data: any) => {

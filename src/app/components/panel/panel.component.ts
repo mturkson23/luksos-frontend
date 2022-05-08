@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
@@ -7,12 +8,16 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class PanelComponent implements OnInit {
 
-  @Input()
-  title: string = ''
+  @Input() title: string = ''
+  @Input() isInnerPage: boolean = true
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  goToHome() {
+    this.router.navigate(['/dashboard'])
   }
 
 }
