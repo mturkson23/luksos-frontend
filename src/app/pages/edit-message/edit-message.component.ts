@@ -74,7 +74,6 @@ export class EditMessageComponent implements OnInit {
         Validators.required
       ]),
       senden: new FormControl('', []),
-
     })
 
     const userRoleId = localStorage.getItem('AUTH_USER_ROLE_ID');
