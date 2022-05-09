@@ -44,7 +44,6 @@
           <textarea class="form-control" rows="10" formControlName='resolution_remark'></textarea>
         </div>
         <div class="row">
-
           <div class="col-6">
             <div class="form-group mt-4">
               <label for="title">Kanäle</label>
@@ -74,7 +73,8 @@
               </ng-multiselect-dropdown>
             </div>
           </div>
-
+        </div>
+        <div class="row">
           <div class="col-6">
             <div class="form-group mt-4">
               <label for="expected_duration">voraussichtliche Dauer</label>
@@ -88,20 +88,30 @@
             </div>
           </div>
         </div>
-
-        <div class="col-6">
-          <div class="form-group  mt-4">
-            <label for="logs">Anzahl Zwischenmeldung</label>
-            <div class="input-group">
-              <input type="text" class="form-control" id="logs" formControlName='logs' />
-              <div class="input-group-prepend">
-                <div class="input-group-text input-report" style="height: 2.5rem" (click)="openModal(content)"><i class="fa fa-search" style="justify-content: center; align-items: center;"></i></div>
+        <div class="row">
+          <div class="col-6">
+            <div class="form-group  mt-4">
+              <label for="logs">Anzahl Zwischenmeldung</label>
+              <div class="input-group">
+                <input type="text" class="form-control" id="logs" formControlName='logs' />
+                <div class="input-group-prepend">
+                  <div class="input-group-text input-report" style="height: 2.5rem" (click)="openModal(content)"><i class="fa fa-search" style="justify-content: center; align-items: center;"></i></div>
+                </div>
               </div>
             </div>
           </div>
+          <div class="col-6">
+            <div class="form-group  mt-4">
+              <label for="logs">&nbsp;</label>
+              <div class="input-group">
+                <input type="text" class="form-control" value="Ausfalldetails" />
+                <div class="input-group-prepend">
+                  <div class="input-group-text input-report" style="height: 2.5rem" (click)="openModal(details)"><i class="fa-solid fa-comment" style="justify-content: center; align-items: center;"></i></div>
+                </div>
+              </div>
+            </div>            
+          </div>          
         </div>
-
-
       </div>
       <div class="col-md-3  d-flex justify-content-center align-items-center">
 
@@ -173,7 +183,45 @@
         </button>
       </div>
     </div>
+  </ng-template>
 
+  <ng-template #details let-modal>
+    <div class="modal-header justify-content-center">
+      <h4 class="modal-title text-center" id="modal-title">Ausfall Details</h4>
+    </div>
+    <form class="modal-body" style="background-color: #f4f4f4;" [formGroup]="modalForm">
+      <div class="form">
+        <div class="row">
+          <div class="col-md-12 p-4">
+
+            <div class="form-group">
+              <label for="fehlerbeschreibung">Fehlerbeschreibung</label>
+              <input type="text" class="form-control" id="fehlerbeschreibung" formControlName="error_description"/>
+            </div>
+            <div class="form-group mt-4">
+              <label for="fehlerursache">Fehlerursache</label>
+              <textarea class="form-control" rows="5" formControlName="error_cause"></textarea>
+            </div>
+            <div class="form-group mt-4">
+              <label for="fehlerbehebung">Fehlerbehebung</label>
+              <textarea class="form-control" rows="5" formControlName="troubleshooting"></textarea>
+            </div>
+            <div class="form-group mt-4">
+              <label for="lesson_learned">Lesson Learned</label>
+              <textarea class="form-control" rows="5" formControlName="lesson_learned"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex justify-content-between p-4">
+        <button class="btn btn-light" style="margin-right: 10px;" (click)="modal.close()">
+          Verwerfen
+        </button>
+        <button ngDefaultControl formControlName="speichern" class="btn btn-secondary" (click)="submitDetailsUpdate($event)">
+          Speichern
+        </button>
+      </div>
+    </form>
   </ng-template>
 
 </app-panel>
