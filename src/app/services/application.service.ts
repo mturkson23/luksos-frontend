@@ -117,43 +117,52 @@ export class ApplicationService {
 
     if(error.status == 401) {
 
-      this.alertService.showInfo('Re-authenticating', 'System is performing a security check');
+      this.alertService.showInfo('Re-authenticating', 'System is performing a security check')
 
-      const RefreshToken = localStorage.getItem('AUTH_REFRESH_TOKEN');
-      const Token = localStorage.getItem('AUTH_TOKEN');
-      const User: any = JSON.parse(localStorage.getItem('User') as any)
-      const Username = User.Username;
-      console.log(RefreshToken, Token, User)
+      localStorage.clear()
 
-      http.post(`${this.connectionString}/users/token/refresh`, {
-        Token, RefreshToken, Username
-      }, this.httpOptions).pipe(
-        catchError(error => {
+      setTimeout(() => {
+        this.router.navigate(['/login'])
+      } , 2000)
 
-          this.alertService.showError('Re-authenticating Failed', 'Server was restarted, please login');
 
-          this.router.navigateByUrl('/login')
-          return throwError(error)
-        })
-      ).subscribe((data: any) => {
-        console.log(data)
-        localStorage.setItem('AUTH_TOKEN', data.Token);
-        localStorage.setItem('AUTH_REFRESH_TOKEN', data.RefreshToken)
+      // const RefreshToken = localStorage.getItem('AUTH_REFRESH_TOKEN')
+      // const Token = localStorage.getItem('AUTH_TOKEN')
+      // const User: any = JSON.parse(localStorage.getItem('User') as any)
+      // const Username = User.Username
 
-        if(relay != null) {
-          // relay.pipe(
-          //   retry(1)
-          // )
-        }
 
-        this.alertService.showInfo('Re-authenticating successful', 'You are now re-authenticated');
 
-        this.httpOptions.headers = new HttpHeaders({
-          'Content-Type':  'application/json',
-          'Authorization': 'Bearer ' + localStorage.getItem('AUTH_TOKEN')
-        })
+      // http.post(`${this.connectionString}/users/token/refresh`, {
+      //   Token, RefreshToken, Username
+      // }, this.httpOptions).pipe(
+      //   catchError(error => {
 
-      })
+      //     this.alertService.showError('Re-authenticating Failed', 'Server was restarted, please login');
+
+      //     this.router.navigate(['/login'])
+      //     return throwError(error)
+      //   })
+      // ).subscribe((data: any) => {
+      //   console.log(data)
+      //   localStorage.setItem('AUTH_TOKEN', data.Token);
+      //   localStorage.setItem('AUTH_REFRESH_TOKEN', data.RefreshToken)
+
+      //   if(relay != null) {
+      //     // relay.pipe(
+      //     //   retry(1)
+      //     // )
+      //   }
+
+      //   this.router.navigate(['/login'])
+      //   this.alertService.showInfo('Re-authenticating successful', 'You are now re-authenticated');
+
+      //   this.httpOptions.headers = new HttpHeaders({
+      //     'Content-Type':  'application/json',
+      //     'Authorization': 'Bearer ' + localStorage.getItem('AUTH_TOKEN')
+      //   })
+
+      // })
     }
     return throwError(error)
   }

@@ -27,6 +27,7 @@ import { ProfileComponent } from './pages/settings/profile/profile.component';
 import { AddChannelTypeComponent } from './pages/settings/channel-types/add-channel-type/add-channel-type.component';
 import { EditChannelTypeComponent } from './pages/settings/channel-types/edit-channel-type/edit-channel-type.component';
 import { ReportsComponent } from './pages/settings/reports/reports.component';
+import { ChannelsSetupComponent } from './pages/settings/channels-setup/channels-setup.component';
 
 const routes: Routes = [
   { path: '', component: ShellComponent, canActivateChild: [ DashboardGuard ], children: [
@@ -45,6 +46,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
   { path: 'settings', component: SettingsComponent, canActivateChild: [ SettingsGuard ], children: [
     { path: 'channel-groups', component: ChannelTypesComponent },
+    { path: 'channels', component: ChannelsSetupComponent },
     { path: 'add-channel-group', component: AddChannelTypeComponent },
     { path: 'edit-channel-group/:id', component: EditChannelTypeComponent },
     { path: 'text-templates', component: TextTemplatesListComponent },

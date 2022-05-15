@@ -1,0 +1,21 @@
+<app-panel [title]="'Kanale'">
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <td>ID</td>
+        <td>Name</td>
+        <td>Email</td>
+        <td></td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let channel of channels">
+        <td>{{ channel.id }}</td>
+        <td>{{ channel.identifier }}</td>
+        <td>{{ channel.address }}</td>
+        <!-- <td><i class="fa fa-trash"></i></td> -->
+      </tr>
+    </tbody>
+  </table>
+</app-panel>

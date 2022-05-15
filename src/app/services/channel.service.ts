@@ -72,4 +72,9 @@ export class ChannelService extends ApplicationService {
 
     return this.makePost('/channelgroup/getbyid', { id })
   }
+
+  deleteTemplate(id: any) {
+
+    return this.makePost('/messagetemplate/delete', { id })
+  }
 }
