@@ -56,6 +56,19 @@ export class ApplicationService {
     )
   }
 
+  protected makeDownload(url: string, data: any): Observable<any> {
+
+    const headers = new HttpHeaders({
+      'Content-Type':  'application/json; charset=utf-8',
+      'Authorization': 'Bearer ' + localStorage.getItem('AUTH_TOKEN')
+    })
+
+    return this.http.post<any>(`${this.connectionString + url}`, data,
+    { headers: headers, responseType: 'blob' as 'json' }).pipe(tap(data => {
+      console.log(data)
+    }));
+  }
+
   protected makeGet(url: string): Observable<any> {
 
     const relay: any = this.http.get<any>(`${this.connectionString + url}`, this.httpOptions).pipe(

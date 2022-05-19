@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   isLoading: boolean = false;
 
   loginForm: FormGroup = new FormGroup({
-    username: new FormControl('', [
+    email: new FormControl('', [
       Validators.minLength(2),
       Validators.required,
       Validators.email
@@ -36,13 +36,13 @@ export class LoginComponent implements OnInit {
 
     this.authService.preauthenticate().then((settings: any) => {
 
-      this.authService.authenticate(this.loginForm.value.username, this.loginForm.value.password, settings).subscribe((data: any) => {
+      this.authService.authenticate(this.loginForm.value.email, this.loginForm.value.password, settings).subscribe((data: any) => {
 
         if(data.status) {
 
           console.log('data.extra :: ',data.extra)
 
-          this.authService.saveTokens(data.message, '', { role: data.extra.roleId, username: this.loginForm.value.username, fullName: data.extra.fullName, id: data.extra.id } as User).then(() => {
+          this.authService.saveTokens(data.message, '', { role: data.extra.roleId, username: this.loginForm.value.email, fullName: data.extra.fullName, id: data.extra.id } as User).then(() => {
             this.alertService.showSuccess('Authenticated', 'You are now Logged In!')
             this.router.navigateByUrl('/dashboard').then(() => {
               ApplicationService.Appsettings = settings as Appsettings;

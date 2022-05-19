@@ -37,7 +37,7 @@ export class TextTemplatesComponent implements OnInit {
       Validators.minLength(2),
       Validators.required
     ]),
-    messages: new FormControl('', [
+    messages: new FormControl('Sehr geehrte Damen und Herren!\n\n\nMit freundlichen Grüßen\nIhr IT Servicedesk', [
       Validators.minLength(2),
       Validators.required
     ]),
@@ -114,7 +114,7 @@ export class TextTemplatesComponent implements OnInit {
       this.form.patchValue({
         name: "",
         title: "",
-        messages: "",
+        messages: "Sehr geehrte Damen und Herren!\n\n\nMit freundlichen Grüßen\nIhr IT Servicedesk",
       });
       return;
     }

@@ -42,6 +42,7 @@ export class ReportComponent implements OnInit {
   ) {}
 
   public form: FormGroup = new FormGroup({});
+  public modalForm: FormGroup = new FormGroup({});
 
   minToHoursAndMinutes(totalMinutes: number) {
     const minutes = Math.floor(totalMinutes % 60);
@@ -85,6 +86,26 @@ export class ReportComponent implements OnInit {
       mitteilung_speichern: new FormControl('', []),
     });
 
+    this.modalForm = new FormGroup({
+      error_description: new FormControl('', [
+        Validators.minLength(2),
+        Validators.required
+      ]),
+      error_cause: new FormControl('', [
+        Validators.minLength(2),
+        Validators.required
+      ]),
+      troubleshooting: new FormControl('', [
+        Validators.minLength(2),
+        Validators.required
+      ]),
+      lesson_learned: new FormControl('', [
+        Validators.minLength(2),
+        Validators.required
+      ]),
+      speichern: new FormControl('', []),
+    });    
+
     this.form.disable()
 
     const remark = this.form.get('resolution_remark')
@@ -100,6 +121,7 @@ export class ReportComponent implements OnInit {
     if (userRoleId && parseInt(userRoleId) != 1) {
       console.log('############',userRoleId)
       this.form.controls['mitteilung_speichern'].disable();
+      this.modalForm.controls['speichern'].disable()
     }    
     this.id = this.activatedRoute.snapshot.paramMap.get('id')
 
@@ -142,7 +164,7 @@ export class ReportComponent implements OnInit {
     };
 
     this.faultService.getResolutionByFaultId(parseInt(this.id)).subscribe((data: any) => {
-      console.log('Log::fault data::',data);
+      // console.log('Log::fault data::',data);
       this.faultData = data.extra;
 
       this.pageTitle = `Meldung ${this.id} "${this.faultData.title}" ${formatDate(this.faultData.reported_date, 'dd.MM.yyyy HH:mm', 'en')}`;
@@ -151,7 +173,7 @@ export class ReportComponent implements OnInit {
 
       const actualDuration = new Date(this.faultData.resolved_date).valueOf() - new Date(this.faultData.reported_date).valueOf()
 
-      console.log('::luksos::',actualDuration)
+      // console.log('::luksos::',actualDuration)
 
       this.form.patchValue({
         title: this.faultData.title,
@@ -164,9 +186,16 @@ export class ReportComponent implements OnInit {
         actual_duration: `${this.msToHoursAndMinutes(actualDuration)}`,
       })
 
+      this.modalForm.patchValue({
+        error_description: this.faultData.error_description,
+        error_cause: this.faultData.error_cause,
+        troubleshooting: this.faultData.troubleshooting,
+        lesson_learned: this.faultData.lesson_learned,
+      })
+
       this.faultService.getLogsByFaultId(parseInt(this.id)).subscribe((data: any) => {
 
-        console.log(data);
+        // console.log('getLogsByFaultId::',data);
         this.logs = data.extra;
 
         this.form.patchValue({
@@ -243,4 +272,21 @@ export class ReportComponent implements OnInit {
   gotoDashboard() {
     this.router.navigate(['/history']);
   }
+
+  submitDetailsUpdate(e: any) {
+    console.log('updateFailureDetails::', this.form.value.messages)
+    this.faultService.updateFailureDetails({ 
+      id: this.faultData.id,
+      ...this.modalForm.value,
+    }).subscribe(data => {
+      console.log('updateFailureDetails::',data)
+      if(data.status) {
+        this.alertService.showSuccess('Failure Details Updated!', data.message)
+        this.modalService.dismissAll();
+        // this.router.navigate(['/history'])
+      } else {
+        this.alertService.showError('Error', data.message)
+      }
+    })    
+  }  
 }

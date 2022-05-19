@@ -56,12 +56,17 @@ export class FaultService extends ApplicationService {
     return this.makePost('/faultresolution/updateremarkbyid', payload)
   }
 
+  updateFailureDetails(payload: any) {
+    return this.makePost('/faultresolution/update-fault-details', payload)
+  }  
+
   getHistoryByState(state: string) {
     return this.makePost('/fault/gethistorybystate', { state })
   }
 
   getHistoryWithParams(state: string) {
     return this.makePost('/fault/getfaultbytpyeanddatereport', state)
+    // return this.makeDownload('/fault/faults-report', state)
   }
 
   getFaultTypes() {

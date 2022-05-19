@@ -6,6 +6,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { UserService } from 'src/app/services/user.service';
 import { MessageService } from 'src/app/services/message.service';
+import { ConfigService } from 'src/app/services/config.service';
 import { FaultService } from 'src/app/services/fault.service';
 
 @Component({
@@ -20,6 +21,8 @@ export class AnnouncementsComponent implements OnInit {
   channelDropdownSettings: any = {};
   channelTypeDropdownSettings: any = {};
 
+  relatedServices: any = []
+
   groupDropdownList: any = [];
   groupSelectedItems: any = [];
   groupDropdownSettings: any = {};
@@ -31,7 +34,8 @@ export class AnnouncementsComponent implements OnInit {
   messages: any = []
   reminder_timer: number = 10;
 
-  constructor(private modalService: NgbModal, private router: Router, private userService: UserService, private channelService: ChannelService, private alertService: AlertService, private messageService: MessageService, private faultService: FaultService) { }
+  constructor(private modalService: NgbModal, private router: Router, private userService: UserService, private channelService: ChannelService,
+    private alertService: AlertService, private messageService: MessageService, private faultService: FaultService, private configService: ConfigService, ) { }
 
   public form: FormGroup = new FormGroup({
     type_id: new FormControl('', [
@@ -41,7 +45,7 @@ export class AnnouncementsComponent implements OnInit {
       Validators.minLength(2),
       Validators.required
     ]),
-    messages: new FormControl('\n\n\nMit freundlichen Grüßen', [
+    messages: new FormControl('Sehr geehrte Damen und Herren!\n\n\nMit freundlichen Grüßen\nIhr IT Servicedesk', [
       Validators.minLength(2),
       Validators.required
     ]),
@@ -49,6 +53,15 @@ export class AnnouncementsComponent implements OnInit {
       Validators.required
     ]),
     reminder_timer: new FormControl(10, [
+      Validators.required
+    ]),
+    related_system_id: new FormControl("", [
+      Validators.required
+    ]),
+    datum: new FormControl("", [
+      Validators.required
+    ]),
+    zeit: new FormControl("", [
       Validators.required
     ]),
     aktivieren: new FormControl('', []),
@@ -108,7 +121,7 @@ export class AnnouncementsComponent implements OnInit {
     this.getChannelTypes()
     this.getTemplageTypes()
     this.getChannelGroup()
-
+    this.getRelatedServices()
     this.getMessages()
 
   }
@@ -156,7 +169,7 @@ export class AnnouncementsComponent implements OnInit {
   getChannelGroup() {
     this.channelService.getChannelsGroup().subscribe(data => {
       this.groupDropdownList = data.extra
-      console.log('sfasdf', this.channelsGroup)
+      console.log('channels group', this.channelsGroup)
     })
   }
 
@@ -166,6 +179,13 @@ export class AnnouncementsComponent implements OnInit {
       this.groupDropdownList = data.extra
     })
   }
+
+  getRelatedServices() {
+    this.configService.getRelatedServices().subscribe(data => {
+      console.log(data)
+      this.relatedServices = data.extra
+    })
+  }  
 
   getMessages() {
     this.messageService.getMessages().subscribe(data => {
@@ -228,14 +248,19 @@ export class AnnouncementsComponent implements OnInit {
 
   onSubmit() {
       if(this.channelSelectedItems.length == 0){
-        this.alertService.showError('Select a Channel', 'Please select at least one channel')
+        this.alertService.showError('Validation Error', 'Please select at least one channel')
         return
       }
 
       if(this.groupSelectedItems.length == 0) {
-        this.alertService.showError('Select a User Group', 'Please select at least one user group')
+        this.alertService.showError('Validation Error', 'Please select at least one user group')
         return
       }
+
+      if(this.form.value.related_system_id == "") {
+        this.alertService.showError('Validation Error', 'Select a Related System')
+        return
+      }      
 
       this.channelSelectedItems = this.channelSelectedItems.map((item: any) => item.id).join(',')
       this.groupSelectedItems = this.groupSelectedItems.map((item: any) => item.id).join(',')
@@ -252,9 +277,10 @@ export class AnnouncementsComponent implements OnInit {
         "external_code":"4",
         message: this.form.value.messages,
         reminder_timer: this.form.value.reminder_timer,
+        related_system_id: parseInt(this.form.value.related_system_id),
         //"state":"PENDING",
         "type_id":1,
-        "reported_date": new Date()
+        "reported_date": new Date(`${this.form.value.datum} ${this.form.value.zeit}`)
       }).subscribe(data => {
         this.router.navigate(['/dashboard']);
         if(data.status) {
