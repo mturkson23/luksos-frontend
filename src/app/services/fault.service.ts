@@ -66,6 +66,7 @@ export class FaultService extends ApplicationService {
 
   getHistoryWithParams(state: string) {
     return this.makePost('/fault/getfaultbytpyeanddatereport', state)
+    // return this.makeDownload('/fault/faults-report', state)
   }
 
   getFaultTypes() {
