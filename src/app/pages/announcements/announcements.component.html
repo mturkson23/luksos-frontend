@@ -4,10 +4,8 @@
 
     <div class="row">
       <div class="col-md-5 p-4">
-
         <div class="form-group">
           <label for="name">Vorlage</label>
-
           <select formControlName='type_id' class="form-control" (change)="getChannel()">
             <option value="">Wähle eins</option>
             <option *ngFor="let message of messages" [value]="message.id">{{ message.name }}</option>
@@ -23,15 +21,43 @@
           <textarea class="form-control" rows="10" formControlName='messages'></textarea>
         </div>
       </div>
-      <div class="col-md-4 p-4">
-        <div class="form-group">
-          <label for="title">Zeituhr (min)</label>
-          <input type="number" class="form-control" id="timer" formControlName='timer' />
+      <div class="col-md-6 p-4">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="timer">Zeituhr (min)</label>
+              <input type="number" class="form-control" id="timer" formControlName='timer' />
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="reminder_timer">Verbleibende Zeit (min)</label>
+              <input type="number" class="form-control" id="reminder_timer" formControlName='reminder_timer' />
+            </div>
+          </div>
+        </div>
+
+        <div class="row mt-4">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="datum">Datum</label>
+              <input type="date" class="form-control" id="datum" formControlName='datum' />
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="zeit">Zeit</label>
+              <input type="time" class="form-control" id="zeit" formControlName='zeit' />
+            </div>
+          </div>
         </div>
 
         <div class="form-group mt-4">
-          <label for="title">Verbleibende Zeit (min)</label>
-          <input type="number" class="form-control" id="reminder_timer" formControlName='reminder_timer' />
+          <label for="related_system_id">Related Service</label>
+          <select class="form-control" formControlName='related_system_id'>
+            <option value="" disabled selected>Select a system</option>
+            <option [value]="service.id" *ngFor="let service of relatedServices">{{ service.name }}</option>
+          </select>
         </div>
 
         <div class="form-group mt-4">
