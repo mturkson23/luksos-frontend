@@ -1,0 +1,83 @@
+<app-panel [title]="'Edit Work Period Configurations'">
+  <form [formGroup]='form' (validSubmit)="submit()">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="config_type">Config Code</label>
+            <input type="text" class="form-control" id="config_type" formControlName='config_type' />
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="description">Description</label>
+            <input type="textarea" class="form-control" id="description" formControlName='description'/>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-4">
+        <div class="col-md-3">
+          <label for="jan">January</label>
+          <input type="number" class="form-control" id="jan" formControlName='jan'/>
+        </div>
+        <div class="col-md-3">
+          <label for="feb">February</label>
+          <input type="number" class="form-control" id="feb" formControlName='feb'/>
+        </div>
+        <div class="col-md-3">
+          <label for="mar">March</label>
+          <input type="number" class="form-control" id="mar" formControlName='mar'/>
+        </div>
+        <div class="col-md-3">
+          <label for="apr">April</label>
+          <input type="number" class="form-control" id="apr" formControlName='apr'/>
+        </div>
+      </div>
+      <div class="row mt-4">
+        <div class="col-md-3">
+          <label for="may">May</label>
+          <input type="number" class="form-control" id="may" formControlName='may'/>
+        </div>
+        <div class="col-md-3">
+          <label for="june">June</label>
+          <input type="number" class="form-control" id="june" formControlName='june'/>
+        </div>
+        <div class="col-md-3">
+          <label for="july">July</label>
+          <input type="number" class="form-control" id="july" formControlName='july'/>
+        </div>
+        <div class="col-md-3">
+          <label for="aug">August</label>
+          <input type="number" class="form-control" id="aug" formControlName='aug'/>
+        </div>
+      </div>
+      <div class="row mt-4">
+        <div class="col-md-3">
+          <label for="sep">September</label>
+          <input type="number" class="form-control" id="sep" formControlName='sep'/>
+        </div>
+        <div class="col-md-3">
+          <label for="oct">October</label>
+          <input type="number" class="form-control" id="oct" formControlName='oct'/>
+        </div>
+        <div class="col-md-3">
+          <label for="nov">November</label>
+          <input type="number" class="form-control" id="nov" formControlName='nov'/>
+        </div>
+        <div class="col-md-3">
+          <label for="dec">December</label>
+          <input type="number" class="form-control" id="dec" formControlName='dec'/>
+        </div>
+      </div>           
+    <div class="d-flex justify-content-end mt-2">
+      <div class="row">
+        <div class="col-md-4 m-2">
+          <a (click)="goToWorkPeriods()" class="btn btn-secondary">Cancel</a>
+        </div>
+        <div class="col-md-4 m-2">
+          <button ngDefaultControl type="submit" class="btn btn-primary">Update</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</app-panel>
+

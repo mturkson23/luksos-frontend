@@ -1,0 +1,28 @@
+<app-panel [title]="'Add Web System'">
+
+  <form [formGroup]='form' (validSubmit)="submit()">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="title">Name</label>
+            <input type="text" class="form-control" id="title" formControlName='name'/>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-group">
+            <div class="form-group">
+              <label for="description">Description</label>
+              <input type="textarea" class="form-control" id="description" formControlName='description'/>
+            </div>            
+          </div>
+        </div>
+      </div>
+
+    <div class="d-flex justify-content-end mt-4">
+      <button ngDefaultControl formControlName="saveButton" type="submit" class="btn btn-primary">Submit</button>
+    </div>
+  </form>
+
+</app-panel>
+

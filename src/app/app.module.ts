@@ -44,6 +44,14 @@ import { TextTemplatesGroupsComponent } from './pages/settings/text-templates-gr
 import { UserGroupsComponent } from './pages/users/user-groups/user-groups.component';
 import { ProfileComponent } from './pages/settings/profile/profile.component';
 import { ChannelTypesComponent } from './pages/settings/channel-types/channel-types.component';
+import { WebSystemConfigsComponent } from './pages/settings/web-system-configs/web-system-configs.component';
+import { AddWebSystemConfigsComponent } from './pages/settings/web-system-configs/add/add-web-system-config.component';
+import { EditWebSystemConfigsComponent } from './pages/settings/web-system-configs/edit/edit-web-system-config.component';
+
+import { WorkPeriodConfigComponent } from './pages/settings/work-period-configs/work-period-configs.component';
+import { AddWorkPeriodConfigComponent } from './pages/settings/work-period-configs/add/add-work-period-config.component';
+import { EditWorkPeriodConfigComponent } from './pages/settings/work-period-configs/edit/edit-work-period-config.component';
+
 import { AddChannelTypeComponent } from './pages/settings/channel-types/add-channel-type/add-channel-type.component';
 import { EditChannelTypeComponent } from './pages/settings/channel-types/edit-channel-type/edit-channel-type.component';
 import { ReportsComponent } from './pages/settings/reports/reports.component';
@@ -84,6 +92,12 @@ import { ChannelsSetupComponent } from './pages/settings/channels-setup/channels
     ChannelTypesComponent,
     AddChannelTypeComponent,
     EditChannelTypeComponent,
+    WebSystemConfigsComponent,
+    AddWebSystemConfigsComponent,
+    EditWebSystemConfigsComponent,
+    WorkPeriodConfigComponent,
+    AddWorkPeriodConfigComponent,
+    EditWorkPeriodConfigComponent,
     ReportsComponent,
     ChannelsSetupComponent
   ],
