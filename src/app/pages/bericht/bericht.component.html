@@ -4,8 +4,8 @@
     <div class="col-md-3">
       <div class="form-group">
         <select class="form-control" formControlName="Type">
-          <option value="">Wählen Sie den Fehlertyp aus</option>
-          <option [value]="type.name" *ngFor="let type of faultTypes">{{ type.name }}</option>
+          <option value="">Select Report Type</option>
+          <option value="DEFAULT">DEFAULT</option>
         </select>
       </div>
     </div>
@@ -28,28 +28,42 @@
 
   <div class="table-responsive">
     <table class="table table-striped table-bordered w-in-100 nowrap" id="table">
-    <thead>
-      <tr>
-        <td>ID</td>
-        <td>ERSTELLDATUM</td>
-        <td>STATUS</td>
-        <td>TITEL</td>
-        <td>BEKANNT SEIT</td>
-        <td>BEHOBEN AM/UM</td>
-        <td></td>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let fault of faults;">
-        <td>{{ fault.id }}</td>
-        <td>{{ fault.reported_date | customDate }}</td>
-        <td>{{ fault.state }}</td>
-        <td>{{ fault.title }}</td>
-        <td>{{ fault.date_created | customDate }}</td>
-        <td>{{ fault.resolved_date | customDate }}</td>
-        <td><button (click)="goToEdit(fault.id)" class="btn"><img height="30px" src="assets/img/edit_pencil.svg"/></button></td>
-      </tr>
-    </tbody>
-  </table>
+      <thead>
+        <tr>
+          <td>System</td>
+          <td>Datum</td>
+          <td>Von</td>
+          <td>Bis</td>
+          <td>Ausfall in Std.</td>
+          <td>Ausfall während Betriebsstunden</td>
+          <td>Angekündigter Stillstand während Betrieb</td>
+          <td>Ausfall während 0-5 Uhr (7x24)</td>
+          <td>Fehlerbeschreibung</td>
+          <td>Fehlerursache</td>
+          <td>Fehlerbehebung</td>
+          <td>Lesson Learned</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let fault of faults;">
+          <td>{{ fault.related_system }}</td>
+          <td>{{ fault.datum | customDate }}</td>
+          <td>{{ fault.von | customTime }}</td>
+          <td>{{ fault.bis | customTime }}</td>
+          <td>{{ (fault.ausfaull_std/60) | number : '1.0-2' : 'en-ES' }}</td>
+          <td>{{ fault.betriebsstunden }}</td>
+          <td>{{ fault.stillstand }}</td>
+          <td>{{ fault.between_0_5 }}</td>
+          <td>{{ fault.error_description }}</td>
+          <td>{{ fault.error_cause }}</td>
+          <td>{{ fault.troubleshooting }}</td>
+          <td>{{ fault.lesson_learned }}</td>
+          <td>{{ fault.date_created | customDate }}</td>
+          <td>{{ fault.resolved_date | customDate }}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
+
+
 </app-panel>
