@@ -1,4 +1,9 @@
-import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  // OnDestroy,
+  OnInit
+} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FaultService } from 'src/app/services/fault.service';
@@ -40,7 +45,6 @@ export class BerichtComponent implements OnInit {
 
     this.table = $('table')
 
-
     this.dataTable = this.table.DataTable({
       "scrollX": true,
       "retrieve": true,
@@ -54,11 +58,6 @@ export class BerichtComponent implements OnInit {
     window.alert = (msg) => {
       console.log(msg)
     }
-
-    this.faultService.getFaultTypes().subscribe((data: any) => {
-      // console.log(data)
-      this.faultTypes = data.extra;
-    })
 
     this.form = new FormGroup({
       Type: new FormControl('', [
@@ -84,19 +83,27 @@ export class BerichtComponent implements OnInit {
 
   onSubmit() {
 
-    console.log('test')
+    // console.log('test')
 
     this.faultService.getHistoryWithParams(this.form.value).subscribe((data: any) => {
       // console.log(data)
 
-      $('table').DataTable({
-
-      }).destroy()
+      $('table').DataTable({}).destroy()
 
       this.faults = data.extra
       this.chaRef.detectChanges()
 
-      $('table').DataTable(this.settings).draw();
+      $('table').DataTable(this.settings).draw();      
+
+      // var reader = new FileReader();
+      // var blob = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+      // reader.readAsDataURL(blob);
+      
+      // reader.onloadend = function (e) {
+      //     window.open('name.xlsx', '_blank', 'width=20,height=10,toolbar=0,menubar=0,scrollbars=no');
+      // }
+      // const url = URL.createObjectURL(data);
+      // console.log(url)
 
     })
   }
