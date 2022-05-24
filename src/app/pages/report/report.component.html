@@ -39,9 +39,20 @@
         </div>
       </div>
       <div class="col-md-6 p-4">
-        <div class="form-group">
-          <label for="resolution_remark">Losungsweg</label>
-          <textarea class="form-control" rows="10" formControlName='resolution_remark'></textarea>
+        <div class="row">
+          <div class="col-md-8">
+            <label for="resolution_remark">Losungsweg</label>
+            <textarea class="form-control" rows="10" formControlName='resolution_remark'></textarea>
+          </div>
+          <div class="col-md-4">
+            <div class="input-group-prepend">
+              <label for="logs">&nbsp;</label>
+              <div class="input-group-text input-report" style="height: 2.5rem" (click)="openModal(details)">
+                Ausfalldetails
+                <!-- <i class="fa-solid fa-comment" style="justify-content: center; align-items: center;"></i> -->
+              </div>
+            </div>
+          </div>
         </div>
         <div class="row">
           <div class="col-6">
@@ -103,12 +114,6 @@
           <div class="col-6">
             <div class="form-group  mt-4">
               <label for="logs">&nbsp;</label>
-              <div class="input-group">
-                <input type="text" class="form-control" value="Ausfalldetails" />
-                <div class="input-group-prepend">
-                  <div class="input-group-text input-report" style="height: 2.5rem" (click)="openModal(details)"><i class="fa-solid fa-comment" style="justify-content: center; align-items: center;"></i></div>
-                </div>
-              </div>
             </div>            
           </div>          
         </div>

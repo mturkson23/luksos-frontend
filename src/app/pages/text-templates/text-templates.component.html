@@ -59,11 +59,19 @@
       </div>
     </div>
 
-    <div class="w-100 d-flex justify-content-end">
-      <button ngDefaultControl formControlName="vorlage_speichern" class="btn btn-secondary" type="submit">
-        <i class="fa fa-save"></i>
-        Vorlage Speichern
-      </button>
+    <div class="row">
+      <div class="col-md-7"></div>
+      <div class="col-md-2">
+        <button ngDefaultControl class="btn btn-secondary" (click)="goToDashboard()" type="button">
+          Schließen
+        </button>
+      </div>
+      <div class="col-md-3">
+        <button ngDefaultControl formControlName="vorlage_speichern" class="btn btn-primary" type="submit">
+          <i class="fa fa-save"></i>
+          Vorlage Speichern
+        </button>
+      </div>
     </div>
 
   </form>

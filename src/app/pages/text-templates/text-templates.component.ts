@@ -172,6 +172,10 @@ export class TextTemplatesComponent implements OnInit {
     this.modalService.open(content);
   }
 
+  goToDashboard() {
+    this.router.navigate(['/dashboard']);
+  }  
+
   getUsers() {
 
     this.userService.getUsers().subscribe(data => {
