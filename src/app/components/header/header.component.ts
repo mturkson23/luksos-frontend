@@ -8,9 +8,16 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class HeaderComponent implements OnInit {
 
+  isDisabled: boolean = false;
+
   constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
+    // disable buttons for non-admin users
+    const userRoleId = localStorage.getItem('AUTH_USER_ROLE_ID');
+    if (userRoleId && parseInt(userRoleId) != 1) {
+      this.isDisabled = true;
+    }
   }
 
   logOut() {
