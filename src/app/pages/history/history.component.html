@@ -15,10 +15,10 @@
     <tbody>
       <tr *ngFor="let fault of faults;">
         <td>{{ fault.id }}</td>
-        <td>{{ fault.reported_date | customDate }}</td>
+        <td>{{ fault.date_created | customDate }}</td>
         <td>{{ fault.state }}</td>
         <td>{{ fault.title }}</td>
-        <td>{{ fault.date_created | customDate }}</td>
+        <td>{{ fault.reported_date | customDate }}</td>
         <td>{{ fault.resolved_date | customDate }}</td>
         <td><button (click)="goToEdit(fault.id)" class="btn"><img height="30px" src="assets/img/edit_pencil.svg"/></button></td>
       </tr>
