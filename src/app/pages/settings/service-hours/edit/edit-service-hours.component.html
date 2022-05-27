@@ -1,0 +1,118 @@
+<app-panel [title]="'Edit Service Hours Configurations'">
+  <form [formGroup]='form' (validSubmit)="submit()">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="web_system_id">Services</label>
+            <select class="form-control" formControlName='web_system_id'>
+              <option value="">Select Service</option>
+              <option [value]="service.id" *ngFor="let service of webServices">{{ service.name }}</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="work_hours_per_day">Work Hours Per Day</label>
+            <input type="number" value=0 class="form-control" id="work_hours_per_day" formControlName='work_hours_per_day'/>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mt-4">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="work_start_day">Work Start Day</label>
+            <select class="form-control" formControlName='work_start_day'>
+              <option [value]="day.id" *ngFor="let day of daysArray">{{ day.name }}</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="work_end_day">Work End Day</label>
+            <select class="form-control" formControlName='work_end_day'>
+              <option [value]="day.id" *ngFor="let day of daysArray">{{ day.name }}</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="work_start_time">Work Start Time</label>
+            <input type="time" class="form-control" formControlName='work_start_time' />
+          </div>          
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="work_end_time">Work End Time</label>
+            <input type="time" class="form-control" id="work_end_time" formControlName='work_end_time' />
+          </div>          
+        </div>
+      </div>
+
+      <div class="row mt-4">
+        <div class="col-md-3">
+          <label for="jan_work_hours">Januar</label>
+          <input type="number" class="form-control" id="jan_work_hours" formControlName='jan_work_hours'/>
+        </div>
+        <div class="col-md-3">
+          <label for="feb_work_hours">Februar</label>
+          <input type="number" class="form-control" id="feb_work_hours" formControlName='feb_work_hours'/>
+        </div>
+        <div class="col-md-3">
+          <label for="mar_work_hours">März</label>
+          <input type="number" class="form-control" id="mar_work_hours" formControlName='mar_work_hours'/>
+        </div>
+        <div class="col-md-3">
+          <label for="apr_work_hours">April</label>
+          <input type="number" class="form-control" id="apr_work_hours" formControlName='apr_work_hours'/>
+        </div>
+      </div>
+      <div class="row mt-4">
+        <div class="col-md-3">
+          <label for="may_work_hours">Mai</label>
+          <input type="number" class="form-control" id="may_work_hours" formControlName='may_work_hours'/>
+        </div>
+        <div class="col-md-3">
+          <label for="june_work_hours">Juni</label>
+          <input type="number" class="form-control" id="june_work_hours" formControlName='june_work_hours'/>
+        </div>
+        <div class="col-md-3">
+          <label for="july_work_hours">Juli</label>
+          <input type="number" class="form-control" id="july_work_hours" formControlName='july_work_hours'/>
+        </div>
+        <div class="col-md-3">
+          <label for="aug_work_hours">August</label>
+          <input type="number" class="form-control" id="aug_work_hours" formControlName='aug_work_hours'/>
+        </div>
+      </div>
+      <div class="row mt-4">
+        <div class="col-md-3">
+          <label for="sep_work_hours">September</label>
+          <input type="number" class="form-control" id="sep_work_hours" formControlName='sep_work_hours'/>
+        </div>
+        <div class="col-md-3">
+          <label for="oct_work_hours">Oktober</label>
+          <input type="number" class="form-control" id="oct_work_hours" formControlName='oct_work_hours'/>
+        </div>
+        <div class="col-md-3">
+          <label for="nov_hours">November</label>
+          <input type="number" class="form-control" id="nov_hours" formControlName='nov_hours'/>
+        </div>
+        <div class="col-md-3">
+          <label for="dec_work_hours">Dezember</label>
+          <input type="number" class="form-control" id="dec_work_hours" formControlName='dec_work_hours'/>
+        </div>
+      </div>
+    <div class="d-flex justify-content-end mt-2">
+      <div class="row">
+        <div class="col-md-4 m-2">
+          <a (click)="goToWorkHours()" class="btn btn-secondary">Cancel</a>
+        </div>
+        <div class="col-md-4 m-2">
+          <button ngDefaultControl type="submit" class="btn btn-primary">Update</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</app-panel>
+

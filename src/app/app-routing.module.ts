@@ -8,6 +8,10 @@ import { WorkPeriodConfigComponent } from './pages/settings/work-period-configs/
 import { AddWorkPeriodConfigComponent } from './pages/settings/work-period-configs/add/add-work-period-config.component';
 import { EditWorkPeriodConfigComponent } from './pages/settings/work-period-configs/edit/edit-work-period-config.component';
 
+import { ServiceHoursComponent } from './pages/settings/service-hours/service-hours.component';
+import { AddServiceHoursComponent } from './pages/settings/service-hours/add/add-service-hours.component';
+import { EditServiceHoursComponent } from './pages/settings/service-hours/edit/edit-service-hours.component';
+
 import { AddUserComponent } from './pages/users/add-user/add-user.component';
 import { UserGroupsComponent } from './pages/users/user-groups/user-groups.component';
 import { TextTemplatesListComponent } from './pages/settings/text-templates-list/text-templates-list.component';
@@ -61,6 +65,10 @@ const routes: Routes = [
     { path: 'work-period-configs', component: WorkPeriodConfigComponent },
     { path: 'add-work-period-config', component: AddWorkPeriodConfigComponent },
     { path: 'edit-work-period-config/:id', component: EditWorkPeriodConfigComponent },
+
+    { path: 'service-hours', component: ServiceHoursComponent },
+    { path: 'add-service-hours', component: AddServiceHoursComponent },
+    { path: 'edit-service-hours/:id', component: EditServiceHoursComponent },
 
     { path: 'channels', component: ChannelsSetupComponent },
     { path: 'add-channel-group', component: AddChannelTypeComponent },

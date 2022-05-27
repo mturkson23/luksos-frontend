@@ -1,0 +1,28 @@
+<app-panel [title]="'Service Hours'">
+  <div class="d-flex justify-content-end w-100 mb-3">
+    <!-- <button class="btn btn-secondary" (click)="goToAddWorkPeriod()">
+      <span>Add <i class="fas fa-plus"></i></span>
+    </button> -->
+  </div>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <td>ID</td>
+        <td>Web Service</td>
+        <td>Hours</td>
+        <td></td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let channel of channels">
+        <td>{{ channel.id }}</td>
+        <td>{{ channel.web_system }}</td>
+        <td>
+          {{ channel.work_start_day_text }} - {{ channel.work_end_day_text }} 
+          ({{channel.work_start_time.hours}}:{{channel.work_start_time.minutes}}{{channel.work_start_time.seconds}} - 
+            {{channel.work_end_time.hours}}:{{channel.work_end_time.minutes}}{{channel.work_end_time.seconds}})</td>
+        <td><button (click)="goToEditServiceHours(channel.id)" class="btn btn-warning btn-block">VIEW</button></td>
+      </tr>
+    </tbody>
+  </table>
+</app-panel>

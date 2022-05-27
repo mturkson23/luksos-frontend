@@ -52,6 +52,10 @@ import { WorkPeriodConfigComponent } from './pages/settings/work-period-configs/
 import { AddWorkPeriodConfigComponent } from './pages/settings/work-period-configs/add/add-work-period-config.component';
 import { EditWorkPeriodConfigComponent } from './pages/settings/work-period-configs/edit/edit-work-period-config.component';
 
+import { ServiceHoursComponent } from './pages/settings/service-hours/service-hours.component';
+import { AddServiceHoursComponent } from './pages/settings/service-hours/add/add-service-hours.component';
+import { EditServiceHoursComponent } from './pages/settings/service-hours/edit/edit-service-hours.component';
+
 import { AddChannelTypeComponent } from './pages/settings/channel-types/add-channel-type/add-channel-type.component';
 import { EditChannelTypeComponent } from './pages/settings/channel-types/edit-channel-type/edit-channel-type.component';
 import { ReportsComponent } from './pages/settings/reports/reports.component';
@@ -98,6 +102,9 @@ import { ChannelsSetupComponent } from './pages/settings/channels-setup/channels
     WorkPeriodConfigComponent,
     AddWorkPeriodConfigComponent,
     EditWorkPeriodConfigComponent,
+    ServiceHoursComponent,
+    AddServiceHoursComponent,
+    EditServiceHoursComponent,
     ReportsComponent,
     ChannelsSetupComponent
   ],
