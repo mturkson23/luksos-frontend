@@ -19,32 +19,47 @@ export class ConfigService extends ApplicationService {
   getWorkPeriods() {
     return this.makePost('/monthlyworkperiodconfig/getall', {})
   }
+  getServiceHours() {
+    return this.makePost('/websystemmonthconfig/getall', {})
+  }
 
   getRelatedServiceById(id: any) {
     return this.makePost('/websystem/getbyid', { id })
   }
   getWorkPeriodById(id: any) {
     return this.makePost('/monthlyworkperiodconfig/getbyid', { id })
-  }  
+  }
+  getServiceHoursById(id: any) {
+    return this.makePost('/websystemmonthconfig/getbyid', { id })
+  }
 
   addWebSystemConfig(payload: any) {
     return this.makePost('/websystem/add', payload)
   }
   addWorkPeriodConfig(payload: any) {
     return this.makePost('/monthlyworkperiodconfig/add', payload)
-  }  
+  }
+  addServiceHours(payload: any) {
+    return this.makePost('/websystemmonthconfig/add', payload)
+  }
 
   editWebSystemConfig(payload: any) {
     return this.makePost('/websystem/update', payload)
   }
   editWorkPeriodConfig(payload: any) {
     return this.makePost('/monthlyworkperiodconfig/update', payload)
-  }  
+  }
+  editServiceHours(payload: any) {
+    return this.makePost('/websystemmonthconfig/update', payload)
+  }
 
   deleteWebSystem(id: any) {
     return this.makePost('/websystem/delete', { id })
   }
   deleteWorkPeriod(id: any) {
     return this.makePost('/monthlyworkperiodconfig/delete', { id })
-  }  
+  }
+  deleteServiceHours(id: any) {
+    return this.makePost('/websystemmonthconfig/delete', { id })
+  }
 }
