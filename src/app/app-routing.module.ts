@@ -80,7 +80,7 @@ const routes: Routes = [
     { path: 'add-user', component: AddUserComponent },
     { path: 'edit-user/:id', component: EditUserComponent },
     { path: 'reports', component: ReportsComponent },
-    { path: '**', redirectTo: 'text-templates' }
+    { path: '**', redirectTo: 'channels' }
   ] },
   { path: 'signup', component: SignupComponent },
   { path: '**', redirectTo: '' }
