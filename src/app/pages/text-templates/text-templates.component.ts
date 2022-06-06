@@ -49,12 +49,14 @@ export class TextTemplatesComponent implements OnInit {
     //   Validators.required
     // ])
     vorlage_speichern: new FormControl('', []),
+    loschen: new FormControl('', []),
   });
 
   ngOnInit(): void {
     const userRoleId = localStorage.getItem('AUTH_USER_ROLE_ID');
     if (userRoleId && parseInt(userRoleId) != 1) {
       this.form.controls['vorlage_speichern'].disable();
+      this.form.controls['loschen'].disable();
     }
 
     this.channelDropdownList = []
