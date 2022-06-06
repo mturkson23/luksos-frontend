@@ -26,6 +26,8 @@ export class TextTemplatesComponent implements OnInit {
   channels: any = []
   templates: any = []
 
+  textTemplateId: number = 0;
+
   constructor(private modalService: NgbModal, private router: Router, private userService: UserService, private channelService: ChannelService, private alertService: AlertService) { }
 
   public form: FormGroup = new FormGroup({
@@ -120,6 +122,7 @@ export class TextTemplatesComponent implements OnInit {
     }
 
     console.log(this.form.value.type_id)
+    this.textTemplateId = this.form.value.type_id;
 
     this.channelService.getChannel(parseInt(this.form.value.type_id)).subscribe(data => {
       this.userSelectedItems = [];
@@ -221,6 +224,16 @@ export class TextTemplatesComponent implements OnInit {
     this.channelService.getTemplates().subscribe(data => {
       this.templates = data.extra
     })
+  }
+
+  deleteTemplate(id: any) {
+    console.log('id template', id)
+    if (id == 0) return;
+    if(confirm("Möchten Sie diese Textvorlage wirklich löschen?")) {
+      this.channelService.deleteTemplate(parseInt(id)).subscribe(data => {
+        this.getTemplates();
+      });
+    }
   }
 
   onSubmit() {

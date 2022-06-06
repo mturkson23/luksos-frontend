@@ -60,10 +60,16 @@
     </div>
 
     <div class="row">
-      <div class="col-md-7"></div>
-      <div class="col-md-2">
+      <div class="col-md-5"></div>
+      <div class="d-grid col-md-2">
         <button ngDefaultControl class="btn btn-secondary" (click)="goToDashboard()" type="button">
           Schließen
+        </button>
+      </div>
+      <div class="d-grid col-md-2">
+        <button ngDefaultControl class="btn btn-danger" (click)="deleteTemplate(this.textTemplateId)" type="button">
+          <i class="fa fa-trash"></i>
+          Löschen
         </button>
       </div>
       <div class="col-md-3">
