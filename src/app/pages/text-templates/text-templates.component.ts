@@ -233,7 +233,15 @@ export class TextTemplatesComponent implements OnInit {
     if (id == 0) return;
     if(confirm("Möchten Sie diese Textvorlage wirklich löschen?")) {
       this.channelService.deleteTemplate(parseInt(id)).subscribe(data => {
-        this.getTemplates();
+        this.getTemplates()
+        this.channelSelectedItems = [];
+        this.userSelectedItems = [];
+        this.form.patchValue({
+          name: "",
+          title: "",
+          messages: "Sehr geehrte Damen und Herren!\n\n\nMit freundlichen Grüßen\nIhr IT Servicedesk",
+        });
+        return;        
       });
     }
   }
