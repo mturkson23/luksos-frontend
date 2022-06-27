@@ -58,6 +58,9 @@ export class AnnouncementsComponent implements OnInit {
     related_system_id: new FormControl("", [
       Validators.required
     ]),
+    notification_type: new FormControl("", [
+      Validators.required
+    ]),
     datum: new FormControl("", [
       Validators.required
     ]),
@@ -260,7 +263,12 @@ export class AnnouncementsComponent implements OnInit {
       if(this.form.value.related_system_id == "") {
         this.alertService.showError('Validation Error', 'Select a Related System')
         return
-      }      
+      }
+
+      if(this.form.value.notification_type_id == "") {
+        this.alertService.showError('Validation Error', 'Select a Notification Type')
+        return
+      }
 
       this.channelSelectedItems = this.channelSelectedItems.map((item: any) => item.id).join(',')
       this.groupSelectedItems = this.groupSelectedItems.map((item: any) => item.id).join(',')
@@ -278,6 +286,7 @@ export class AnnouncementsComponent implements OnInit {
         message: this.form.value.messages,
         reminder_timer: this.form.value.reminder_timer,
         related_system_id: parseInt(this.form.value.related_system_id),
+        notification_type: this.form.value.notification_type,
         //"state":"PENDING",
         "type_id":1,
         "reported_date": new Date(`${this.form.value.datum} ${this.form.value.zeit}`)
