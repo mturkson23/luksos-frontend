@@ -22,6 +22,11 @@ export class FaultService extends ApplicationService {
     return this.makePost('/fault/close', { id: parseInt(id) })
   }
 
+  closeFaultWithData(postData: any) {
+    console.log('here too', postData)
+    return this.makePost('/fault/close', postData)
+  }
+
   getFaults() {
     return this.makePost('/fault/getall', {})
   }
