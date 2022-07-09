@@ -38,6 +38,7 @@ export class EditMessageComponent implements OnInit {
 
   public form: FormGroup = new FormGroup({})
   public modalForm: FormGroup = new FormGroup({})
+  public completionModalForm: FormGroup = new FormGroup({})
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -78,11 +79,24 @@ export class EditMessageComponent implements OnInit {
       senden: new FormControl('', []),
     })
 
+    this.completionModalForm = new FormGroup({
+      completion_title: new FormControl('', [
+        Validators.minLength(2),
+        Validators.required
+      ]),
+      completion_message: new FormControl('', [
+        Validators.minLength(2),
+        Validators.required
+      ]),
+      completion_senden: new FormControl('', []),
+    })
+
     const userRoleId = localStorage.getItem('AUTH_USER_ROLE_ID');
     if (userRoleId && parseInt(userRoleId) != 1) {
       this.modalForm.controls['senden'].disable();
       this.form.controls['gutmeldung_schicken'].disable();
       this.form.controls['aktivieren'].disable();
+      this.completionModalForm.controls['completion_senden'].disable();
     } 
     this.id = this.activatedRoute.snapshot.paramMap.get('id')
 
@@ -143,6 +157,11 @@ export class EditMessageComponent implements OnInit {
       this.modalForm.patchValue({
         title: this.faultData.title,
         message: "Sehr geehrte Damen und Herren!\n\n\nMit freundlichen Grüßen\nIhr IT Servicedesk"
+      })
+
+      this.completionModalForm.patchValue({
+        completion_title: `Meldung ${this.faultData.id} "${this.faultData.title}"`,
+        completion_message: `Sehr geehrte Damen und Herren,\n\nHiermit möchten wir Sie über die Gutmeldung bezüglich der Meldung ${this.faultData.id} "${this.faultData.title}" informieren.\n\nMit freundlichen Grüßen\nIhr IT Servicedesk`
       })
 
       // this.modalForm.disable()
@@ -213,19 +232,23 @@ export class EditMessageComponent implements OnInit {
     this.modalService.open(content, {size: 'lg'});
   }
 
-  closeFault(faultId: number) {
-    console.log('here', faultId)
-    this.faultService.closeFault(faultId).subscribe(data => {
+  closeFault() {
+    console.log('here', this.completionModalForm.value)
+    const formData = this.completionModalForm.value
+    const postData = {
+      id: this.faultData?.id,
+      title: formData?.completion_title,
+      message: formData?.completion_message
+    }
+    console.log('::~postData~',postData)
+    this.faultService.closeFaultWithData(postData).subscribe(data => {
       console.log('submitted. response::', data)
-
-      this.router.navigate(['/dashboard']);
-
+      this.router.navigate(['/dashboard'])
       if(data.status) {
         this.alertService.showSuccess('Fault Closed', data.message)
       } else {
         this.alertService.showError('Error', data.message)
       }
-
     });
   }
 
