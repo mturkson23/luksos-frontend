@@ -88,7 +88,7 @@
         </div>
 
         <div class="ml-auto" style="margin-left: auto">
-          <button ngDefaultControl formControlName="gutmeldung_schicken" class="btn btn-success" style="margin-right: 10px;" (click)="closeFault(id)" type="button">
+          <button ngDefaultControl formControlName="gutmeldung_schicken" class="btn btn-success" style="margin-right: 10px;" (click)="openModal(completion)" type="button">
             <i class="fa-solid fa-circle-check"></i>
             Gutmeldung schicken
           </button>
@@ -178,5 +178,37 @@
       </div>
     </div>
 
-  </ng-template>  
+  </ng-template>
+
+  <ng-template #completion let-modal>
+    <div class="modal-header justify-content-center">
+      <h4 class="modal-title text-center" id="modal-title">Gutmeldung Schicken</h4>
+    </div>
+    <form class="modal-body" style="background-color: #f4f4f4;" [formGroup]="completionModalForm">
+      <div class="form">
+        <div class="row">
+          <div class="col-md-12 p-4">
+
+            <div class="form-group">
+              <label for="title">Titel</label>
+              <input type="text" class="form-control" id="completion_title" formControlName="completion_title"/>
+            </div>
+
+            <div class="form-group mt-4">
+              <label for="completion_message">Text</label>
+              <textarea class="form-control" rows="8" formControlName="completion_message"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex justify-content-between p-4">
+        <button class="btn btn-light" style="margin-right: 10px;" (click)="modal.close()">
+          Verwerfen
+        </button>
+        <button ngDefaultControl formControlName="completion_senden" class="btn btn-secondary" (click)="closeFault()">
+          Zwischenmeldung senden
+        </button>
+      </div>
+    </form>
+  </ng-template>
 </app-panel>
