@@ -40,6 +40,8 @@ import { AddChannelTypeComponent } from './pages/settings/channel-types/add-chan
 import { EditChannelTypeComponent } from './pages/settings/channel-types/edit-channel-type/edit-channel-type.component';
 import { ReportsComponent } from './pages/settings/reports/reports.component';
 import { ChannelsSetupComponent } from './pages/settings/channels-setup/channels-setup.component';
+import { AddChannelsSetupComponent } from './pages/settings/channels-setup/add-channels-setup/add-channels-setup.component';
+import { EditChannelsSetupComponent } from './pages/settings/channels-setup/edit-channels-setup/edit-channels-setup.component';
 
 const routes: Routes = [
   { path: '', component: ShellComponent, canActivateChild: [ DashboardGuard ], children: [
@@ -70,6 +72,9 @@ const routes: Routes = [
     { path: 'add-service-hours', component: AddServiceHoursComponent },
     { path: 'edit-service-hours/:id', component: EditServiceHoursComponent },
 
+    { path: 'channels', component: ChannelsSetupComponent },
+    { path: 'add-channels', component: AddChannelsSetupComponent },
+    { path: 'edit-channels/:id', component: EditChannelsSetupComponent },
     { path: 'channels', component: ChannelsSetupComponent },
     { path: 'add-channel-group', component: AddChannelTypeComponent },
     { path: 'edit-channel-group/:id', component: EditChannelTypeComponent },

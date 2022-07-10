@@ -1,5 +1,9 @@
-<app-panel [title]="'Kanale'">
-
+<app-panel [title]="'Kanäle'">
+  <div class="d-flex justify-content-end w-100 mb-5">
+    <button class="btn btn-secondary" (click)="goToAddChannel()">
+      <span>Hinzufügen <i class="fas fa-plus"></i></span>
+    </button>
+  </div>
   <table class="table table-striped">
     <thead>
       <tr>
@@ -14,7 +18,7 @@
         <td>{{ channel.id }}</td>
         <td>{{ channel.identifier }}</td>
         <td>{{ channel.address }}</td>
-        <!-- <td><i class="fa fa-trash"></i></td> -->
+        <td><button (click)="goToChannel(channel.id)" class="btn btn-warning btn-block">VIEW</button></td>
       </tr>
     </tbody>
   </table>

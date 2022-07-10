@@ -59,22 +59,30 @@ export class ChannelService extends ApplicationService {
   }
 
   addChannelGroup(payload: any) {
-
     return this.makePost('/channelgroup/add', payload)
   }
 
-  updateChannelGroup(payload: any) {
+  addChannel(payload: any) {
+    return this.makePost('/channel/add', payload)
+  }
 
+  updateChannelGroup(payload: any) {
     return this.makePost('/channelgroup/update', payload)
   }
 
-  getChannelGroupById(id: any) {
+  updateChannels(payload: any) {
+    return this.makePost('/channel/update', payload)
+  }
 
+  getChannelGroupById(id: any) {
     return this.makePost('/channelgroup/getbyid', { id })
   }
 
-  deleteTemplate(id: number) {
+  getChannelById(id: any) {
+    return this.makePost('/channel/getbyid', { id })
+  }
 
+  deleteTemplate(id: number) {
     return this.makePost('/messagetemplate/delete', { id })
   }
 }

@@ -61,6 +61,9 @@ import { EditChannelTypeComponent } from './pages/settings/channel-types/edit-ch
 import { ReportsComponent } from './pages/settings/reports/reports.component';
 import { ChannelsSetupComponent } from './pages/settings/channels-setup/channels-setup.component';
 
+import { AddChannelsSetupComponent } from './pages/settings/channels-setup/add-channels-setup/add-channels-setup.component';
+import { EditChannelsSetupComponent } from './pages/settings/channels-setup/edit-channels-setup/edit-channels-setup.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -106,7 +109,9 @@ import { ChannelsSetupComponent } from './pages/settings/channels-setup/channels
     AddServiceHoursComponent,
     EditServiceHoursComponent,
     ReportsComponent,
-    ChannelsSetupComponent
+    ChannelsSetupComponent,
+    AddChannelsSetupComponent,
+    EditChannelsSetupComponent
   ],
   imports: [
     BrowserModule,

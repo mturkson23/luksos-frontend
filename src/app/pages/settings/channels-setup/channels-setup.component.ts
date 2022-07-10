@@ -22,4 +22,13 @@ export class ChannelsSetupComponent implements OnInit {
       this.channels = channels.extra
     })
   }
+
+  goToAddChannel(){
+    this.router.navigate(['/settings/add-channels'])
+  }
+  goToChannel(id: any) {
+    console.log('::~', id)
+    this.router.navigate(['/settings/edit-channels', id])
+  }
+
 }
