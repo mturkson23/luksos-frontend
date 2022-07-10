@@ -205,9 +205,10 @@
         <button class="btn btn-light" style="margin-right: 10px;" (click)="modal.close()">
           Verwerfen
         </button>
-        <button ngDefaultControl formControlName="completion_senden" class="btn btn-secondary" (click)="closeFault()">
-          Zwischenmeldung senden
-        </button>
+        <button ngDefaultControl formControlName="completion_senden" class="btn btn-success" (click)="closeFault()">
+          <i class="fa-solid fa-circle-check"></i>          
+          Gutmeldung Schicken
+        </button>     
       </div>
     </form>
   </ng-template>
