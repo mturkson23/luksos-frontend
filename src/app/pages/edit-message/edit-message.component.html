@@ -57,11 +57,19 @@
           <input type="text" class="form-control" id="known_since" formControlName='known_since' readonly='true'/>
         </div>        
         <div class="form-group" style="margin-top: 1em;">
-          <label for="logs">Anzahl Zwischenmeldung</label>
-          <div class="input-group">
-            <input type="text" class="form-control" id="logs" formControlName='logs' />
-            <div class="input-group-prepend">
-              <div class="input-group-text input-report" style="height: 2.5rem" (click)="openModal(logMessages)"><i class="fa fa-search" style="justify-content: center; align-items: center;"></i></div>
+          <div class="row">
+            <div class="form-group col-md-6">
+              <label for="logs">Anzahl Zwischenmeldung</label>
+              <div class="input-group">
+                <input type="text" class="form-control" id="logs" formControlName='logs' />
+                <div class="input-group-prepend">
+                  <div class="input-group-text input-report" style="height: 2.5rem" (click)="openModal(logMessages)"><i class="fa fa-search" style="justify-content: center; align-items: center;"></i></div>
+                </div>
+              </div>              
+            </div>
+            <div class="form-group col-md-6">
+              <label for="art_der_mitteilung">Art der Mitteilung</label>
+              <input type="text" class="form-control" id="art_der_mitteilung" formControlName='art_der_mitteilung' readonly='true'/>
             </div>
           </div>
         </div>

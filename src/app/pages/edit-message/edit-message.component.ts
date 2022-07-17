@@ -64,6 +64,7 @@ export class EditMessageComponent implements OnInit {
       zwischenmeldung_erstellen: new FormControl('', []),
       gutmeldung_schicken: new FormControl('', []),
       related_system: new FormControl('', []),
+      art_der_mitteilung: new FormControl('', []),
       known_since: new FormControl('', []),
       aktivieren: new FormControl('', []),
       logs: new FormControl(0, []),
@@ -153,7 +154,8 @@ export class EditMessageComponent implements OnInit {
         timer: `${this.faultData.duration} mins`,
         reported_date: formatDate(this.faultData.date_created, 'dd.MM.yyyy HH:mm', 'en'),
         known_since: formatDate(this.faultData.reported_date, 'dd.MM.yyyy HH:mm', 'en'),
-        related_system: this.faultData.related_system
+        related_system: this.faultData.related_system,
+        art_der_mitteilung: this.faultData.notification_type
       })
 
       this.modalForm.patchValue({

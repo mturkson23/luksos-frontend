@@ -82,6 +82,7 @@ export class ReportComponent implements OnInit {
       logs: new FormControl(0, []),
       channelType: new FormControl('', []),
       channelGroup: new FormControl('', []),
+      art_der_mitteilung: new FormControl('', []),
 
       mitteilung_speichern: new FormControl('', []),
     });
@@ -184,6 +185,7 @@ export class ReportComponent implements OnInit {
         resolution_remark: this.faultData.remark,
         expected_duration: `${this.minToHoursAndMinutes(this.faultData.duration)}`,
         actual_duration: `${this.msToHoursAndMinutes(actualDuration)}`,
+        art_der_mitteilung: this.faultData.notification_type
       })
 
       this.modalForm.patchValue({
