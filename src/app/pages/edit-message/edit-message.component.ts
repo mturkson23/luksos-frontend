@@ -34,6 +34,8 @@ export class EditMessageComponent implements OnInit {
 
   id: any;
 
+  modalRef: any;
+
   constructor(private modalService: NgbModal, private router: Router, private faultService: FaultService, private activatedRoute: ActivatedRoute, private channelService: ChannelService, private alertService: AlertService) {}
 
   public form: FormGroup = new FormGroup({})
@@ -223,17 +225,17 @@ export class EditMessageComponent implements OnInit {
     this.channelService.getChannelsGroup().subscribe(data => {
 
       this.groupDropdownList = data.extra
-      console.log('sfasdf', this.groupDropdownList)
+      // console.log('sfasdf', this.groupDropdownList)
     })
   }
 
   openModal(content: any) {
     console.log(content)
-    this.modalService.open(content, {size: 'lg'});
+    this.modalRef = this.modalService.open(content, {size: 'lg'});
   }
 
   closeFault() {
-    console.log('here', this.completionModalForm.value)
+    // console.log('here', this.completionModalForm.value)
     const formData = this.completionModalForm.value
     const postData = {
       id: this.faultData?.id,
@@ -242,10 +244,10 @@ export class EditMessageComponent implements OnInit {
     }
     console.log('::~postData~',postData)
     this.faultService.closeFaultWithData(postData).subscribe(data => {
-      console.log('submitted. response::', data)
+      this.modalRef.close()
       this.router.navigate(['/dashboard'])
       if(data.status) {
-        this.alertService.showSuccess('Fault Closed', data.message)
+        this.alertService.showSuccess('Fehler geschlossen', data.message)
       } else {
         this.alertService.showError('Error', data.message)
       }
